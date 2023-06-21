@@ -1,3 +1,4 @@
+import { Box } from '../lib/chakra'
 export default function Home() {
-	return <main></main>
+	return <Box as='main'></Box>
 }
