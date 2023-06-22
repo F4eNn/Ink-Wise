@@ -1,20 +1,12 @@
 'use client'
 import React from 'react'
-import styled from 'styled-components'
 import { IconButton, useColorMode, Box, UnorderedList, ListItem, Flex } from '../../lib/chakra'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 import { Wrapper } from '../UI/Wrapper'
+import { Logo } from '../UI/Logo'
 import Link from 'next/link'
 
-const StyledLink = styled(Link)<{ $theme: string }>`
-	width: 30%;
-	height: 100px;
-	background-image: ${props =>
-	props.$theme === 'dark' ? "url('/dark-logo-desktop.png')" : "url('/light-logo-desktop.png')"};
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-`
+
 
 export const Nav = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
@@ -25,10 +17,7 @@ export const Nav = () => {
 					alignItems={'center'}
 					justifyContent={'space-between'}
 					gap={10}>
-					<StyledLink
-						$theme={colorMode}
-						href='/'></StyledLink>
-
+                        <Logo />
 					<Flex
 						alignItems={'center'}
 						gap={20}>

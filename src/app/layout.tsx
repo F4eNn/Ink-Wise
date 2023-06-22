@@ -1,19 +1,23 @@
+'use client'
 import { Inter } from 'next/font/google'
 import { ChakraUiProvider } from './ChakraUiProvider'
 import { Nav } from '@/components/Nav/Nav'
+import { usePathname } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-	title: 'Ink Wise',
-	description: 'All your stuff in one place',
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+	const pathname = usePathname()
+
+	const hidePaths = ['/login', '/signup']
+
 	return (
 		<html lang='en'>
+			<head>
+				<title>Ink Wise</title>
+			</head>
 			<body className={inter.className}>
 				<ChakraUiProvider>
-					<Nav />
+					{hidePaths.includes(pathname) ? '' : <Nav />}
 					{children}
 				</ChakraUiProvider>
 			</body>
