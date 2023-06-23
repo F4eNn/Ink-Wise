@@ -4,9 +4,11 @@ import { Flex } from '../../lib/chakra'
 
 const LoginPage = () => {
 	return (
-		<Flex  as='main' justifyContent={'center'}  h={'100%'} >
+		<Flex
+			as='main'
+			justifyContent={'center'}>
 			<Login />
-		</Flex >
+		</Flex>
 	)
 }
 

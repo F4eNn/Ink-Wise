@@ -10,7 +10,7 @@ export const Input = () => {
 			variant={'flushed'}
 			focusBorderColor='#976a0a'
 			mb={10}
-            py={8}
+            py={5}
 		/>
 	)
 }

@@ -1,6 +1,6 @@
 'use client'
 import { Inter } from 'next/font/google'
-import { ChakraUiProvider } from './ChakraUiProvider'
+import { ChakraUiProvider } from './theme/ChakraUiProvider'
 import { Nav } from '@/components/Nav/Nav'
 import { usePathname } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
