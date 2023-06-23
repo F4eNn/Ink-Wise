@@ -9,7 +9,7 @@ export const Input = () => {
 			placeholder='Name'
 			variant={'flushed'}
 			focusBorderColor='#976a0a'
-			mb={10}
+			mb={5}
             py={5}
 		/>
 	)

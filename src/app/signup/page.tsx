@@ -1,11 +1,14 @@
 import { Signup } from '@/components/Register/Signup'
+import { Flex } from '../../lib/chakra'
 import React from 'react'
 
 const SignupPage = () => {
 	return (
-		<div>
+		<Flex
+			as='main'
+			justifyContent={'center'}>
 			<Signup />
-		</div>
+		</Flex>
 	)
 }
 
