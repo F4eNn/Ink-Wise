@@ -1,5 +1,6 @@
 'use client'
-import { StyleFunctionProps, extendTheme, withDefaultVariant } from '../../lib/chakra'
+import { extendTheme, withDefaultVariant } from '../../lib/chakra'
+import { StyleFunctionProps } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import { Button } from './components/Button'
 export const Theme = extendTheme(

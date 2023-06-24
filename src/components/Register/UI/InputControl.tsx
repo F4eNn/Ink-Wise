@@ -1,7 +1,7 @@
 import { FormControl, FormErrorMessage, FormLabel, Input } from '@/lib/chakra'
 import React from 'react'
 
-type ValidateFunction = (value: any ) => boolean | string
+type ValidateFunction = (value: string) => boolean | string
 
 type ValidateObject = {
 	[x: string]: ValidateFunction 
@@ -17,7 +17,7 @@ type InputProps = {
 			value: boolean
 			message: string
 		}
-		validate: ValidateFunction | ValidateObject
+		validate?: ValidateFunction | ValidateObject
 	}
 	error: string | undefined
 }

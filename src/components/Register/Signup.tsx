@@ -2,21 +2,20 @@
 import React from 'react'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
-import { useColorMode, Heading, FormLabel, Input } from '@/lib/chakra'
+import { useColorMode, Heading} from '@/lib/chakra'
 import { Submit } from './UI/Submit'
 
 import { GoogleBtn } from './UI/GoogleBtn'
 import { GitHubBtn } from './UI/GitHubBtn'
-import { Logo } from '../UI/Logo'
+// import { Logo } from '../UI/Logo'
 import { RegisterLink } from './UI/RegisterLink'
 
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { InputControl } from './UI/InputControl'
-import isEmail from 'validator/lib/isEmail'
 
 export const Signup = () => {
 	const { colorMode } = useColorMode()
-	const { register, handleSubmit, formState } = useForm({
+	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
 			username: '',
 			email: '',
@@ -25,13 +24,14 @@ export const Signup = () => {
 	})
 	const { errors } = formState
 	const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
+		reset()
 		console.log(data)
 	}
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 	return (
 		<Form handleSubmit={handleSubmit(onSubmit)}>
-			<Logo size='100%' />
+			{/* <Logo size='100%' /> */}
 			<Card mode={colorMode}>
 				<Heading
 					as='h1'
@@ -71,7 +71,7 @@ export const Signup = () => {
 							value: true,
 							message: 'This field is required',
 						},
-						validate: email => isEmail(email) || 'Provide valid email',
+						// validate: email => isEmail(email) || 'Provide valid email',
 					}}
 					type='email'
 				/>

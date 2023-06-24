@@ -1,6 +1,8 @@
-'use client'
-import { ChakraProvider } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
+const ChakraProvider = dynamic(() => import('@chakra-ui/provider').then(mod => mod.ChakraProvider))
+
 import { Theme } from './Theme'
+
 export const ChakraUiProvider = ({ children }: { children: React.ReactNode }) => {
 	return <ChakraProvider theme={Theme}>{children}</ChakraProvider>
 }

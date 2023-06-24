@@ -1,4 +1,5 @@
-import { StyleFunctionProps, defineStyleConfig } from '../../../lib/chakra'
+import { defineStyleConfig } from '../../../lib/chakra'
+import { StyleFunctionProps } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
 export const Button = defineStyleConfig({
@@ -19,10 +20,9 @@ export const Button = defineStyleConfig({
 			bg: mode('#fff', '#2b2522')(props),
 			boxShadow: mode('0 0 10px 1px #b6b6b634', '')(props),
 			_hover: {
-				bg:mode('#fafafa','#3f3836')(props)
-			}
+				bg: mode('#fafafa', '#3f3836')(props),
+			},
 		}),
-		
 	},
 	defaultProps: {},
 })
