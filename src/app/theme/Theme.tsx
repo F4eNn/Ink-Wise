@@ -2,14 +2,13 @@
 import { StyleFunctionProps, extendTheme, withDefaultVariant } from '../../lib/chakra'
 import { mode } from '@chakra-ui/theme-tools'
 import { Button } from './components/Button'
-import { defineStyleConfig } from '../../lib/chakra'
-
 export const Theme = extendTheme(
 	{
 		clampText: {
-			'--clamp': 'clamp(.8em, 2.5vw, 1em)', // 
+			'--clamp': 'clamp(.8em, 2.5vw, 1em)', //
 		},
 		colors: {
+			gold: '#e49800',
 			lightBrown: '#9a531b',
 			veryLightBrown: '#c28f6813',
 			darkBrown: '#2b2522',
@@ -20,6 +19,7 @@ export const Theme = extendTheme(
 			global: (props: Record<string, any> | StyleFunctionProps) => ({
 				'html,body': {
 					minHeight: '100vh',
+
 					margin: 0,
 					backgroundReapeat: 'no-repeat',
 					backgroundSize: 'cover',

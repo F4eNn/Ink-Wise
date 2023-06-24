@@ -23,17 +23,6 @@ export const Button = defineStyleConfig({
 			}
 		}),
 		
-
-		google: {
-			bg: 'purple',
-			color: 'yellow',
-			_dark: {
-				bg: 'orange',
-			},
-		},
-		github: {
-			color: 'blue',
-		},
 	},
 	defaultProps: {},
 })

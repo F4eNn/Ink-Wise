@@ -1,9 +1,10 @@
 import React from 'react'
 import { Button } from '../../../lib/chakra'
 
-export const Submit = ({ children, mode }: { children: React.ReactNode, mode:string }) => {
+export const Submit = ({ children, mode }: { children: React.ReactNode; mode: string }) => {
 	return (
 		<Button
+			type='submit'
 			mt={4}
 			variant={'outlineDark'}
 			bg={mode === 'dark' ? 'darkBrown' : 'white'}
