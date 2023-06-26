@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { ChakraUiProvider } from './theme/ChakraUiProvider'
 import { Nav } from '@/components/Nav/Nav'
 import { usePathname } from 'next/navigation'
+import { UserAuthProvider } from '@/components/Register/context/userAuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -18,7 +19,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={inter.className}>
 				<ChakraUiProvider>
 					{hidePaths.includes(pathname) ? '' : <Nav />}
-					{children}
+
+					<UserAuthProvider>{children}</UserAuthProvider>
 				</ChakraUiProvider>
 			</body>
 		</html>

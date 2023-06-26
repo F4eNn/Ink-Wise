@@ -4,10 +4,11 @@ import React from 'react'
 type ValidateFunction = (value: string) => boolean | string
 
 type ValidateObject = {
-	[x: string]: ValidateFunction 
+	[x: string]: ValidateFunction
 }
 type InputProps = {
 	isInvalid: any
+	mode: string
 	name: string
 	type: string
 	palaceholder: string
@@ -21,7 +22,9 @@ type InputProps = {
 	}
 	error: string | undefined
 }
-export const InputControl = ({ isInvalid, name, palaceholder, register, registerValue, type, error }: InputProps) => {
+export const InputControl = (props: InputProps) => {
+	const { isInvalid, name, palaceholder, register, registerValue, type, error, mode} = props
+
 	return (
 		<FormControl
 			mb={5}
@@ -39,6 +42,7 @@ export const InputControl = ({ isInvalid, name, palaceholder, register, register
 				fontSize={'.8em'}
 				focusBorderColor='gold'
 				type={type}
+				borderColor={mode === 'dark' ? 'grey' : 'lightBrown'}
 				placeholder={palaceholder}
 				{...register(name, registerValue)}
 			/>

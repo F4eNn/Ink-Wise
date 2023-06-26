@@ -15,6 +15,7 @@ export const Theme = extendTheme(
 			darkBrown: '#2b2522',
 			darkBrownHover: '#3f3632',
 			veryLightGrey: '#f7f7f7eb',
+			error: '#fc8181'
 		},
 		styles: {
 			global: (props: Record<string, any> | StyleFunctionProps) => ({

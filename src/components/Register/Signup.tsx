@@ -1,19 +1,26 @@
 'use client'
-import React from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
-import { useColorMode, Heading} from '@/lib/chakra'
+import { useColorMode, Heading } from '@/lib/chakra'
 import { Submit } from './UI/Submit'
-
 import { GoogleBtn } from './UI/GoogleBtn'
 import { GitHubBtn } from './UI/GitHubBtn'
-// import { Logo } from '../UI/Logo'
+import { Logo } from '../UI/Logo'
 import { RegisterLink } from './UI/RegisterLink'
-
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { InputControl } from './UI/InputControl'
-
+import { userAuthContext } from './context/userAuth'
+import { UserDataProps } from './context/userAuth'
+import isEmail from 'validator/lib/isEmail'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../Config/firebase'
+import { useRouter } from 'next/navigation'
 export const Signup = () => {
+	const [emailExist, setEmailExist] = useState(false)
+	const containsCapitalLetter = /(?=.*[A-Z])/
+	const containsSpecialChar = /(?=.*\W)/
+	const { getUserData } = useContext(userAuthContext)
 	const { colorMode } = useColorMode()
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
@@ -23,15 +30,35 @@ export const Signup = () => {
 		},
 	})
 	const { errors } = formState
-	const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
-		reset()
-		console.log(data)
+	const router = useRouter()
+
+	const signUp = async (email: string, password: string, e?: FormEvent) => {
+		e?.preventDefault()
+		try {
+			await createUserWithEmailAndPassword(auth, email, password)
+			setEmailExist(false)
+			router.push('/login')
+			reset()
+		} catch (err: any) {
+			console.log(err.code)
+			console.error(err)
+			if ((err as { code: string }).code == 'auth/email-already-in-use') {
+				console.log('true')
+				setEmailExist(true)
+			} else {
+				setEmailExist(false)
+			}
+		}
 	}
-	const containsCapitalLetter = /(?=.*[A-Z])/
-	const containsSpecialChar = /(?=.*\W)/
+	console.log(emailExist)
+	const onSubmit: SubmitHandler<UserDataProps> = data => {
+		getUserData(data)
+		signUp(data.email, data.password)
+	}
+
 	return (
 		<Form handleSubmit={handleSubmit(onSubmit)}>
-			{/* <Logo size='100%' /> */}
+			<Logo size='100%' />
 			<Card mode={colorMode}>
 				<Heading
 					as='h1'
@@ -46,6 +73,7 @@ export const Signup = () => {
 				<GoogleBtn mode={colorMode} />
 				<GitHubBtn mode={colorMode} />
 				<InputControl
+					mode={colorMode}
 					error={errors.username && errors.username.message}
 					isInvalid={!!errors.username}
 					name='username'
@@ -56,11 +84,19 @@ export const Signup = () => {
 							value: true,
 							message: 'This field is required',
 						},
-						validate: name => name.length >= 3 || 'min. 3 characters',
+						validate: {
+							hasMinLength: username => {
+								return username.length >= 3 || 'min. 3 characters'
+							},
+							hasSpecialChar: username => {
+								return !containsSpecialChar.test(username) || "Username can't contain special characters"
+							},
+						},
 					}}
 					type='text'
 				/>
 				<InputControl
+					mode={colorMode}
 					error={errors.email && errors.email.message}
 					isInvalid={!!errors.email}
 					name='email'
@@ -71,15 +107,16 @@ export const Signup = () => {
 							value: true,
 							message: 'This field is required',
 						},
-						// validate: email => isEmail(email) || 'Provide valid email',
+						validate: email => isEmail(email) || 'Provide valid email',
 					}}
 					type='email'
 				/>
 				<InputControl
+					mode={colorMode}
 					error={errors.password && errors.password.message}
 					isInvalid={!!errors.password}
 					name='password'
-					palaceholder='john.doe@johondoehub.com'
+					palaceholder='password'
 					register={register}
 					registerValue={{
 						required: {
@@ -91,16 +128,20 @@ export const Signup = () => {
 								return password.length >= 6 || 'min. 6 characters'
 							},
 							hasBigLetter: password => {
-								return containsCapitalLetter.test(password) || 'atleast one capital letter'
+								return containsCapitalLetter.test(password) || 'Atleast one capital letter'
 							},
-							hasSpecialSign: password => {
-								return containsSpecialChar.test(password) || 'atleast one special char.'
+							hasSpecialChar: password => {
+								return containsSpecialChar.test(password) || 'Atleast one special char.'
 							},
 						},
 					}}
 					type='password'
 				/>
-				<Submit mode={colorMode}>Create</Submit>
+				<Submit
+					// onLogin={signUp}
+					mode={colorMode}>
+					Create
+				</Submit>
 				<RegisterLink
 					content='Have an account already?'
 					path='/login'

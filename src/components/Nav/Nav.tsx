@@ -2,11 +2,9 @@
 import React from 'react'
 import { IconButton, useColorMode, Box, UnorderedList, ListItem, Flex } from '../../lib/chakra'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
-import { Wrapper } from '../UI/Wrapper'
+import { Wrapper } from '../Register/UI/Wrapper'
 import { Logo } from '../UI/Logo'
 import Link from 'next/link'
-
-
 
 export const Nav = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
@@ -17,7 +15,7 @@ export const Nav = () => {
 					alignItems={'center'}
 					justifyContent={'space-between'}
 					gap={10}>
-                        <Logo />
+					<Logo />
 					<Flex
 						alignItems={'center'}
 						gap={20}>
