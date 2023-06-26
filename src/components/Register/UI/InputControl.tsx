@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormLabel, Input } from '@/lib/chakra'
+import { Text, FormControl, FormErrorMessage, FormLabel, Input } from '@/lib/chakra'
 import React from 'react'
 
 type ValidateFunction = (value: string) => boolean | string
@@ -13,6 +13,7 @@ type InputProps = {
 	type: string
 	palaceholder: string
 	register: any
+	emailExist?: boolean
 	registerValue: {
 		required?: {
 			value: boolean
@@ -23,10 +24,11 @@ type InputProps = {
 	error: string | undefined
 }
 export const InputControl = (props: InputProps) => {
-	const { isInvalid, name, palaceholder, register, registerValue, type, error, mode} = props
+	const { isInvalid, name, palaceholder, register, registerValue, type, error, mode, emailExist } = props
 
 	return (
 		<FormControl
+			position='relative'
 			mb={5}
 			isInvalid={isInvalid}>
 			<FormLabel
@@ -47,6 +49,7 @@ export const InputControl = (props: InputProps) => {
 				{...register(name, registerValue)}
 			/>
 			<FormErrorMessage as='p'>{error}</FormErrorMessage>
+			{emailExist ? <Text position='absolute' top={0} right={0} color='error' fontSize={'.8em'}  as='p'>Email already exist</Text> : ''}
 		</FormControl>
 	)
 }

@@ -18,6 +18,7 @@ import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
 export const Signup = () => {
 	const [emailExist, setEmailExist] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 	const { getUserData } = useContext(userAuthContext)
@@ -34,23 +35,18 @@ export const Signup = () => {
 
 	const signUp = async (email: string, password: string, e?: FormEvent) => {
 		e?.preventDefault()
+		setIsLoading(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			setEmailExist(false)
+			setIsLoading(false)
 			router.push('/login')
 			reset()
 		} catch (err: any) {
-			console.log(err.code)
-			console.error(err)
-			if ((err as { code: string }).code == 'auth/email-already-in-use') {
-				console.log('true')
-				setEmailExist(true)
-			} else {
-				setEmailExist(false)
-			}
+			setIsLoading(false)
+			if ((err as { code: string }).code == 'auth/email-already-in-use') return setEmailExist(true)
 		}
 	}
-	console.log(emailExist)
 	const onSubmit: SubmitHandler<UserDataProps> = data => {
 		getUserData(data)
 		signUp(data.email, data.password)
@@ -96,10 +92,12 @@ export const Signup = () => {
 					type='text'
 				/>
 				<InputControl
+					emailExist={emailExist}
 					mode={colorMode}
 					error={errors.email && errors.email.message}
 					isInvalid={!!errors.email}
 					name='email'
+
 					palaceholder='john.doe@johondoehub.com'
 					register={register}
 					registerValue={{
@@ -138,6 +136,8 @@ export const Signup = () => {
 					type='password'
 				/>
 				<Submit
+				isLoading={isLoading}
+
 					// onLogin={signUp}
 					mode={colorMode}>
 					Create

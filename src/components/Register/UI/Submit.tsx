@@ -5,11 +5,15 @@ type SubmitProps = {
 	children: React.ReactNode
 	mode: string
 	onLogin?: (e: FormEvent) => void
+	isLoading?: boolean
 }
 
-export const Submit = ({ children, mode, onLogin }: SubmitProps) => {
+export const Submit = ({ children, mode, onLogin, isLoading }: SubmitProps) => {
+	console.log(isLoading)
 	return (
 		<Button
+			isLoading={isLoading}
+			loadingText='Creating'
 			onClick={onLogin}
 			type='submit'
 			mt={4}
