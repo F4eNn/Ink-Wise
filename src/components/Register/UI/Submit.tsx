@@ -4,17 +4,15 @@ import { Button } from '../../../lib/chakra'
 type SubmitProps = {
 	children: React.ReactNode
 	mode: string
-	onLogin?: (e: FormEvent) => void
-	isLoading?: boolean
+	isLoading: boolean
+	loadingText: string
 }
 
-export const Submit = ({ children, mode, onLogin, isLoading }: SubmitProps) => {
-	console.log(isLoading)
+export const Submit = ({ children, mode, isLoading, loadingText }: SubmitProps) => {
 	return (
 		<Button
 			isLoading={isLoading}
-			loadingText='Creating'
-			onClick={onLogin}
+			loadingText={loadingText}
 			type='submit'
 			mt={4}
 			variant={'outlineDark'}

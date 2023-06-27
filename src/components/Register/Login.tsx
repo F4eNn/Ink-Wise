@@ -1,6 +1,6 @@
 'use client'
-import React, { FormEvent, useContext } from 'react'
-import { FormLabel, useColorMode, Input } from '../../lib/chakra'
+import React, { useState } from 'react'
+import { useColorMode, Center } from '../../lib/chakra'
 import { Logo } from '../UI/Logo'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
@@ -8,53 +8,90 @@ import { Submit } from './UI/Submit'
 import { GoogleBtn } from './UI/GoogleBtn'
 import { GitHubBtn } from './UI/GitHubBtn'
 import { RegisterLink } from './UI/RegisterLink'
-import { userAuthContext } from './context/userAuth'
 
 import { auth } from '../../Config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { InputControl } from './UI/InputControl'
+
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 
 export const Login = () => {
 	const { colorMode } = useColorMode()
-	const { userData } = useContext(userAuthContext)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [InvalidCredentials, setInvalidCredentials] = useState(false)
+	const { register, formState, handleSubmit } = useForm({
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	})
+	const { errors } = formState
 
-	const signIn = async (e: FormEvent) => {
-		e.preventDefault()
+	const signIn = async (email: string, password: string) => {
+		setIsSubmitting(true)
+		setInvalidCredentials(false)
 		try {
-			const login = await signInWithEmailAndPassword(auth, userData?.email, userData?.password)
-			console.log(login)
+			await signInWithEmailAndPassword(auth, email, password)
+			console.log('zalogowano')
+			setIsSubmitting(false)
 		} catch (err) {
-			console.error(err)
+			setInvalidCredentials(true)
+			setIsSubmitting(false)
 		}
 	}
 
+	const onSubmit: SubmitHandler<FieldValues> = user => {
+		signIn(user.email, user.password)
+		console.log(user)
+	}
+
 	return (
-		<Form>
+		<Form handleSubmit={handleSubmit(onSubmit)}>
 			<Logo size='100%' />
 			<Card mode={colorMode}>
 				<GoogleBtn mode={colorMode} />
 				<GitHubBtn mode={colorMode} />
-				<FormLabel fontSize={'inherit'}>Email</FormLabel>
-				<Input
-					mb={5}
-					py={5}
-					variant={'flushed'}
-					fontSize={'.8em'}
-					focusBorderColor='gold'
+				<Center
+					color='error'
+					fontSize={'.85em'}
+					mb={5}>
+					{InvalidCredentials && 'Email or password are Invalid!'}
+				</Center>
+				<InputControl
+					mode={colorMode}
+					error={errors.email && errors.email.message}
+					isInvalid={!!errors.email}
+					name='email'
+					palaceholder='john.doe@johndoehub.com'
+					register={register}
+					registerValue={{
+						required: {
+							value: true,
+							message: 'This field is required',
+						},
+						validate: email => email.trim().length > 0 || 'This field is required',
+					}}
 					type='email'
-					placeholder='john.doe@johndoehub.com'
 				/>
-				<FormLabel fontSize={'inherit'}>Password</FormLabel>
-				<Input
-					mb={5}
-					py={5}
-					variant={'flushed'}
-					fontSize={'.8em'}
-					focusBorderColor='gold'
+				<InputControl
+					mode={colorMode}
+					error={errors.password && errors.password.message}
+					isInvalid={!!errors.password}
+					name='password'
+					palaceholder='Password'
+					register={register}
+					registerValue={{
+						required: {
+							value: true,
+							message: 'This field is required',
+						},
+						validate: password => password.trim().length > 0 || 'This field is required',
+					}}
 					type='password'
-					placeholder='Password'
 				/>
 				<Submit
-					// onLogin={signIn}
+					loadingText='Entering'
+					isLoading={isSubmitting}
 					mode={colorMode}>
 					Enter
 				</Submit>

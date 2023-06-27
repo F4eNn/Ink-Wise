@@ -1,5 +1,5 @@
 'use client'
-import React, { FormEvent, useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
 import { useColorMode, Heading } from '@/lib/chakra'
@@ -8,20 +8,19 @@ import { GoogleBtn } from './UI/GoogleBtn'
 import { GitHubBtn } from './UI/GitHubBtn'
 import { Logo } from '../UI/Logo'
 import { RegisterLink } from './UI/RegisterLink'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { InputControl } from './UI/InputControl'
-import { userAuthContext } from './context/userAuth'
-import { UserDataProps } from './context/userAuth'
+
 import isEmail from 'validator/lib/isEmail'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
+
 export const Signup = () => {
 	const [emailExist, setEmailExist] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
+	const [isSubmitting, setIsSubmitting] = useState(false)
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
-	const { getUserData } = useContext(userAuthContext)
 	const { colorMode } = useColorMode()
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
@@ -33,22 +32,21 @@ export const Signup = () => {
 	const { errors } = formState
 	const router = useRouter()
 
-	const signUp = async (email: string, password: string, e?: FormEvent) => {
-		e?.preventDefault()
-		setIsLoading(true)
+	const signUp = async (email: string, password: string) => {
+		setIsSubmitting(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			setEmailExist(false)
-			setIsLoading(false)
+			setIsSubmitting(false)
 			router.push('/login')
 			reset()
 		} catch (err: any) {
-			setIsLoading(false)
+			setIsSubmitting(false)
 			if ((err as { code: string }).code == 'auth/email-already-in-use') return setEmailExist(true)
 		}
 	}
-	const onSubmit: SubmitHandler<UserDataProps> = data => {
-		getUserData(data)
+	const onSubmit: SubmitHandler<FieldValues> = data => {
+		console.log(data)
 		signUp(data.email, data.password)
 	}
 
@@ -97,7 +95,6 @@ export const Signup = () => {
 					error={errors.email && errors.email.message}
 					isInvalid={!!errors.email}
 					name='email'
-
 					palaceholder='john.doe@johondoehub.com'
 					register={register}
 					registerValue={{
@@ -136,9 +133,8 @@ export const Signup = () => {
 					type='password'
 				/>
 				<Submit
-				isLoading={isLoading}
-
-					// onLogin={signUp}
+					loadingText='Creating'
+					isLoading={isSubmitting}
 					mode={colorMode}>
 					Create
 				</Submit>
