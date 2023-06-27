@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
 import { useColorMode, Heading } from '@/lib/chakra'
@@ -15,13 +15,15 @@ import isEmail from 'validator/lib/isEmail'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
+import { AuthCtx } from './context/Auth'
 
 export const Signup = () => {
+	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
+	const { listenOnSubmitForm } = useContext(AuthCtx)
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
-	const { colorMode } = useColorMode()
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
 			username: '',
@@ -38,6 +40,7 @@ export const Signup = () => {
 			await createUserWithEmailAndPassword(auth, email, password)
 			setEmailExist(false)
 			setIsSubmitting(false)
+			listenOnSubmitForm(!isSubmitting)
 			router.push('/login')
 			reset()
 		} catch (err: any) {
@@ -46,7 +49,6 @@ export const Signup = () => {
 		}
 	}
 	const onSubmit: SubmitHandler<FieldValues> = data => {
-		console.log(data)
 		signUp(data.email, data.password)
 	}
 

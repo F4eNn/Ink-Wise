@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-const ChakraProvider = dynamic(() => import('@chakra-ui/provider').then(mod => mod.ChakraProvider))
+const ChakraProvider = dynamic(() => import('@chakra-ui/react').then(mod => mod.ChakraProvider))
 
 import { Theme } from './Theme'
 

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { useColorMode, Center } from '../../lib/chakra'
+import { useColorMode, Center, useToast } from '../../lib/chakra'
 import { Logo } from '../UI/Logo'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
@@ -12,7 +12,7 @@ import { RegisterLink } from './UI/RegisterLink'
 import { auth } from '../../Config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { InputControl } from './UI/InputControl'
-
+import { Toast } from './UI/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 
 export const Login = () => {
@@ -26,7 +26,6 @@ export const Login = () => {
 		},
 	})
 	const { errors } = formState
-
 	const signIn = async (email: string, password: string) => {
 		setIsSubmitting(true)
 		setInvalidCredentials(false)
@@ -46,61 +45,64 @@ export const Login = () => {
 	}
 
 	return (
-		<Form handleSubmit={handleSubmit(onSubmit)}>
-			<Logo size='100%' />
-			<Card mode={colorMode}>
-				<GoogleBtn mode={colorMode} />
-				<GitHubBtn mode={colorMode} />
-				<Center
-					color='error'
-					fontSize={'.85em'}
-					mb={5}>
-					{InvalidCredentials && 'Email or password are Invalid!'}
-				</Center>
-				<InputControl
-					mode={colorMode}
-					error={errors.email && errors.email.message}
-					isInvalid={!!errors.email}
-					name='email'
-					palaceholder='john.doe@johndoehub.com'
-					register={register}
-					registerValue={{
-						required: {
-							value: true,
-							message: 'This field is required',
-						},
-						validate: email => email.trim().length > 0 || 'This field is required',
-					}}
-					type='email'
-				/>
-				<InputControl
-					mode={colorMode}
-					error={errors.password && errors.password.message}
-					isInvalid={!!errors.password}
-					name='password'
-					palaceholder='Password'
-					register={register}
-					registerValue={{
-						required: {
-							value: true,
-							message: 'This field is required',
-						},
-						validate: password => password.trim().length > 0 || 'This field is required',
-					}}
-					type='password'
-				/>
-				<Submit
-					loadingText='Entering'
-					isLoading={isSubmitting}
-					mode={colorMode}>
-					Enter
-				</Submit>
-				<RegisterLink
-					content="Don't have an account?"
-					linkDesc='Sign in'
-					path='/signup'
-				/>
-			</Card>
-		</Form>
+		<>
+			<Form handleSubmit={handleSubmit(onSubmit)}>
+				<Logo size='100%' />
+				<Toast />
+				<Card mode={colorMode}>
+					<GoogleBtn mode={colorMode} />
+					<GitHubBtn mode={colorMode} />
+					<Center
+						color='error'
+						fontSize={'.85em'}
+						mb={5}>
+						{InvalidCredentials && 'Email or password are Invalid!'}
+					</Center>
+					<InputControl
+						mode={colorMode}
+						error={errors.email && errors.email.message}
+						isInvalid={!!errors.email}
+						name='email'
+						palaceholder='john.doe@johndoehub.com'
+						register={register}
+						registerValue={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+							validate: email => email.trim().length > 0 || 'This field is required',
+						}}
+						type='email'
+					/>
+					<InputControl
+						mode={colorMode}
+						error={errors.password && errors.password.message}
+						isInvalid={!!errors.password}
+						name='password'
+						palaceholder='Password'
+						register={register}
+						registerValue={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+							validate: password => password.trim().length > 0 || 'This field is required',
+						}}
+						type='password'
+					/>
+					<Submit
+						loadingText='Entering'
+						isLoading={isSubmitting}
+						mode={colorMode}>
+						Enter
+					</Submit>
+					<RegisterLink
+						content="Don't have an account?"
+						linkDesc='Sign in'
+						path='/signup'
+					/>
+				</Card>
+			</Form>
+		</>
 	)
 }

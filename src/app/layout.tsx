@@ -5,11 +5,11 @@ import { Nav } from '@/components/Nav/Nav'
 import { usePathname } from 'next/navigation'
 import { Suspense } from 'react'
 import Loading from './loading'
+import { AuthProvider } from '@/components/Register/context/AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname()
-
 	const hidePaths = ['/login', '/signup']
 
 	return (
@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<ChakraUiProvider>
 					{hidePaths.includes(pathname) ? '' : <Nav />}
 
-					<Suspense fallback={<Loading />}>{children}</Suspense>
+					<AuthProvider>
+						<Suspense fallback={<Loading />}>{children}</Suspense>
+					</AuthProvider>
 				</ChakraUiProvider>
 			</body>
 		</html>
