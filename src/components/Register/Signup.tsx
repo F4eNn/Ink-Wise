@@ -12,7 +12,7 @@ import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { InputControl } from './UI/InputControl'
 
 import isEmail from 'validator/lib/isEmail'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
 import { AuthCtx } from './context/Auth'
@@ -34,13 +34,15 @@ export const Signup = () => {
 	const { errors } = formState
 	const router = useRouter()
 
-	const signUp = async (email: string, password: string) => {
+	const signUp = async (email: string, password: string, name: string) => {
 		setIsSubmitting(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
+			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
+			// check if is submitted already that's why contains exclamation mark
+			listenOnSubmitForm(!isSubmitting, name)
 			setEmailExist(false)
 			setIsSubmitting(false)
-			listenOnSubmitForm(!isSubmitting)
 			router.push('/login')
 			reset()
 		} catch (err: any) {
@@ -49,7 +51,7 @@ export const Signup = () => {
 		}
 	}
 	const onSubmit: SubmitHandler<FieldValues> = data => {
-		signUp(data.email, data.password)
+		signUp(data.email, data.password, data.username)
 	}
 
 	return (

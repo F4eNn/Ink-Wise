@@ -41,7 +41,6 @@ export const Login = () => {
 
 	const onSubmit: SubmitHandler<FieldValues> = user => {
 		signIn(user.email, user.password)
-		console.log(user)
 	}
 
 	return (

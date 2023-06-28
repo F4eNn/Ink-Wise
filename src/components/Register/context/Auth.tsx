@@ -1,8 +1,7 @@
-
 import React from 'react'
 
 const initValues = {
-    listenOnSubmitForm: (value?:boolean) => {}
+	listenOnSubmitForm: (value?: boolean, username?:string) => {},
 }
 
-export const AuthCtx =  React.createContext(initValues)
+export const AuthCtx = React.createContext(initValues)

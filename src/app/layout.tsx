@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 import Loading from './loading'
 import { AuthProvider } from '@/components/Register/context/AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
-
+import { AuthDetails } from '@/components/Register/AuthDetails'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname()
 	const hidePaths = ['/login', '/signup']
@@ -17,10 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<head>
 				<title>Ink Wise</title>
 			</head>
+
 			<body className={inter.className}>
 				<ChakraUiProvider>
 					{hidePaths.includes(pathname) ? '' : <Nav />}
-
+					<AuthDetails />
 					<AuthProvider>
 						<Suspense fallback={<Loading />}>{children}</Suspense>
 					</AuthProvider>

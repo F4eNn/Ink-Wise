@@ -1,36 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { AuthCtx } from './Auth'
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
-	const showToast = () => {
+	const showToast = (username: string) => {
 		toast({
 			position: 'top-right',
-			title: 'Account created',
-			description: "We've created your account for you",
-			duration: 100000,
+			duration: 7000,
 			render: () => (
 				<Box
-					bgGradient='linear(to-r, #ffdc9f, pink.500)'
+					bgGradient='linear(to-r, #ffdc9f, gold)'
 					py={3}
 					px={4}
+					color='#313131'
 					rounded='8px'>
-					<Heading fontSize='1.2em'>Account created.</Heading>
+					<Heading fontSize='1.2em'>{`Hello ${username} 😄`}</Heading>
 					<Text as='p'>{"We've created your account for you."}</Text>
 				</Box>
 			),
 		})
 	}
-
-	useEffect(() => {
-		showToast()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-	const listenOnSubmitForm = (value?: boolean) => {
-		if (value) {
-			showToast()
+	const listenOnSubmitForm = (value?: boolean, username?: string) => {
+		if (value && username) {
+			showToast(username)
 		}
 	}
+
 	const data = {
 		listenOnSubmitForm,
 	}
