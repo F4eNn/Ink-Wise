@@ -1,10 +1,10 @@
-'use client'
 import React from 'react'
-import { IconButton, useColorMode, Box, UnorderedList, ListItem, Flex } from '../../lib/chakra'
+import { IconButton, useColorMode, Box, Flex } from '../../lib/chakra'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
-import { Wrapper } from '../Register/UI/Wrapper'
+import { Wrapper } from '../UI/Wrapper'
 import { Logo } from '../UI/Logo'
-import Link from 'next/link'
+import { Mobile } from './Mobile'
+import { Desktop } from './Desktop'
 
 export const Nav = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
@@ -17,8 +17,8 @@ export const Nav = () => {
 					gap={10}>
 					<Logo />
 					<Flex
-						alignItems={'center'}
-						gap={20}>
+					gap={5}
+						alignItems='center'>
 						<IconButton
 							role='group'
 							aria-label='toggle theme'
@@ -27,15 +27,15 @@ export const Nav = () => {
 							icon={
 								colorMode === 'dark' ? (
 									<SunIcon
-										w={30}
-										h={30}
+										w={'25px'}
+										h={'25px'}
 										transitionDuration={'.3s'}
 										_groupHover={{ color: 'orange.300' }}
 									/>
 								) : (
 									<MoonIcon
-										w={30}
-										h={30}
+										w={'25px'}
+										h={'25px'}
 										transitionDuration={'.3s'}
 										_groupHover={{ color: 'blue.700' }}
 									/>
@@ -43,16 +43,8 @@ export const Nav = () => {
 							}
 							onClick={toggleColorMode}
 						/>
-						<UnorderedList
-							display={'flex'}
-							gap={10}>
-							<ListItem>
-								<Link href='/login'>Login</Link>
-							</ListItem>
-							<ListItem>
-								<Link href='/signup'>Sign up</Link>
-							</ListItem>
-						</UnorderedList>
+						<Mobile colorMode={colorMode}/>
+						<Desktop colorMode={colorMode} />
 					</Flex>
 				</Flex>
 			</Box>

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { useColorMode, Center, useToast } from '../../lib/chakra'
+import { useColorMode, Center } from '../../lib/chakra'
 import { Logo } from '../UI/Logo'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'

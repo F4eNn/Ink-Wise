@@ -1,4 +1,4 @@
-import { Box } from '../lib/chakra'
+import { Center } from '../lib/chakra'
 export default function Home() {
-	return <Box as='main'>Home</Box>
+	return <Center as='main'>Home</Center>
 }

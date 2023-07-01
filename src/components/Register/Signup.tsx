@@ -43,7 +43,7 @@ export const Signup = () => {
 			listenOnSubmitForm(!isSubmitting, name)
 			setEmailExist(false)
 			setIsSubmitting(false)
-			router.push('/login')
+			router.push(`/${name}`)
 			reset()
 		} catch (err: any) {
 			setIsSubmitting(false)

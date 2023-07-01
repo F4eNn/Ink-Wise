@@ -10,6 +10,8 @@ export const Theme = extendTheme(
 		},
 		colors: {
 			gold: '#e49800',
+			mediumGold: '#eec063',
+			lightGold: '#ffda9a',
 			lightBrown: '#9a531b',
 			veryLightBrown: '#c28f6813',
 			darkBrown: '#2b2522',
@@ -36,6 +38,7 @@ export const Theme = extendTheme(
 				li: {
 					listStyle: 'none',
 				},
+				
 			}),
 		},
 
