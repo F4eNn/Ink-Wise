@@ -2,6 +2,8 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import { Box, Button, UnorderedList, ListItem, Divider } from '@/lib/chakra'
+import { useAuth } from '../../hooks/useAuth'
+import { UserPannel } from '../User/UserPannel'
 import Link from 'next/link'
 
 const Bar = styled.div<HamburgerProps>`
@@ -33,6 +35,7 @@ export const Mobile = ({ colormode }: MobileProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const mobileNavRef = useRef(null)
 	const dividerRef = useRef(null)
+	const { authUser } = useAuth()
 
 	const showNav = (e: React.MouseEvent) => {
 		setIsOpen(prev => !prev)
@@ -43,29 +46,33 @@ export const Mobile = ({ colormode }: MobileProps) => {
 
 	return (
 		<Box display={[null, null, 'none']}>
-			<Button
-				display='flex'
-				flexDir='column'
-				bg='transparent'
-				aria-label='open nav'
-				zIndex={10}
-				_hover={{
-					bg: 'none',
-				}}
-				onClick={showNav}>
-				<Bar1
-					colormode={colormode}
-					$isOpen={isOpen}
-				/>
-				<Bar2
-					colormode={colormode}
-					$isOpen={isOpen}
-				/>
-				<Bar3
-					colormode={colormode}
-					$isOpen={isOpen}
-				/>
-			</Button>
+			{authUser ? (
+				<UserPannel />
+			) : (
+				<Button
+					display='flex'
+					flexDir='column'
+					bg='transparent'
+					aria-label='open nav'
+					zIndex={10}
+					_hover={{
+						bg: 'none',
+					}}
+					onClick={showNav}>
+					<Bar1
+						colormode={colormode}
+						$isOpen={isOpen}
+					/>
+					<Bar2
+						colormode={colormode}
+						$isOpen={isOpen}
+					/>
+					<Bar3
+						colormode={colormode}
+						$isOpen={isOpen}
+					/>
+				</Button>
+			)}
 			<Box
 				onClick={closeNavOnOverlay}
 				position='fixed'

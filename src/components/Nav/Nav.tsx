@@ -14,10 +14,10 @@ export const Nav = () => {
 				<Flex
 					alignItems={'center'}
 					justifyContent={'space-between'}
-					gap={10}>
+					gap={[2, 5, 10]}>
 					<Logo />
 					<Flex
-					// gap={5}
+						gap={[null, 5]}
 						alignItems='center'>
 						<IconButton
 							role='group'
@@ -43,8 +43,8 @@ export const Nav = () => {
 							}
 							onClick={toggleColorMode}
 						/>
-						<Mobile colormode={colorMode}/>
-						<Desktop colorMode={colorMode} />
+						<Mobile colormode={colorMode} />
+						<Desktop />
 					</Flex>
 				</Flex>
 			</Box>

@@ -1,30 +1,21 @@
 import React from 'react'
-import { useColorMode } from '@/lib/chakra'
-import styled from 'styled-components'
+import { useColorMode, Link } from '@/lib/chakra'
+import NextLink from 'next/link'
 
-import Link from 'next/link'
-
-const StyledLink = styled(Link)<{ $theme: string; $size?: string }>`
-	width: ${props => props.$size || '200px'};
-	height: 100px;
-	background-image: ${props =>
-		props.$theme === 'dark' ? "url('/dark-logo-desktop.png')" : "url('/light-logo-desktop.png')"};
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-
-	@media (min-width: '768px'){
-		width: 30%;
-	}
-`
 export const Logo = ({ size }: { size?: string }) => {
 	const { colorMode } = useColorMode()
 	return (
-		<StyledLink
-		
-			$size={size}
-			$theme={colorMode}
+		<Link
+			aria-label='home'
+			as={NextLink}
+			_hover={{ textDecoration: 'none' }}
 			href='/'
+			bgImage={colorMode === 'dark' ? "url('/dark-logo-desktop.png')" : "url('/light-logo-desktop.png')"}
+			bgPos='center'
+			bgSize='cover'
+			bgRepeat='no-repeat'
+			w={size || ['11em', null, '20em', '25em']}
+			h={'100px'}
 		/>
 	)
 }

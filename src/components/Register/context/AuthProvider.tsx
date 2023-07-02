@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			duration: 5000,
 			render: () => (
 				<Box
-				mt={20}
+					mt={20}
 					bgGradient='linear(to-r, #ffdc9f, gold)'
 					py={3}
 					px={4}
@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const listen = onAuthStateChanged(auth, (user: any) => {
 			if (user) {
 				setAuthUser(user)
-				console.log(user)
 			} else {
 				setAuthUser(null)
 			}

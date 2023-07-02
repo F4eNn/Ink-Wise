@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Form } from './UI/Form'
 import { Card } from './UI/Card'
 import { useColorMode, Heading } from '@/lib/chakra'
@@ -15,13 +15,13 @@ import isEmail from 'validator/lib/isEmail'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
-import { AuthCtx } from './context/Auth'
-
+import { useAuth } from '../../hooks/useAuth'
 export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const { listenOnSubmitForm } = useContext(AuthCtx)
+	const { listenOnSubmitForm } = useAuth()
+
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 	const { register, handleSubmit, formState, reset } = useForm({

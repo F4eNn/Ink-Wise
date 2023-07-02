@@ -13,6 +13,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { InputControl } from './UI/InputControl'
 import { Toast } from './UI/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 
 export const Login = () => {
 	const { colorMode } = useColorMode()
@@ -25,12 +26,15 @@ export const Login = () => {
 		},
 	})
 	const { errors } = formState
+	const router = useRouter()
+	
 	const signIn = async (email: string, password: string) => {
 		setIsSubmitting(true)
 		setInvalidCredentials(false)
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
-			console.log('zalogowano')
+			const user = auth.currentUser?.displayName
+			router.push(`/${user}`)
 			setIsSubmitting(false)
 		} catch (err) {
 			setInvalidCredentials(true)
