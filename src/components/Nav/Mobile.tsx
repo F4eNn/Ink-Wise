@@ -37,7 +37,7 @@ export const Mobile = ({ colormode }: MobileProps) => {
 	const dividerRef = useRef(null)
 	const { authUser } = useAuth()
 	const [isOpen, toggleNav] = useToggle()
-	const closeNavOnOverlay = (e: React.MouseEvent<any>) => {
+	const closeNavOnOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return toggleNav()
 	}
 

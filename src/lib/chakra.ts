@@ -2,7 +2,8 @@
 export {
 	useToast,
 	Divider,
-	
+	VStack,
+	StackDivider,
 	Icon,
 	Center,
 	Spinner,
@@ -11,6 +12,7 @@ export {
 	ListItem,
 	Link,
 	Flex,
+	Avatar,
 	IconButton,
 	UnorderedList,
 	Box,

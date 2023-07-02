@@ -11,6 +11,7 @@ type UserData = {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
+	const [authUser, setAuthUser] = useState<any>(null)
 	const showToast = (username: string) => {
 		toast({
 			position: 'top-right',
@@ -34,7 +35,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			showToast(username)
 		}
 	}
-	const [authUser, setAuthUser] = useState<any>(null)
 
 	useEffect(() => {
 		const listen = onAuthStateChanged(auth, (user: any) => {
