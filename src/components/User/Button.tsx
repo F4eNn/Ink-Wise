@@ -1,20 +1,14 @@
 'use client'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Button as UserMenu, Icon, useColorMode } from '@/lib/chakra'
 import { FaUserCircle } from 'react-icons/fa'
 
-import { AuthCtx } from '../Register/context/Auth'
-import { useRouter } from 'next/navigation'
+
+import { useToggle } from '@/hooks/useToggle'
+
 export const Button = () => {
-	const { logout } = useContext(AuthCtx)
-	const router = useRouter()
 	const { colorMode } = useColorMode()
-
-	const openUserSettings = () => {
-		
-	}
-
-
+	const [isOpen, togglePannel] = useToggle()
 	return (
 		<UserMenu
 			display='flex'
@@ -23,10 +17,7 @@ export const Button = () => {
 			_hover={{
 				bg: 'transparent',
 			}}
-			onClick={() => {
-				logout()
-				router.push('/login')
-			}}>
+			onClick={togglePannel}>
 			<Icon
 				_hover={{
 					color: colorMode === 'dark' ? 'mediumGold' : 'lightBrown',

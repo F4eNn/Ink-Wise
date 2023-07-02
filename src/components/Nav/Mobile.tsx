@@ -1,9 +1,10 @@
 'use client'
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { Box, Button, UnorderedList, ListItem, Divider } from '@/lib/chakra'
 import { useAuth } from '../../hooks/useAuth'
 import { UserPannel } from '../User/UserPannel'
+import { useToggle } from '@/hooks/useToggle'
 import Link from 'next/link'
 
 const Bar = styled.div<HamburgerProps>`
@@ -32,16 +33,12 @@ type HamburgerProps = MobileProps & {
 	readonly $isOpen: boolean
 }
 export const Mobile = ({ colormode }: MobileProps) => {
-	const [isOpen, setIsOpen] = useState(false)
 	const mobileNavRef = useRef(null)
 	const dividerRef = useRef(null)
 	const { authUser } = useAuth()
-
-	const showNav = (e: React.MouseEvent) => {
-		setIsOpen(prev => !prev)
-	}
-	const closeNavOnOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return setIsOpen(false)
+	const [isOpen, toggleNav] = useToggle()
+	const closeNavOnOverlay = (e: React.MouseEvent<any>) => {
+		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return toggleNav()
 	}
 
 	return (
@@ -58,7 +55,7 @@ export const Mobile = ({ colormode }: MobileProps) => {
 					_hover={{
 						bg: 'none',
 					}}
-					onClick={showNav}>
+					onClick={toggleNav}>
 					<Bar1
 						colormode={colormode}
 						$isOpen={isOpen}
