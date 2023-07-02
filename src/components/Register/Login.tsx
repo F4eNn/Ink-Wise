@@ -8,7 +8,6 @@ import { Submit } from './UI/Submit'
 import { GoogleBtn } from './UI/GoogleBtn'
 import { GitHubBtn } from './UI/GitHubBtn'
 import { RegisterLink } from './UI/RegisterLink'
-
 import { auth } from '../../Config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { InputControl } from './UI/InputControl'

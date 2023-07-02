@@ -17,7 +17,7 @@ export const Nav = () => {
 					gap={10}>
 					<Logo />
 					<Flex
-					gap={5}
+					// gap={5}
 						alignItems='center'>
 						<IconButton
 							role='group'
@@ -43,7 +43,7 @@ export const Nav = () => {
 							}
 							onClick={toggleColorMode}
 						/>
-						<Mobile colorMode={colorMode}/>
+						<Mobile colormode={colorMode}/>
 						<Desktop colorMode={colorMode} />
 					</Flex>
 				</Flex>

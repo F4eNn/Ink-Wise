@@ -1,6 +1,7 @@
 'use client'
 export {
 	useToast,
+	Divider,
 	Icon,
 	Center,
 	Spinner,
