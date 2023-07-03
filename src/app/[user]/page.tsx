@@ -1,8 +1,12 @@
-import { Center } from '@/lib/chakra'
+import { Box } from '@/lib/chakra'
 import React from 'react'
-
+import { Pannel } from '@/components/core/Drawer/Pannel'
 const page = () => {
-	return <Center>USER PAGE</Center>
+	return (
+		<Box as='main'>
+			<Pannel />
+		</Box>
+	)
 }
 
 export default page

@@ -1,10 +1,10 @@
 'use client'
 import { Inter } from 'next/font/google'
 import { ChakraUiProvider } from './theme/ChakraUiProvider'
-import { Nav } from '@/components/Nav/Nav'
+import { Nav } from '@/components/nav/Nav'
 import { Suspense } from 'react'
 import Loading from './loading'
-import { AuthProvider } from '@/components/Register/context/AuthProvider'
+import { AuthProvider } from '@/components/register/context/AuthProvider'
 import { usePathname } from 'next/navigation'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 const inter = Inter({ subsets: ['latin'] })

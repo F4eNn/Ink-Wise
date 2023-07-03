@@ -1,4 +1,4 @@
-import { Signup } from '@/components/Register/Signup'
+import { Signup } from '@/components/register/Signup'
 import { Flex } from '../../lib/chakra'
 import React from 'react'
 

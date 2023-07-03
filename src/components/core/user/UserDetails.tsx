@@ -4,7 +4,7 @@ import { ButtonProfile } from './ButtonProfile'
 import { useAuth } from '@/hooks/useAuth'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 
-export const UserPannel = () => {
+export const UserDetails = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const containerRef = useRef<HTMLDivElement>(null)
 	const { logout, authUser } = useAuth()
@@ -24,7 +24,7 @@ export const UserPannel = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-	const closeUserPannel = () => {
+	const closeUserDetails = () => {
 		setIsOpen(false)
 	}
 	return (
@@ -42,7 +42,7 @@ export const UserPannel = () => {
 					rounded='2xl'
 					border='1px solid gray'>
 					<IconButton
-						onClick={closeUserPannel}
+						onClick={closeUserDetails}
 						pos='absolute'
 						right={0}
 						top={0}
@@ -72,7 +72,7 @@ export const UserPannel = () => {
 						variant='outlineDark'
 						w='70%'
 						onClick={() => {
-							closeUserPannel()
+							closeUserDetails()
 							logout()
 						}}>
 						Logout

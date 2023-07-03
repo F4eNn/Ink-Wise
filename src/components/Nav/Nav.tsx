@@ -1,8 +1,8 @@
 import React from 'react'
 import { IconButton, useColorMode, Box, Flex } from '../../lib/chakra'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
-import { Wrapper } from '../UI/Wrapper'
-import { Logo } from '../UI/Logo'
+import { Wrapper } from '../ui/Wrapper'
+import { Logo } from '../ui/Logo'
 import { Mobile } from './Mobile'
 import { Desktop } from './Desktop'
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '@/Config/firebase'
+import { auth } from '@/config/firebase'
 import { useAuth } from './useAuth'
 import { useRouter, usePathname } from 'next/navigation'
 export const useProtectedRoute = () => {
@@ -11,7 +11,7 @@ export const useProtectedRoute = () => {
 
 	useEffect(() => {
 		const listen = onAuthStateChanged(auth, (user: any) => {
-            if (!user) {
+			if (!user) {
 				router.push('login')
 				return
 			}

@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { Box, Button, UnorderedList, ListItem, Divider } from '@/lib/chakra'
 import { useAuth } from '../../hooks/useAuth'
-import { UserPannel } from '../User/UserPannel'
+import { UserDetails } from '../core/user/UserDetails'
 import { useToggle } from '@/hooks/useToggle'
 import Link from 'next/link'
 
@@ -44,7 +44,7 @@ export const Mobile = ({ colormode }: MobileProps) => {
 	return (
 		<Box display={[null, null, 'none']}>
 			{authUser ? (
-				<UserPannel />
+				<UserDetails />
 			) : (
 				<Button
 					display='flex'

@@ -1,8 +1,6 @@
-import { Login } from '@/components/Register/Login'
+import { Login } from '@/components/register/Login'
 import React from 'react'
 import { Flex } from '../../lib/chakra'
-
-
 
 const LoginPage = () => {
 	return (
