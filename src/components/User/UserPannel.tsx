@@ -22,14 +22,11 @@ export const UserPannel = () => {
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
 	const closeUserPannel = () => {
 		setIsOpen(false)
 	}
-	console.log(isOpen)
-
 	return (
 		<Box pos='relative'>
 			<ButtonProfile isOpenHelper={isOpenHelper} />
@@ -45,7 +42,7 @@ export const UserPannel = () => {
 					rounded='2xl'
 					border='1px solid gray'>
 					<IconButton
-						onClick={() => setIsOpen(false)}
+						onClick={closeUserPannel}
 						pos='absolute'
 						right={0}
 						top={0}
@@ -75,8 +72,8 @@ export const UserPannel = () => {
 						variant='outlineDark'
 						w='70%'
 						onClick={() => {
-							setIsOpen(false)
-							logout();
+							closeUserPannel()
+							logout()
 						}}>
 						Logout
 					</Button>

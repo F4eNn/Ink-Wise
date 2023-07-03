@@ -1,11 +1,9 @@
 import React from 'react'
 
-
-
 const initValues = {
 	listenOnSubmitForm: (value?: boolean, username?: string) => {},
 	logout: () => {},
-	authUser: {displayName: ''},
+	authUser: { displayName: '' },
 }
 
 export const AuthCtx = React.createContext(initValues)

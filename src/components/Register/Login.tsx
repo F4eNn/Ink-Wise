@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useColorMode, Center } from '../../lib/chakra'
 import { Logo } from '../UI/Logo'
 import { Form } from './UI/Form'
@@ -14,7 +14,7 @@ import { InputControl } from './UI/InputControl'
 import { Toast } from './UI/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-
+import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -27,7 +27,7 @@ export const Login = () => {
 	})
 	const { errors } = formState
 	const router = useRouter()
-	
+	useProtectedRoute()
 	const signIn = async (email: string, password: string) => {
 		setIsSubmitting(true)
 		setInvalidCredentials(false)

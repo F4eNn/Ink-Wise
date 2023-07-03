@@ -6,11 +6,12 @@ import { Suspense } from 'react'
 import Loading from './loading'
 import { AuthProvider } from '@/components/Register/context/AuthProvider'
 import { usePathname } from 'next/navigation'
+import { ProtectedRoute } from '@/components/ProtectedRoute'
 const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	const currentPath = usePathname()
-
-	const paths = ['/login', '/signup']
+	const registerPaths = ['/login', '/signup']
+	const noAuthRequired = ['/', '/login', '/signup']
 
 	return (
 		<html lang='en'>
@@ -25,8 +26,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={inter.className}>
 				<ChakraUiProvider>
 					<AuthProvider>
-						{paths.includes(currentPath) ? null : <Nav />}
-						<Suspense fallback={<Loading />}>{children}</Suspense>
+						{registerPaths.includes(currentPath) ? null : <Nav />}
+						{noAuthRequired.includes(currentPath) ? (
+							<Suspense fallback={<Loading />}>{children}</Suspense>
+						) : (
+							<ProtectedRoute>
+								<Suspense fallback={<Loading />}>{children}</Suspense>
+							</ProtectedRoute>
+						)}
 					</AuthProvider>
 				</ChakraUiProvider>
 			</body>

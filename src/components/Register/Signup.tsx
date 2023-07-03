@@ -16,12 +16,13 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../../Config/firebase'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
+import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const { listenOnSubmitForm } = useAuth()
-
+	useProtectedRoute()
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 	const { register, handleSubmit, formState, reset } = useForm({
