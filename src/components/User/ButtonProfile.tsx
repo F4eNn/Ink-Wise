@@ -1,9 +1,6 @@
-'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button as UserMenu, Icon, useColorMode } from '@/lib/chakra'
 import { FaUserCircle } from 'react-icons/fa'
-
-import { useToggle } from '@/hooks/useToggle'
 
 type ButtonProps = {
 	isOpenHelper: () => void
@@ -11,11 +8,7 @@ type ButtonProps = {
 
 export const ButtonProfile = ({ isOpenHelper }: ButtonProps) => {
 	const { colorMode } = useColorMode()
-	const [isOpen, togglePannel] = useToggle()
-	useEffect(() => {
-		isOpenHelper()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isOpen])
+
 	return (
 		<UserMenu
 			role='group'
@@ -25,7 +18,7 @@ export const ButtonProfile = ({ isOpenHelper }: ButtonProps) => {
 			_hover={{
 				bg: 'transparent',
 			}}
-			onClick={togglePannel}>
+			onClick={isOpenHelper}>
 			<Icon
 				_groupHover={{
 					color: colorMode === 'dark' ? 'mediumGold' : 'lightBrown',
