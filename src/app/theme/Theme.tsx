@@ -4,6 +4,7 @@ import { StyleFunctionProps } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import { Button } from './components/Button'
 import { IconButton } from './components/IconButton'
+import { Link } from './components/Link'
 export const Theme = extendTheme(
 	{
 		clampText: {
@@ -28,6 +29,8 @@ export const Theme = extendTheme(
 			borderColor: 'grey',
 			default: '#fff',
 			defaultReverse: '#2b2522',
+			reversePrimary300: '#ffda9a',
+			reversePrimary300Hover: '#3f3632',
 		},
 		styles: {
 			global: (props: Record<string, any> | StyleFunctionProps) => ({
@@ -46,6 +49,8 @@ export const Theme = extendTheme(
 					'--chakra-colors-primary-900': mode('#9a531b', '#e49800')(props),
 					'--chakra-colors-primary-600': mode('#9a531b', '#eec063')(props),
 					'--chakra-colors-primary-300': mode('#2b2522', '#ffda9a')(props),
+					'--chakra-colors-reversePrimary300': mode(' #c27b44cf', '#2b2522')(props),
+					'--chakra-colors-reversePrimary300Hover': mode(' #c27b44', '#3f3632')(props),
 					'--chakra-colors-default': mode('#2b2522', '#fff ')(props),
 					'--chakra-colors-defaultReverse': mode('#fff ', '#2b2522')(props),
 					'--chakra-colors-alphaLightBrown': mode('#c28f6813', '')(props),
@@ -67,6 +72,7 @@ export const Theme = extendTheme(
 		components: {
 			Button,
 			IconButton,
+			Link,
 		},
 	},
 	withDefaultVariant({
