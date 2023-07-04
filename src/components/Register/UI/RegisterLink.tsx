@@ -20,7 +20,7 @@ export const RegisterLink = ({ content, path, linkDesc }: { content: string; pat
 						content: '""',
 						width: '30%',
 						height: '1px',
-						bg: 'orange',
+						bg: 'primary.900',
 						transitionProperty: 'width',
 						transitionDuration: '.3s',
 					}}
@@ -29,7 +29,7 @@ export const RegisterLink = ({ content, path, linkDesc }: { content: string; pat
 							width: '100%',
 						},
 					}}
-					color={'gold'}
+					color={'primary.900'}
 					as={NextLink}
 					href={path}>
 					{linkDesc}

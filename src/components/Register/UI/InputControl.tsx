@@ -8,7 +8,6 @@ type ValidateObject = {
 }
 type InputProps = {
 	isInvalid: any
-	mode: string
 	name: string
 	type: string
 	palaceholder: string
@@ -24,7 +23,7 @@ type InputProps = {
 	error: string | undefined
 }
 export const InputControl = (props: InputProps) => {
-	const { isInvalid, name, palaceholder, register, registerValue, type, error, mode, emailExist } = props
+	const { isInvalid, name, palaceholder, register, registerValue, type, error, emailExist } = props
 
 	return (
 		<FormControl
@@ -42,14 +41,26 @@ export const InputControl = (props: InputProps) => {
 				py={5}
 				variant={'flushed'}
 				fontSize={'.8em'}
-				focusBorderColor='gold'
+				focusBorderColor='primary.900'
 				type={type}
-				borderColor={mode === 'dark' ? 'grey' : 'lightBrown'}
+				borderColor='borderColor'
 				placeholder={palaceholder}
 				{...register(name, registerValue)}
 			/>
 			<FormErrorMessage as='p'>{error}</FormErrorMessage>
-			{emailExist ? <Text position='absolute' top={0} right={0} color='error' fontSize={'.8em'}  as='p'>Email already exist</Text> : ''}
+			{emailExist ? (
+				<Text
+					position='absolute'
+					top={0}
+					right={0}
+					color='error'
+					fontSize={'.8em'}
+					as='p'>
+					Email already exist
+				</Text>
+			) : (
+				''
+			)}
 		</FormControl>
 	)
 }

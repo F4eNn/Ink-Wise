@@ -1,38 +1,12 @@
 'use client'
 import React, { useRef } from 'react'
-import styled from 'styled-components'
 import { Box, Button, UnorderedList, ListItem, Divider } from '@/lib/chakra'
 import { useAuth } from '../../hooks/useAuth'
 import { UserDetails } from '../core/user/UserDetails'
 import { useToggle } from '@/hooks/useToggle'
 import Link from 'next/link'
 
-const Bar = styled.div<HamburgerProps>`
-	height: 3px;
-	width: 30px;
-	background-color: ${props => (props.colormode === 'dark' ? '#fff' : '#2b2522')};
-	transition: transform 0.3s, opacity 0.3s;
-`
-const Bar1 = styled(Bar)`
-	transform: ${props => (props.$isOpen ? 'rotate(-45deg) translate(-7px, 5px)' : '')};
-	background-color: ${props => props.$isOpen && '#eec063'};
-`
-const Bar2 = styled(Bar)`
-	margin-block: 6px;
-	transform: ${props => (props.$isOpen ? ' translateX(10px)' : '')};
-	opacity: ${props => (props.$isOpen ? '0' : '')};
-`
-const Bar3 = styled(Bar)`
-	transform: ${props => (props.$isOpen ? 'rotate(45deg) translate(-7px,-5px)' : '')};
-	background-color: ${props => props.$isOpen && '#eec063'};
-`
-type MobileProps = {
-	colormode: string
-}
-type HamburgerProps = MobileProps & {
-	readonly $isOpen: boolean
-}
-export const Mobile = ({ colormode }: MobileProps) => {
+export const Mobile = () => {
 	const mobileNavRef = useRef(null)
 	const dividerRef = useRef(null)
 	const { authUser } = useAuth()
@@ -40,7 +14,6 @@ export const Mobile = ({ colormode }: MobileProps) => {
 	const closeNavOnOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return toggleNav()
 	}
-
 	return (
 		<Box display={[null, null, 'none']}>
 			{authUser ? (
@@ -56,17 +29,27 @@ export const Mobile = ({ colormode }: MobileProps) => {
 						bg: 'none',
 					}}
 					onClick={toggleNav}>
-					<Bar1
-						colormode={colormode}
-						$isOpen={isOpen}
+					<Box
+						h='3px'
+						w='30px'
+						transform={isOpen ? 'rotate(-45deg) translate(-7px, 5px)' : ''}
+						bg={isOpen ? ' mediumGold' : 'default'}
+						transition=' transform .3s'
 					/>
-					<Bar2
-						colormode={colormode}
-						$isOpen={isOpen}
+					<Box
+						h='3px'
+						w='30px'
+						bg='default'
+						my='6px'
+						transition='opacity .3s'
+						opacity={isOpen ? '0' : '1'}
 					/>
-					<Bar3
-						colormode={colormode}
-						$isOpen={isOpen}
+					<Box
+						h='3px'
+						w='30px'
+						transform={isOpen ? 'rotate(45deg) translate(-7px,-5px)' : ''}
+						bg={isOpen ? ' mediumGold' : 'default'}
+						transition=' transform .3s'
 					/>
 				</Button>
 			)}

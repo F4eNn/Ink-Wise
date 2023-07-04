@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button as UserMenu, Icon, useColorMode } from '@/lib/chakra'
+import { IconButton, Icon } from '@/lib/chakra'
 import { FaUserCircle } from 'react-icons/fa'
 
 type ButtonProps = {
@@ -7,28 +7,26 @@ type ButtonProps = {
 }
 
 export const ButtonProfile = ({ isOpenHelper }: ButtonProps) => {
-	const { colorMode } = useColorMode()
-
 	return (
-		<UserMenu
+		<IconButton
+			aria-label='user details'
 			role='group'
 			display='flex'
 			alignItems='center'
-			bg='transparent'
-			_hover={{
-				bg: 'transparent',
-			}}
-			onClick={isOpenHelper}>
-			<Icon
-				_groupHover={{
-					color: colorMode === 'dark' ? 'mediumGold' : 'lightBrown',
-					transition: 'color .3s',
-				}}
-				color={colorMode === 'dark' ? 'lightGold' : 'darkBrown'}
-				w={30}
-				h={30}
-				as={FaUserCircle}
-			/>
-		</UserMenu>
+			variant='default'
+			icon={
+				<Icon
+					_groupHover={{
+						color: 'primary.600',
+						transition: 'color .3s',
+					}}
+					color='primary.300'
+					w={30}
+					h={30}
+					as={FaUserCircle}
+				/>
+			}
+			onClick={isOpenHelper}
+		/>
 	)
 }

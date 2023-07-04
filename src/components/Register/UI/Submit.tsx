@@ -1,14 +1,13 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 import { Button } from '../../../lib/chakra'
 
 type SubmitProps = {
 	children: React.ReactNode
-	mode: string
 	isLoading: boolean
 	loadingText: string
 }
 
-export const Submit = ({ children, mode, isLoading, loadingText }: SubmitProps) => {
+export const Submit = ({ children, isLoading, loadingText }: SubmitProps) => {
 	return (
 		<Button
 			isLoading={isLoading}
@@ -16,7 +15,7 @@ export const Submit = ({ children, mode, isLoading, loadingText }: SubmitProps) 
 			type='submit'
 			mt={4}
 			variant={'outlineDark'}
-			bg={mode === 'dark' ? 'darkBrown' : 'white'}
+			bg='defaultReverse'
 			rounded={'3xl'}
 			py={7}
 			w='full'>

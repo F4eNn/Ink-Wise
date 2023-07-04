@@ -43,7 +43,7 @@ export const Nav = () => {
 							}
 							onClick={toggleColorMode}
 						/>
-						<Mobile colormode={colorMode} />
+						<Mobile  />
 						<Desktop />
 					</Flex>
 				</Flex>

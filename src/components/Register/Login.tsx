@@ -51,7 +51,7 @@ export const Login = () => {
 			<Form handleSubmit={handleSubmit(onSubmit)}>
 				<Logo size='100%' />
 				<Toast />
-				<Card mode={colorMode}>
+				<Card>
 					<GoogleBtn mode={colorMode} />
 					<GitHubBtn mode={colorMode} />
 					<Center
@@ -61,7 +61,6 @@ export const Login = () => {
 						{InvalidCredentials && 'Email or password are Invalid!'}
 					</Center>
 					<InputControl
-						mode={colorMode}
 						error={errors.email && errors.email.message}
 						isInvalid={!!errors.email}
 						name='email'
@@ -77,7 +76,6 @@ export const Login = () => {
 						type='email'
 					/>
 					<InputControl
-						mode={colorMode}
 						error={errors.password && errors.password.message}
 						isInvalid={!!errors.password}
 						name='password'
@@ -94,8 +92,7 @@ export const Login = () => {
 					/>
 					<Submit
 						loadingText='Entering'
-						isLoading={isSubmitting}
-						mode={colorMode}>
+						isLoading={isSubmitting}>
 						Enter
 					</Submit>
 					<RegisterLink

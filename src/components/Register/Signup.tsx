@@ -21,7 +21,9 @@ export const Signup = () => {
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const { listenOnSubmitForm } = useAuth()
-	useProtectedRoute()
+
+	// useProtectedRoute()
+
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 	const { register, handleSubmit, formState, reset } = useForm({
@@ -57,7 +59,7 @@ export const Signup = () => {
 	return (
 		<Form handleSubmit={handleSubmit(onSubmit)}>
 			<Logo size='100%' />
-			<Card mode={colorMode}>
+			<Card>
 				<Heading
 					as='h1'
 					bgGradient={colorMode === 'dark' ? 'linear(to-l, gold, #fff) ' : 'linear(to-l, darkBrown, lightBrown) '}
@@ -71,7 +73,6 @@ export const Signup = () => {
 				<GoogleBtn mode={colorMode} />
 				<GitHubBtn mode={colorMode} />
 				<InputControl
-					mode={colorMode}
 					error={errors.username && errors.username.message}
 					isInvalid={!!errors.username}
 					name='username'
@@ -95,7 +96,6 @@ export const Signup = () => {
 				/>
 				<InputControl
 					emailExist={emailExist}
-					mode={colorMode}
 					error={errors.email && errors.email.message}
 					isInvalid={!!errors.email}
 					name='email'
@@ -111,7 +111,6 @@ export const Signup = () => {
 					type='email'
 				/>
 				<InputControl
-					mode={colorMode}
 					error={errors.password && errors.password.message}
 					isInvalid={!!errors.password}
 					name='password'
@@ -138,8 +137,7 @@ export const Signup = () => {
 				/>
 				<Submit
 					loadingText='Creating'
-					isLoading={isSubmitting}
-					mode={colorMode}>
+					isLoading={isSubmitting}>
 					Create
 				</Submit>
 				<RegisterLink

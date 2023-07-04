@@ -26,8 +26,5 @@ export {
 	defineStyleConfig,
 	extendTheme,
 	withDefaultVariant,
-	Drawer,
-	DrawerContent,
-	DrawerBody,
-	useDisclosure
+	useDisclosure,
 } from '@chakra-ui/react'
