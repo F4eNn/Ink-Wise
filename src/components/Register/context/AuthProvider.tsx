@@ -2,16 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import { AuthCtx } from './Auth'
 import { auth } from '../../../config/firebase'
+import { User } from '@/config/firebase'
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 
-type UserData = {
-	displayName: string
-}
-
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
-	const [authUser, setAuthUser] = useState<any>(null)
+	const [authUser, setAuthUser] = useState<User | null>(null)
 	const showToast = (username: string) => {
 		toast({
 			position: 'top-right',
@@ -37,7 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	}
 
 	useEffect(() => {
-		const listen = onAuthStateChanged(auth, (user: any) => {
+		const listen = onAuthStateChanged(auth, user => {
 			if (user) {
 				setAuthUser(user)
 			} else {

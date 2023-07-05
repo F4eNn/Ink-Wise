@@ -4,6 +4,7 @@ import { auth } from '@/config/firebase'
 import { useAuth } from './useAuth'
 import { useRouter } from 'next/navigation'
 export const useProtectedRoute = () => {
+	
 	const { authUser } = useAuth()
 	const router = useRouter()
 

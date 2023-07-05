@@ -11,10 +11,12 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { useToggle } from '@/hooks/useToggle'
 import { LinkIconPannel } from './ui/LinkIconPannel'
 import { LinkDrawer } from './ui/LinkDrawer'
+
+import { useAuth } from '@/hooks/useAuth'
 export const Pannel = () => {
 	const [isOpen, toggleOpen] = useToggle()
 	const drawerRef = useRef<HTMLDivElement>(null)
-
+	const { authUser } = useAuth()
 	useEffect(() => {
 		const clickOutsideHandler = (e: MouseEvent) => {
 			if (e.target != drawerRef.current && isOpen) {
@@ -26,7 +28,6 @@ export const Pannel = () => {
 		return () => window.document.removeEventListener('click', clickOutsideHandler)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isOpen])
-
 	return (
 		<VStack
 			pos='fixed'
@@ -61,25 +62,25 @@ export const Pannel = () => {
 					alignItems='flex-start'>
 					<LinkDrawer
 						icon={<AiOutlinePlus />}
-						url='/'
+						url={`/${authUser?.displayName}/note`}
 						ariaLabel='create'
 						desc='Create Ink'
 					/>
 					<LinkDrawer
 						icon={<FaUsers />}
-						url='/'
+						url={`/${authUser?.displayName}/community`}
 						ariaLabel='community'
 						desc='Community'
 					/>
 					<LinkDrawer
 						icon={<IoMdPersonAdd />}
-						url='/'
+						url={`/${authUser?.displayName}/find-friend`}
 						ariaLabel='add friend'
 						desc='Add friend'
 					/>
 					<LinkDrawer
 						icon={<DeleteIcon />}
-						url='/'
+						url={`/${authUser?.displayName}/trash`}
 						ariaLabel='Trash'
 						desc='Trash'
 					/>
@@ -87,22 +88,22 @@ export const Pannel = () => {
 			) : (
 				<VStack spacing='30px'>
 					<LinkIconPannel
-						url='/'
+						url={`/${authUser?.displayName}/note`}
 						ariaLabel='Create'
 						icon={<AiOutlinePlus />}
 					/>
 					<LinkIconPannel
-						url='/'
+						url={`/${authUser?.displayName}/community`}
 						ariaLabel='Create'
 						icon={<FaUsers />}
 					/>
 					<LinkIconPannel
-						url='/'
+						url={`/${authUser?.displayName}/find-friend`}
 						ariaLabel='Create'
 						icon={<IoMdPersonAdd />}
 					/>
 					<LinkIconPannel
-						url='/'
+						url={`/${authUser?.displayName}/trash`}
 						ariaLabel='Create'
 						icon={<DeleteIcon />}
 					/>
