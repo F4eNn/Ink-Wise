@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../../../lib/chakra'
-import { GithubIcon } from '@/components/icons/GithubIcon'
+import { GithubIcon } from '@/components/register/icons/GithubIcon'
 
 export const GitHubBtn = ({ mode }: { mode: string }) => {
 	return (

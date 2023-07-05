@@ -1,5 +1,5 @@
 import { Button } from '../../../lib/chakra'
-import { GoogleIcon } from '@/components/icons/GoogleIcon'
+import { GoogleIcon } from '@/components/register/icons/GoogleIcon'
 import React from 'react'
 
 export const GoogleBtn = ({ mode }: { mode: string }) => {

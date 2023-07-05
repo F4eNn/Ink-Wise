@@ -59,6 +59,7 @@ export const Mobile = () => {
 				left={isOpen ? '0' : '100%'}
 				transition={'left .3s'}
 				top={0}
+				zIndex='100'
 				w='full'
 				h='full'
 				bg='blackAlpha.600'>
