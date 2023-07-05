@@ -1,12 +1,13 @@
 import { Box } from '@/lib/chakra'
 import React from 'react'
-import { Pannel } from '@/components/core/Pannel/Pannel'
-const page = () => {
+import Image from 'next/image'
+const UserPage = () => {
 	return (
-		<Box as='main'>
-			<Pannel />
-		</Box>
+		<Box
+			as='main'
+			display='flex'
+			justifyContent='center'></Box>
 	)
 }
 
-export default page
+export default UserPage
