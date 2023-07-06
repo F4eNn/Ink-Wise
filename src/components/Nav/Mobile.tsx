@@ -23,8 +23,9 @@ export const Mobile = () => {
 					display='flex'
 					flexDir='column'
 					bg='transparent'
+					
 					aria-label='open nav'
-					zIndex={10}
+					zIndex='200'
 					_hover={{
 						bg: 'none',
 					}}

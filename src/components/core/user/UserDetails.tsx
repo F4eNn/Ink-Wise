@@ -52,7 +52,7 @@ export const UserDetails = () => {
 						icon={<SmallCloseIcon />}
 					/>
 					<Avatar
-						name={authUser.displayName}
+						name={authUser?.displayName!}
 						alignSelf='flex-start'
 						ml={5}
 						size='lg'

@@ -1,16 +1,61 @@
-import React from 'react'
-import { Box } from '@/lib/chakra'
-export const Reveal = ({ children }: { children: React.ReactNode }) => {
+'use client'
+import React, { useRef, useEffect } from 'react'
+import { Box, chakra } from '@/lib/chakra'
+import { motion, useInView, useAnimation } from '@/lib/motion'
+
+type ReavealProps = {
+	children: React.ReactElement
+	width?: 'fit-content' | (string | null)[]
+}
+const ChakraBox = chakra(motion.div)
+export const Reveal = ({ children, width = 'fit-content' }: ReavealProps) => {
+	const containerRef = useRef<HTMLDivElement>(null)
+	const isInView = useInView(containerRef, { once: true })
+	const mainControls = useAnimation()
+	const slideControls = useAnimation()
+
+	useEffect(() => {
+		if (isInView) {
+			mainControls.start('visible')
+			slideControls.start('visible')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isInView])
+
 	return (
 		<Box
-			px='7'
-			w='full'
-			mt='20'
-			borderRightWidth='1px'
-			borderLeftWidth='1px'
-			borderLeftColor='borderColor'
-			borderRightColor='borderColor'>
-			{children}
+			ref={containerRef}
+			pos='relative'
+			overflow='hidden'
+			w={width}>
+			<ChakraBox
+				variants={{
+					hidden: { opacity: 0, y: 75 },
+					visible: { opacity: 1, y: 0 },
+				}}
+				initial='hidden'
+				animate={mainControls}
+				// @ts-ignore
+				transition={{ duration: 1, delay: 0.25 }}>
+				{children}
+			</ChakraBox>
+			<ChakraBox
+				variants={{
+					hidden: { left: 0 },
+					visible: { left: '100%' },
+				}}
+				initial='hidden'
+				animate={slideControls}
+				// @ts-ignore
+				transition={{ duration: 0.5, ease: 'easeIn' }}
+				pos='absolute'
+				top='4'
+				bottom='4'
+				left='0'
+				right='0'
+				bg='gold'
+				zIndex='300'
+			/>
 		</Box>
 	)
 }

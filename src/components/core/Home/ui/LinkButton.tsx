@@ -8,7 +8,9 @@ type LinkButtonProps = {
 
 export const LinkButton = ({ children, url }: LinkButtonProps) => {
 	return (
-		<Link
+		<Link 
+			border='primary.900'
+			borderWidth='1px'
 			href={url}
 			as={NextLink}
 			variant='linkButton'>
