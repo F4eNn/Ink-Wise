@@ -24,6 +24,7 @@ export {
 	useColorMode,
 	Heading,
 	Button,
+	chakra,
 	AspectRatio,
 	defineStyleConfig,
 	extendTheme,

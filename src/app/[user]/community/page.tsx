@@ -9,7 +9,7 @@ const CommunityPage = () => {
 			w='400px'
 			h='400px'>
 			<Image
-				src='/communityHero.png'
+				src='/Community.png'
 				alt='gif'
 				fill
 			/>
