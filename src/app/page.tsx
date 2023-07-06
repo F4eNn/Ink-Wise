@@ -5,7 +5,7 @@ import React from 'react'
 const HomePage = () => {
 	return (
 		<>
-			<Container maxW='1440px' as='main'  w='90%'>
+			<Container maxW='1440px' as='main'  w={['90%', null, 'full']}>
 				<Hero />
 			</Container>
 			<footer></footer>
