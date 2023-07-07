@@ -7,8 +7,11 @@ import { IconButton } from './components/IconButton'
 import { Link } from './components/Link'
 export const Theme = extendTheme(
 	{
-		clampText: {
-			'--clamp': 'clamp(.8em, 2.5vw, 1em)', //
+		textStyles: {
+			h2: {
+				fontSize: ['42px', '50px', '58px'],
+				fontWeight: 'bold'
+			}
 		},
 		colors: {
 			gold: '#e49800',

@@ -1,17 +1,16 @@
 import React from 'react'
 import { AspectRatio, Box, Flex, Heading } from '@/lib/chakra'
-import { Reveal } from '@/components/ui/Reveal'
 import Image from 'next/image'
 import { Feature } from './ui/Feature'
 export const Features = () => {
 	return (
 		<Box mt={['36', null, '56']}>
-			<Heading
+			<Box
+				as='h2'
 				textAlign='center'
-				fontSize={['42px', '52', '62px']}
-				as='h2'>
+				textStyle='h2'>
 				Innovative Capabilities
-			</Heading>
+			</Box>
 			<Box
 				pos='relative'
 				mt={{ base: '100px', xl: '400px' }}

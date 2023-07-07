@@ -32,7 +32,7 @@ export const Hero = () => {
 				<Reveal>
 					<Heading
 						as='h1'
-						fontSize={['46px', '56px', '66px', '96px']}
+						fontSize={['40px', '56px', '66px', '96px']}
 						textTransform='capitalize'>
 						Ignite Your Inkspiration
 					</Heading>
@@ -47,15 +47,13 @@ export const Hero = () => {
 						}
 					</Text>
 				</Reveal>
-				<Reveal>
-					<Box
-						w='150px'
-						mt='8'
-						mx={['auto', null, '0']}
-						color='white'>
-						<LinkButton url='/signup'>Get started</LinkButton>
-					</Box>
-				</Reveal>
+				<Box
+					w='150px'
+					mt='8'
+					mx={['auto', null, '0']}
+					color='white'>
+					<LinkButton url='/signup'>Get started</LinkButton>
+				</Box>
 			</Box>
 		</Flex>
 	)
