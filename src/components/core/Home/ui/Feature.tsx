@@ -19,6 +19,7 @@ export const Feature = ({ desc, title, bottom, left, right, top, translate }: Bu
 			top={top}
 			bottom={bottom}
 			right={right}
+			zIndex='100'
 			transform={{ xl: `translate(${translate})` }}
 			p={['5', null, '7']}
 			maxW='300px'
