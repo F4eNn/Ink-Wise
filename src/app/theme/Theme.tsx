@@ -7,8 +7,11 @@ import { IconButton } from './components/IconButton'
 import { Link } from './components/Link'
 export const Theme = extendTheme(
 	{
-		clampText: {
-			'--clamp': 'clamp(.8em, 2.5vw, 1em)', //
+		textStyles: {
+			h2: {
+				fontSize: ['42px', '50px', '58px'],
+				fontWeight: 'bold',
+			},
 		},
 		colors: {
 			gold: '#e49800',
@@ -31,12 +34,13 @@ export const Theme = extendTheme(
 			defaultReverse: '#2b2522',
 			reversePrimary300: '#ffda9a',
 			reversePrimary300Hover: '#3f3632',
-			grayish: '#d1d1d1'
+			grayish: '#d1d1d1',
 		},
 		styles: {
 			global: (props: Record<string, any> | StyleFunctionProps) => ({
 				'html,body': {
 					minHeight: '100vh',
+					overflowX: 'hidden',
 
 					margin: 0,
 					backgroundReapeat: 'no-repeat',
@@ -56,8 +60,7 @@ export const Theme = extendTheme(
 					'--chakra-colors-defaultReverse': mode('#fff ', '#2b2522')(props),
 					'--chakra-colors-alphaLightBrown': mode('#c28f6813', '')(props),
 					'--chakra-colors-borderColor': mode('#9a531b', 'gray')(props),
-					'--chakra-colors-grayish': mode('#a1a1a1', '#d1d1d1')(props),
-					
+					'--chakra-colors-grayish': mode('#808080', '#d1d1d1')(props),
 				},
 				'#__next': {
 					minHeight: `100vh`,

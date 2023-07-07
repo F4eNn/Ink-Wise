@@ -1,17 +1,17 @@
 import React from 'react'
-import { AspectRatio, Box, Flex, Heading } from '@/lib/chakra'
-import { Reveal } from '@/components/ui/Reveal'
+import { AspectRatio, Box, Flex } from '@/lib/chakra'
 import Image from 'next/image'
 import { Feature } from './ui/Feature'
+import { BlobFeatures } from './ui/BlobFeatures'
 export const Features = () => {
 	return (
 		<Box mt={['36', null, '56']}>
-			<Heading
+			<Box
+				as='h2'
 				textAlign='center'
-				fontSize={['42px', '52', '62px']}
-				as='h2'>
+				textStyle='h2'>
 				Innovative Capabilities
-			</Heading>
+			</Box>
 			<Box
 				pos='relative'
 				mt={{ base: '100px', xl: '400px' }}
@@ -30,15 +30,17 @@ export const Features = () => {
 						fill
 					/>
 				</AspectRatio>
-				<Feature
-					top='-100px'
-					left='0'
-					title='Intuitive Organization'
-					desc='Easily organize your notes with our intuitive system of categories, tags, and search functionality. Find the information you need at a glance.'
-				/>
+					<Feature
+						top='-100px'
+						left='0'
+						title='Intuitive Organization'
+						desc='Easily organize your notes with our intuitive system of categories, tags, and search functionality. Find the information you need at a glance.'
+					/>
 				<Flex
+					pos='relative'
 					gap='5'
 					w='full'
+					zIndex='0'
 					mb='10'
 					flexDir={{ base: 'column', md: 'row' }}
 					alignItems={{ base: 'center', md: 'unset' }}
@@ -56,6 +58,7 @@ export const Features = () => {
 						title='Notes in the New Era'
 						desc='Prepare for a new era of note-taking. Our Modern Notepad app combines advanced features with user-friendly design, providing you with the ultimate tools for creating and organizing notes.'
 					/>
+					<BlobFeatures />
 				</Flex>
 				<Flex
 					w='full'
