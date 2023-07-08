@@ -16,6 +16,7 @@
 
 - [x] Contact section
 - [ ] Footer section **( currently )**
+- [ ] blurHash for images
 
 ###  User profile site
 - [ ] Description field
