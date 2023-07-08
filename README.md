@@ -16,7 +16,8 @@
 
 - [x] Contact section
 - [ ] Footer section **( currently )**
-- [ ] blurHash for images
+- [ ] BlurHash for images
+- [ ] Create users via google/github
 
 ###  User profile site
 - [ ] Description field
