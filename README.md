@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hello 😄 👋
+## Currently in progress...🚧🛠️
+## Live [here](https://ink-wise.vercel.app/?vercelToolbarCode=3SLUBvVUdx5T5Tj)
 
-## Getting Started
+## Implemented behaviour
 
-First, run the development server:
+- Creating users via email and password.
+- Secure login and user registration.
+- Access to hidden content is available for logged-in users.
+- Full validation of the login and registration.
+- Changing the theme from dark to light.
+- Fancy animation on home-page.
+- View the optimal page layout depending on their device's screen size
 
+## What I will implement next
+
+- [x] Contact section
+- [ ] Footer section **( currently )**
+
+###  User profile site
+- [ ] Description field
+- [ ] Possibility to add and remove profile picture
+- [ ] Allow to change password and username
+
+## Preview
+
+### Home page
+![Home Page](./public/home-page-preview.png)
+### Signup page **( light mode )**
+![signup page](./public/signup-lightmode-preview.png)
+### Login page
+![Login page](./public/login-preview.png)
+### User pannel **( After loggin )**
+![home page](./public/user-pannel-preview.png)
+### Mobile Friendly **( Home page )**
+![home page](./public/mobile-friendly.png)
+
+
+## Run Locally
+
+First, clone repository and install dependencies
+```bash
+git clone https://github.com/F4eNn/Ink-Wise.git
+```
+```bash
+npm install
+```
+
+## Now you are able to run developer or production server:
+
+ - ### Production
+```bash
+npm run start
+```
+ - ### Developer
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
