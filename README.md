@@ -16,11 +16,24 @@
 
 - [x] Contact section
 - [ ] Footer section **( currently )**
+- [ ] BlurHash for images
+- [ ] Create users via google/github
 
 ###  User profile site
 - [ ] Description field
 - [ ] Possibility to add and remove profile picture
 - [ ] Allow to change password and username
+
+## Tech-Stack 🔨
+- Semantic HTML5 markup
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Styled-components](https://styled-components.com/) - Library For styles
+- [Chakra UI](https://chakra-ui.com/) - Library for UI
+- [React-hook-fomr](https://react-hook-form.com/) - Library for form validation
+- [Framer-motion](https://www.framer.com/motion/) - Library for animations
+- [Firebase](https://firebase.google.com/) - Backend platform
 
 ## Preview
 
