@@ -3,6 +3,7 @@ export {
 	useToast,
 	Divider,
 	VStack,
+	HStack,
 	StackDivider,
 	Icon,
 	Center,
