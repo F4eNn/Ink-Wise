@@ -8,6 +8,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth'
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
+
 	const [authUser, setAuthUser] = useState<User | null>(null)
 	const showToast = (username: string) => {
 		toast({
