@@ -1,7 +1,7 @@
 import { Box, ListItem, UnorderedList } from '@/lib/chakra'
 import Link from 'next/link'
-import { useAuth } from '../../hooks/useAuth'
-import { UserDetails } from '../core/user/UserDetails'
+import { useAuth } from '../../../../hooks/useAuth'
+import { UserDetails } from '../../user/UserDetails'
 export const Desktop = () => {
 	const { authUser } = useAuth()
 	return (

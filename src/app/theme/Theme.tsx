@@ -29,6 +29,7 @@ export const Theme = extendTheme(
 				300: '#ffda9a',
 			},
 			alphaLightBrown: '#c28f6813',
+			alphaCustomWhite: '#ffffffea',
 			borderColor: 'gray',
 			default: '#fff',
 			defaultReverse: '#2b2522',
@@ -61,6 +62,8 @@ export const Theme = extendTheme(
 					'--chakra-colors-alphaLightBrown': mode('#c28f6813', '')(props),
 					'--chakra-colors-borderColor': mode('#9a531b', 'gray')(props),
 					'--chakra-colors-grayish': mode('#808080', '#d1d1d1')(props),
+					'--chakra-colors-alphaCustomWhite': mode('#ffffffea', '#000000b3')(props),
+					
 				},
 				'#__next': {
 					minHeight: `100vh`,
