@@ -23,6 +23,7 @@ export const Theme = extendTheme(
 			darkBrownHover: '#3f3632',
 			veryLightGrey: '#f7f7f7eb',
 			error: '#fc8181',
+			'error.900': '#ff5e5e',
 			primary: {
 				900: '#e49800',
 				600: '#eec063',
