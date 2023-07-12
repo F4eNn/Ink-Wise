@@ -1,33 +1,22 @@
 'use client'
-import React, { useRef, useEffect } from 'react'
-import { VStack, IconButton, Flex } from '@/lib/chakra'
-
+import React, { useRef } from 'react'
+import { VStack, IconButton } from '@/lib/chakra'
 import { IoMdPersonAdd } from 'react-icons/io'
-import { BsArrowRight } from 'react-icons/bs'
-import { BsArrowLeft } from 'react-icons/bs'
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FaUsers } from 'react-icons/fa'
 import { DeleteIcon } from '@chakra-ui/icons'
-import { useToggle } from '@/hooks/useToggle'
 import { LinkIconPannel } from './ui/LinkIconPannel'
 import { LinkDrawer } from './ui/LinkDrawer'
 
 import { useAuth } from '@/hooks/useAuth'
+import { useOutsideClick } from '@/hooks/useOutsideClick'
 export const Pannel = () => {
-	const [isOpen, toggleOpen] = useToggle()
-	const drawerRef = useRef<HTMLDivElement>(null)
 	const { authUser } = useAuth()
-	useEffect(() => {
-		const clickOutsideHandler = (e: MouseEvent) => {
-			if (e.target != drawerRef.current && isOpen) {
-				toggleOpen()
-			}
-		}
-		window.document.addEventListener('click', clickOutsideHandler)
 
-		return () => window.document.removeEventListener('click', clickOutsideHandler)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isOpen])
+	const drawerRef = useRef<HTMLDivElement>(null)
+	const {isOpen,toggleState} = useOutsideClick(drawerRef)
+
 	return (
 		<VStack
 			pos='fixed'
@@ -52,7 +41,7 @@ export const Pannel = () => {
 				ml={isOpen ? 'auto' : 'center'}
 				aria-label='open drawer'
 				icon={isOpen ? <BsArrowLeft size='1.5em' /> : <BsArrowRight size='1.5em' />}
-				onClick={toggleOpen}
+				onClick={toggleState}
 				w={'50px'}
 			/>
 			{isOpen ? (

@@ -1,38 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef} from 'react'
 import { Box, VStack, Button, IconButton, Avatar } from '@/lib/chakra'
 import { ButtonProfile } from './ButtonProfile'
 import { useAuth } from '@/hooks/useAuth'
 import { SmallCloseIcon } from '@chakra-ui/icons'
-
+import { useOutsideClick } from '@/hooks/useOutsideClick'
 export const UserDetails = () => {
-	const [isOpen, setIsOpen] = useState(false)
-	const containerRef = useRef<HTMLDivElement>(null)
-	const { logout, authUser } = useAuth()
+	const { authUser, logout } = useAuth()
 
-	const isOpenHelper = () => {
-		setIsOpen(prev => !prev)
-	}
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-				setIsOpen(false)
-			}
-		}
-		document.addEventListener('mousedown', handleClickOutside)
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-	const closeUserDetails = () => {
-		setIsOpen(false)
-	}
+	const detailCardRef = useRef<HTMLDivElement>(null)
+	const {isOpen, toggleState} = useOutsideClick(detailCardRef)
+
 	return (
 		<Box pos='relative'>
-			<ButtonProfile isOpenHelper={isOpenHelper} />
+			<ButtonProfile isOpenHelper={toggleState} />
 			{isOpen && (
 				<VStack
-					ref={containerRef}
+					ref={detailCardRef}
 					pos='absolute'
 					top={14}
 					right={0}
@@ -42,7 +25,7 @@ export const UserDetails = () => {
 					rounded='2xl'
 					border='1px solid gray'>
 					<IconButton
-						onClick={closeUserDetails}
+						onClick={toggleState}
 						pos='absolute'
 						right={0}
 						top={0}
@@ -72,7 +55,6 @@ export const UserDetails = () => {
 						variant='outlineDark'
 						w='70%'
 						onClick={() => {
-							closeUserDetails()
 							logout()
 						}}>
 						Logout
