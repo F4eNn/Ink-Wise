@@ -9,7 +9,6 @@ type HeroProps = {
 export const Hero = ({ src }: HeroProps) => {
 	return (
 		<Box
-			mx='auto'
 			pos='relative'
 			w='400px'
 			h='400px'>
