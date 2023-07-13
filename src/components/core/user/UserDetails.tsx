@@ -22,7 +22,7 @@ export const UserDetails = () => {
 					right='0'
 					py='5'
 					w={['275px','300px']}
-					bg='#f0e8db'
+					bg='primary.100'
 					borderColor='borderColor'
 					rounded='2xl'
 					borderWidth='1px'
