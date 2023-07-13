@@ -3,7 +3,7 @@ import {Box} from '@/lib/chakra'
 export const EditProfile = () => {
 
   return (
-    
-    <Box>EditProfile</Box>
+
+    <Box borderWidth='1px' borderColor='red' >EditProfile</Box>
   )
 }
