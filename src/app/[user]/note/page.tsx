@@ -1,20 +1,9 @@
 import React from 'react'
-import { Box } from '@/lib/chakra'
-import Image from 'next/image'
+
+import { Hero } from '@/components/ui/Hero'
+
 const NotePage = () => {
-	return (
-		<Box
-			mx='auto'
-			pos='relative'
-			w='300px'
-			h='300px'>
-			<Image
-				src='/createHero.png'
-				alt='gif'
-				fill
-			/>
-		</Box>
-	)
+	return <Hero src='/create-note.png' />
 }
 
 export default NotePage
