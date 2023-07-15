@@ -6,8 +6,11 @@ import { User } from '@/config/firebase'
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 
+import { useRouter } from 'next/navigation'
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
+	const router = useRouter()
 
 	const [authUser, setAuthUser] = useState<User | null>(null)
 	const showToast = (username: string) => {
@@ -49,8 +52,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [authUser])
 	const logout = async () => {
 		try {
-			setAuthUser(null)
 			await signOut(auth)
+			setAuthUser(null)
+			router.back()
 		} catch (err) {
 			console.error(err)
 		}
