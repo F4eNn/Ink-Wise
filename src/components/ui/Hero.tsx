@@ -10,8 +10,8 @@ export const Hero = ({ src }: HeroProps) => {
 	return (
 		<Box
 			pos='relative'
-			w='400px'
-			h='400px'>
+			w='600px'
+			h='600px'>
 			<Image
 				src={src}
 				alt=''

@@ -26,6 +26,7 @@ export {
 	Heading,
 	Card,
 	CardHeader,
+	AvatarBadge,
 	CardBody,
 	CardFooter,
 	Textarea,
