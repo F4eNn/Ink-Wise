@@ -30,7 +30,7 @@ export interface FormData {
 export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, onLoading }: FormProps) => {
 	const { authUser, logout } = useAuth()
 	const router = useRouter()
-	const { register, handleSubmit, setValue } = useForm<FormData>({
+	const { register, handleSubmit, setValue, formState } = useForm<FormData>({
 		defaultValues: {
 			bio: '',
 			email: '',
@@ -39,6 +39,9 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 			ConfirmPassword: '',
 		},
 	})
+
+	const { errors } = formState
+	console.log(errors)
 
 	const onSubmit = (data: FormData) => {
 		onToggle()
@@ -49,7 +52,6 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 			updateEmaill({ email: data.email }, authUser)
 			logout()
 			router.push('/login')
-
 		}
 	}
 
@@ -102,11 +104,11 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 					/>
 				</FormControl>
 				<VStack
-				borderWidth='1px'
-				borderColor='red'
-				rounded='2xl'
-				py='8'
-				px='5'
+					borderWidth='1px'
+					borderColor='red'
+					rounded='2xl'
+					py='8'
+					px='5'
 					mt='20'
 					spacing={4}>
 					<Text
@@ -128,26 +130,16 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 
 					<VStack
 						w='full'
-						mt='10'
+						mt='5'
 						spacing='8'>
 						<FormControl>
-							<FormLabel htmlFor='newPassword'>New Password:</FormLabel>
+							<FormLabel htmlFor='newPassword'>New Password</FormLabel>
 							<Input
 								type='password'
 								id='newPassword'
 								placeholder='Password'
 								focusBorderColor='primary.900'
 								{...register('newPassword')}
-							/>
-						</FormControl>
-						<FormControl>
-							<FormLabel htmlFor='newPassword'>Confirm Password:</FormLabel>
-							<Input
-								type='password'
-								id='newPassword'
-								placeholder='Password'
-								focusBorderColor='primary.900'
-								{...register('ConfirmPassword')}
 							/>
 						</FormControl>
 					</VStack>
