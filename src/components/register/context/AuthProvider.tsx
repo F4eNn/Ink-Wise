@@ -5,9 +5,11 @@ import { auth } from '../../../config/firebase'
 import { User } from '@/config/firebase'
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
+	const router = useRouter()
 
 	const [authUser, setAuthUser] = useState<User | null>(null)
 	const showToast = (username: string) => {
@@ -40,6 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				setAuthUser(user)
 			} else {
 				setAuthUser(null)
+				router.push('/login')
 			}
 		})
 		return () => {
@@ -47,15 +50,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authUser])
+
 	const logout = async () => {
 		try {
-			setAuthUser(null)
 			await signOut(auth)
 		} catch (err) {
 			console.error(err)
 		}
 	}
-
 	const data = {
 		authUser,
 		listenOnSubmitForm,

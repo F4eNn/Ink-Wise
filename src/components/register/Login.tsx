@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { useColorMode, Center } from '../../lib/chakra'
 import { Logo } from '../ui/Logo'
 import { Form } from './ui/Form'
 import { Card } from './ui/Card'
@@ -15,6 +14,7 @@ import { Toast } from './ui/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
+import { Center, useColorMode } from '@chakra-ui/react'
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)

@@ -4,7 +4,6 @@ export const Card = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<ChakraCard
 			w='600px'
-			h='600px'
 			bg='none'
             pl='5'
 			mt='20'

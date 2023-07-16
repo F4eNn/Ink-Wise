@@ -7,7 +7,7 @@ import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { Link } from './ui/Link'
 export const UserDetails = () => {
 	const { authUser, logout } = useAuth()
-
+	
 	const detailCardRef = useRef<HTMLDivElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(detailCardRef)
 
@@ -66,9 +66,7 @@ export const UserDetails = () => {
 						_hover={{
 							bg: 'error'
 						}}
-						onClick={() => {
-							logout()
-						}}>
+						onClick={logout}>
 						Logout
 					</Button>
 				</VStack>
