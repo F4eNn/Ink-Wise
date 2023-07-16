@@ -4,7 +4,7 @@ import { doc, setDoc } from 'firebase/firestore'
 interface PersonalData {
 	name: string
 	email: string
-	newPassword: string
+	password: string
 }
 
 

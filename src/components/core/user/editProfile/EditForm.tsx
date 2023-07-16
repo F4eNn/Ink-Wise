@@ -10,6 +10,7 @@ import { updateEmaill } from './userHelpers'
 import { updateProfile } from './userHelpers'
 import { useRouter } from 'next/navigation'
 
+import { PasswordInput } from '@/components/register/ui/PasswordInput'
 interface FormProps {
 	onToggle: () => void
 	userId: string | undefined
@@ -23,8 +24,7 @@ export interface FormData {
 	bio: string
 	name: string
 	email: string
-	newPassword: string
-	ConfirmPassword: string
+	password: string
 }
 
 export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, onLoading }: FormProps) => {
@@ -35,16 +35,15 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 			bio: '',
 			email: '',
 			name: '',
-			newPassword: '',
-			ConfirmPassword: '',
+			password: '',
 		},
 	})
 
 	const { errors } = formState
-	console.log(errors)
 
 	const onSubmit = (data: FormData) => {
 		onToggle()
+		data.password.length
 		setProfileUpdate(data, userId)
 		updateProfile({ name: data.name }, authUser)
 
@@ -132,16 +131,7 @@ export const EditForm = ({ onToggle, userId, valueBio, valueName, valueEmail, on
 						w='full'
 						mt='5'
 						spacing='8'>
-						<FormControl>
-							<FormLabel htmlFor='newPassword'>New Password</FormLabel>
-							<Input
-								type='password'
-								id='newPassword'
-								placeholder='Password'
-								focusBorderColor='primary.900'
-								{...register('newPassword')}
-							/>
-						</FormControl>
+						<PasswordInput isRequired={false} errors={errors.password?.message} register={register}/>
 					</VStack>
 				</VStack>
 				<Button

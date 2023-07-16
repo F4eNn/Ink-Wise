@@ -87,6 +87,7 @@ export const Signup = () => {
 					register={register}
 				/>
 				<PasswordInput
+					
 					errors={errors.password?.message}
 					register={register}
 				/>

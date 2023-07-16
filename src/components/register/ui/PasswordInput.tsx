@@ -5,9 +5,10 @@ import { UseFormRegister } from 'react-hook-form/dist/types/form'
 interface PasswordProps {
 	errors: string | undefined
 	register: Omit<UseFormRegister<{ password: string }>, 'username' | 'email'>
+	isRequired?: boolean
 }
 
-export const PasswordInput = ({ errors, register }: PasswordProps) => {
+export const PasswordInput = ({ errors, register, isRequired = true }: PasswordProps) => {
 	const containsCapitalLetter = /(?=.*[A-Z])/
 	const containsSpecialChar = /(?=.*\W)/
 
@@ -19,10 +20,12 @@ export const PasswordInput = ({ errors, register }: PasswordProps) => {
 			palaceholder='password'
 			register={register}
 			registerValue={{
-				required: {
-					value: true,
-					message: 'This field is required',
-				},
+				...(isRequired && {
+					required: {
+						value: true,
+						message: 'This field is required',
+					},
+				}),
 				validate: {
 					isShort: password => {
 						return password.length >= 6 || 'min. 6 characters'
@@ -39,5 +42,3 @@ export const PasswordInput = ({ errors, register }: PasswordProps) => {
 		/>
 	)
 }
-
-
