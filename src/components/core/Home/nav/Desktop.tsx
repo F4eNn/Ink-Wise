@@ -1,7 +1,7 @@
 import { Box, ListItem, UnorderedList } from '@/lib/chakra'
 import Link from 'next/link'
 import { useAuth } from '../../../../hooks/useAuth'
-import { UserDetails } from '../../user/UserDetails'
+import { UserDropdown } from '../../user/UserDropdown'
 export const Desktop = () => {
 	const { authUser } = useAuth()
 	return (
@@ -9,7 +9,7 @@ export const Desktop = () => {
 			display={['none', null, 'block']}
 			mr={16}>
 			{authUser ? (
-				<UserDetails />
+				<UserDropdown />
 			) : (
 				<UnorderedList
 					display={'flex'}

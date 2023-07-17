@@ -1,21 +1,28 @@
 'use client'
 import React, { useState } from 'react'
+
+import { useColorMode, Heading } from '@/lib/chakra'
+
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { auth } from '../../config/firebase'
+
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+
 import { Form } from './ui/Form'
 import { Card } from './ui/Card'
-import { useColorMode, Heading } from '@/lib/chakra'
 import { Submit } from './ui/Submit'
 import { GoogleBtn } from './ui/GoogleBtn'
 import { GitHubBtn } from './ui/GitHubBtn'
 import { Logo } from '../ui/Logo'
 import { RegisterLink } from './ui/RegisterLink'
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
-import { InputControl } from './ui/InputControl'
-import isEmail from 'validator/lib/isEmail'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth } from '../../config/firebase'
+import { PasswordInput } from './ui/PasswordInput'
+import { UsernameInput } from './ui/UsernameInput'
+import { EmailInput } from './ui/EmailInput'
+
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
+
 export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
@@ -24,8 +31,6 @@ export const Signup = () => {
 
 	// useProtectedRoute()
 
-	const containsCapitalLetter = /(?=.*[A-Z])/
-	const containsSpecialChar = /(?=.*\W)/
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
 			username: '',
@@ -72,68 +77,18 @@ export const Signup = () => {
 				</Heading>
 				<GoogleBtn mode={colorMode} />
 				<GitHubBtn mode={colorMode} />
-				<InputControl
-					error={errors.username && errors.username.message}
-					isInvalid={!!errors.username}
-					name='username'
-					palaceholder='John'
+				<UsernameInput
+					errors={errors.username?.message}
 					register={register}
-					registerValue={{
-						required: {
-							value: true,
-							message: 'This field is required',
-						},
-						validate: {
-							hasMinLength: username => {
-								return username.length >= 3 || 'min. 3 characters'
-							},
-							hasSpecialChar: username => {
-								return !containsSpecialChar.test(username) || "Username can't contain special characters"
-							},
-						},
-					}}
-					type='text'
 				/>
-				<InputControl
-					emailExist={emailExist}
-					error={errors.email && errors.email.message}
-					isInvalid={!!errors.email}
-					name='email'
-					palaceholder='john.doe@johondoehub.com'
+				<EmailInput
+					errors={errors.email?.message}
+					isExist={emailExist}
 					register={register}
-					registerValue={{
-						required: {
-							value: true,
-							message: 'This field is required',
-						},
-						validate: email => isEmail(email) || 'Provide valid email',
-					}}
-					type='email'
 				/>
-				<InputControl
-					error={errors.password && errors.password.message}
-					isInvalid={!!errors.password}
-					name='password'
-					palaceholder='password'
+				<PasswordInput
+					errors={errors.password?.message}
 					register={register}
-					registerValue={{
-						required: {
-							value: true,
-							message: 'This field is required',
-						},
-						validate: {
-							isShort: password => {
-								return password.length >= 6 || 'min. 6 characters'
-							},
-							hasBigLetter: password => {
-								return containsCapitalLetter.test(password) || 'Atleast one capital letter'
-							},
-							hasSpecialChar: password => {
-								return containsSpecialChar.test(password) || 'Atleast one special char.'
-							},
-						},
-					}}
-					type='password'
 				/>
 				<Submit
 					loadingText='Creating'

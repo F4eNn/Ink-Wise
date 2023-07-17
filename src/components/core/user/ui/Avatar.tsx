@@ -8,9 +8,9 @@ export const Avatar = () => {
 	const { authUser } = useAuth()
 	return (
 		<ChakraAvatar
-			name={authUser ? authUser?.displayName as string : ''}
+			name={authUser ? (authUser?.displayName as string) : ''}
 			alignSelf='flex-start'
-			src={authUser ? authUser?.photoURL as string : ''}
+			src={authUser ? (authUser?.photoURL as string) : ''}
 			ml='5'
 			size={['lg', 'xl', '2xl']}>
 			<AvatarBadge

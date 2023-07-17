@@ -6,11 +6,10 @@ import { useDate } from '@/hooks/useDate'
 
 interface EditContentProps {
 	// isSave: boolean
-    valueBio: string
+	valueBio: string
 }
 
-
-export const EditContent = ({valueBio}:EditContentProps) => {
+export const Content = ({ valueBio }: EditContentProps) => {
 	const { authUser } = useAuth()
 	const { finalDate: CreationTime } = useDate(authUser?.metadata.creationTime!)
 	return (

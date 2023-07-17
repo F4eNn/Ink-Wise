@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@/lib/chakra'
 import Image from 'next/image'
+import { Box } from '@/lib/chakra'
 
 type HeroProps = {
 	src: string

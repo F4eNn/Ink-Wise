@@ -1,18 +1,18 @@
 import React, { useRef } from 'react'
 import { Box, VStack, Button, IconButton, Avatar } from '@/lib/chakra'
-import { ButtonProfile } from './ButtonProfile'
+import { ButtonProfile } from './ui/ButtonProfile'
 import { useAuth } from '@/hooks/useAuth'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { Link } from './ui/Link'
-export const UserDetails = () => {
+export const UserDropdown = () => {
 	const { authUser, logout } = useAuth()
 
 	const detailCardRef = useRef<HTMLDivElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(detailCardRef)
 
 	return (
-		<Box pos='relative' >
+		<Box pos='relative'>
 			<ButtonProfile isOpenHelper={toggleState} />
 			{isOpen && (
 				<VStack
@@ -21,13 +21,12 @@ export const UserDetails = () => {
 					top='80px'
 					right='0'
 					py='5'
-					w={['275px','300px']}
+					w={['275px', '300px']}
 					bg='primary.100'
 					borderColor='borderColor'
 					rounded='2xl'
 					borderWidth='1px'
-					zIndex='999'
-					>
+					zIndex='999'>
 					<IconButton
 						onClick={toggleState}
 						pos='absolute'
@@ -37,7 +36,7 @@ export const UserDetails = () => {
 						bg='none'
 						roundedTopEnd='2xl'
 						_hover={{
-							bg: 'primary-600'
+							bg: 'primary-600',
 						}}
 						icon={<SmallCloseIcon />}
 					/>
@@ -49,14 +48,10 @@ export const UserDetails = () => {
 					/>
 					<Link
 						mt='5'
-						url={`/${authUser?.displayName}/edit-profile`}
-						>
+						url={`/${authUser?.displayName}/edit-profile`}>
 						Edit Profile
 					</Link>
-					<Link
-						url='/'>
-						Feature
-					</Link>
+					<Link url='/'>Feature</Link>
 					<Button
 						variant='outlineDark'
 						mt='6'
@@ -64,11 +59,9 @@ export const UserDetails = () => {
 						color='white'
 						bg='error.900'
 						_hover={{
-							bg: 'error'
+							bg: 'error',
 						}}
-						onClick={() => {
-							logout()
-						}}>
+						onClick={logout}>
 						Logout
 					</Button>
 				</VStack>
