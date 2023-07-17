@@ -1,5 +1,14 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, User as UserCrednetial, updateProfile, updateEmail as editEmail, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth'
+import {
+	getAuth,
+	User as UserCrednetial,
+	updateProfile,
+	updateEmail as editEmail,
+	updatePassword as Editpassword,
+	reauthenticateWithCredential,
+	EmailAuthProvider,
+	fetchSignInMethodsForEmail,
+} from 'firebase/auth'
 import { getFirestore } from '@firebase/firestore'
 
 const firebaseConfig = {
@@ -18,8 +27,9 @@ export type User = UserCrednetial
 
 export const db = getFirestore(app)
 
-
 export const updateEmail = editEmail
 export const updateUser = updateProfile
 export const reauthenticate = reauthenticateWithCredential
 export const EmailProvider = EmailAuthProvider
+export const fetchUserCredential = fetchSignInMethodsForEmail
+export const updatePassword = Editpassword

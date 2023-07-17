@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 import { Box, Button, UnorderedList, ListItem, Divider } from '@/lib/chakra'
 import { useAuth } from '../../../../hooks/useAuth'
-import { UserDetails } from '../../user/UserDetails'
+import { UserDropdown } from '../../user/UserDropdown'
 import { useToggle } from '@/hooks/useToggle'
 import Link from 'next/link'
 
@@ -15,9 +15,9 @@ export const Mobile = () => {
 		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return toggleNav()
 	}
 	return (
-		<Box  display={[null, null, 'none']}>
+		<Box display={[null, null, 'none']}>
 			{authUser ? (
-				<UserDetails />
+				<UserDropdown />
 			) : (
 				<Button
 					display='flex'

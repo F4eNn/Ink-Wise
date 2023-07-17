@@ -15,7 +15,7 @@ export const Pannel = () => {
 	const { authUser } = useAuth()
 
 	const drawerRef = useRef<HTMLDivElement>(null)
-	const {isOpen,toggleState} = useOutsideClick(drawerRef)
+	const { isOpen, toggleState } = useOutsideClick(drawerRef)
 
 	return (
 		<VStack

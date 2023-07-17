@@ -4,19 +4,20 @@ import { Button } from '@/lib/chakra'
 import { Card } from './ui/Card'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '@/config/firebase'
-import { FormData } from './EditForm'
 import { useAuth } from '@/hooks/useAuth'
-import { EditForm } from './EditForm'
-import { EditContent } from './EditContent'
+
 import { useToggle } from '@/hooks/useToggle'
 
-import { setInitData } from './userHelpers'
-import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton'
+import { setInitData } from './helpers/editHelpers'
 import { usePathname } from 'next/navigation'
+import { Content } from './Content'
+import { EditUserData } from './EditUserData'
+import { EditCredential } from './EditCredential'
+import { FormData } from './EditUserData'
+
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
 	const [dataChanges, setData] = useState<FormData>()
-	const [isLoading, setIsLoading] = useState(false)
 
 	const pathname = usePathname()
 	const { authUser } = useAuth()
@@ -31,25 +32,25 @@ export const EditProfile = () => {
 				setData(doc.data() as FormData)
 			})
 		}
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname])
 
 	return (
 		<>
-			{isLoading && <LoadingSkeleton />}
 			<Card>
 				{isEdit ? (
-					<EditForm
-						onToggle={toggleForm}
-						userId={userId}
-						valueName={authUser!.displayName!}
-						valueBio={dataChanges!.bio}
-						valueEmail={authUser!.email!}
-						onLoading={setIsLoading}
-					/>
+					<>
+						<EditUserData
+							onToggle={toggleForm}
+							userId={userId}
+							valueName={authUser!.displayName!}
+							valueBio={dataChanges!.bio}
+							valueEmail={authUser!.email!}
+						/>
+						<EditCredential />
+					</>
 				) : (
-					<EditContent
+					<Content
 						valueBio={
 							dataChanges?.bio.length != 0 ? (dataChanges?.bio as string) : `Hello, I'm ${authUser?.displayName} 👋`
 						}
