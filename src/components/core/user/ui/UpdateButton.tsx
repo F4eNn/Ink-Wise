@@ -12,6 +12,7 @@ export const UpdateButton = ({ setUpdateCredential, setCategoryVisible }: Update
 			onClick={() => {
 				setUpdateCredential(false), setCategoryVisible(false)
 			}}
+			mr='auto'
 			mb='8'>
 			go back
 		</Button>

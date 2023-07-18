@@ -4,7 +4,11 @@ import { useAuth } from '@/hooks/useAuth'
 
 import React from 'react'
 
-export const Avatar = () => {
+interface  AvatarProps {
+	size: string
+}
+
+export const Avatar = ({size}:AvatarProps) => {
 	const { authUser } = useAuth()
 	return (
 		<ChakraAvatar
@@ -12,9 +16,9 @@ export const Avatar = () => {
 			alignSelf='flex-start'
 			src={authUser ? (authUser?.photoURL as string) : ''}
 			ml='5'
-			size={['lg', 'xl', '2xl']}>
+			size={[size, 'xl', '2xl']}>
 			<AvatarBadge
-				borderWidth='8px'
+				borderWidth={['unset', '5px','7px']}
 				boxSize='.8em'
 				bg='green.500'
 			/>

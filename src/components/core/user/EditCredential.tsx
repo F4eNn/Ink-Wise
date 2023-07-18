@@ -23,16 +23,17 @@ export const EditCredential = () => {
 			rounded='2xl'
 			py='8'
 			px='5'
-			mt='10'
+			my='10'
 			spacing={4}>
 			<Text
+			align='center'
 				color='red.500'
 				mb='5'
 				fontSize='lg'>
 				The changes made below require a re-login
 			</Text>
 			{!isHideButtons && (
-				<VStack w='full'>
+				<VStack w='full' spacing={{base: '3', lg: '5'}}>
 					<Button
 						onClick={() => {
 							setUpdateEmail(true), setIsHideButtons(true)

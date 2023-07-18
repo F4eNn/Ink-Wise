@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Box } from '@/lib/chakra'
+import { AspectRatio } from '@/lib/chakra'
 
 type HeroProps = {
 	src: string
@@ -8,17 +8,16 @@ type HeroProps = {
 
 export const Hero = ({ src }: HeroProps) => {
 	return (
-		<Box
+		<AspectRatio
 			pos='relative'
-			w='600px'
-			h='600px'>
+			ratio={1}
+			w='full'>
 			<Image
 				src={src}
 				alt=''
 				fill
-                
 			/>
-		</Box>
+		</AspectRatio>
 	)
 }
 

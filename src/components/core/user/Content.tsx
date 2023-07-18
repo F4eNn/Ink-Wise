@@ -1,11 +1,10 @@
 import React from 'react'
-import { CardHeader, CardBody, Flex, Text } from '@/lib/chakra'
+import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
 import { useAuth } from '@/hooks/useAuth'
 import { useDate } from '@/hooks/useDate'
 
 interface EditContentProps {
-	// isSave: boolean
 	valueBio: string
 }
 
@@ -16,13 +15,19 @@ export const Content = ({ valueBio }: EditContentProps) => {
 		<>
 			<CardHeader>
 				<Flex
+					flexDir={['column', 'row']}
 					alignItems='center'
 					gap={['5', '8']}>
-					<Avatar />
+					<Box>
+						<Avatar size='2xl'/>
+					</Box>
 					<Flex
+						alignSelf={['flex-start','unset']}
 						flexDir='column'
 						gap={['3', '4']}>
-						<Text fontSize={['md', 'lg', 'xl']}>
+						<Text
+							as='b'
+							fontSize={['md', 'lg', 'xl']}>
 							<Text
 								as='span'
 								color='primary.900'>

@@ -7,8 +7,6 @@ import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 
-import { useRouter } from 'next/navigation'
-
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
 	const router = useRouter()

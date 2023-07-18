@@ -29,13 +29,16 @@ export const UpdateEmail = ({ setCategoryVisible, updateEmail, setUpdateEmail }:
 
 	const onSubmitEmail = async (data: Pick<CredentialForm, 'email'>) => {
 		if (!authUser) return
-
-		const isAllowChangeEmail = await handleChangeEmail(data.email, authUser)
-		if (isAllowChangeEmail) {
-			setIsEmailExist(false)
-			logout()
-		} else {
-			setIsEmailExist(true)
+		try {
+			const isAllowChangeEmail = await handleChangeEmail(data.email, authUser)
+			if (isAllowChangeEmail) {
+				setIsEmailExist(false)
+				logout()
+			} else {
+				setIsEmailExist(true)
+			}
+		} catch (error) {
+			console.error(error)
 		}
 	}
 	return (

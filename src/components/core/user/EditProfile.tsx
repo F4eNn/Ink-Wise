@@ -15,6 +15,7 @@ import { EditUserData } from './EditUserData'
 import { EditCredential } from './EditCredential'
 import { FormData } from './EditUserData'
 
+
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
 	const [dataChanges, setData] = useState<FormData>()
@@ -36,35 +37,33 @@ export const EditProfile = () => {
 	}, [pathname])
 
 	return (
-		<>
-			<Card>
-				{isEdit ? (
-					<>
-						<EditUserData
-							onToggle={toggleForm}
-							userId={userId}
-							valueName={authUser!.displayName!}
-							valueBio={dataChanges!.bio}
-							valueEmail={authUser!.email!}
-						/>
-						<EditCredential />
-					</>
-				) : (
-					<Content
-						valueBio={
-							dataChanges?.bio.length != 0 ? (dataChanges?.bio as string) : `Hello, I'm ${authUser?.displayName} 👋`
-						}
+		<Card>
+			{isEdit ? (
+				<>
+					<EditUserData
+						onToggle={toggleForm}
+						userId={userId}
+						valueName={authUser!.displayName!}
+						valueBio={dataChanges!.bio}
+						valueEmail={authUser!.email!}
 					/>
-				)}
-				{!isEdit && (
-					<Button
-						mt='20'
-						type='button'
-						onClick={toggleForm}>
-						Update profile
-					</Button>
-				)}
-			</Card>
-		</>
+					<EditCredential />
+				</>
+			) : (
+				<Content
+					valueBio={
+						dataChanges?.bio.length != 0 ? (dataChanges?.bio as string) : `Hello, I'm ${authUser?.displayName} 👋`
+					}
+				/>
+			)}
+			{!isEdit && (
+				<Button
+					mt='20'
+					type='button'
+					onClick={toggleForm}>
+					Update profile
+				</Button>
+			)}
+		</Card>
 	)
 }

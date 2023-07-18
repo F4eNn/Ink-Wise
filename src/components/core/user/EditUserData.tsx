@@ -43,14 +43,14 @@ export const EditUserData = ({ valueBio, userId, valueName, onToggle }: FormProp
 	return (
 		<Box
 			as='form'
-			onSubmit={handleSubmit(onSubmit)}
-			w='full'>
+			w='full'
+			onSubmit={handleSubmit(onSubmit)}>
 			<CardHeader>
 				<Flex
 					gap='7'
 					alignItems='center'>
 					<Box>
-						<Avatar />
+						<Avatar size='lg' />
 					</Box>
 					<Flex
 						w='full'
