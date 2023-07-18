@@ -7,29 +7,28 @@ interface PersonalData {
 	password: string
 }
 
-export interface FormData extends PersonalData {
+export interface FormData {
 	bio: string
+	username: string
+	photo: string
 }
-
-export interface GeneralInfo {
-	name: string
-	bio: string
-
-}
-
 
 export const setInitData = async (userId: string) => {
 	await setDoc(doc(db, 'user-profile', userId), { bio: '' })
 }
 
 //update general Info
-export const updateProfile = async ({ name }: Pick<GeneralInfo, 'name'>, authUser: User | null) => {
+export const updateProfile = async (
+	{ username, photo }: Pick<FormData, 'username' | 'photo'>,
+	authUser: User | null
+) => {
 	await updateUser(authUser as User, {
-		displayName: name,
+		displayName: username,
+		photoURL: photo,
 	})
 }
 
-export const setProfileUpdate = async (data: Pick<GeneralInfo, 'bio'>, userId: string | undefined) => {
+export const setProfileUpdate = async (data: Pick<FormData, 'bio'>, userId: string | undefined) => {
 	if (!userId) return
 	try {
 		const setBio = await setDoc(doc(db, 'user-profile', userId), {
@@ -41,14 +40,14 @@ export const setProfileUpdate = async (data: Pick<GeneralInfo, 'bio'>, userId: s
 }
 
 //Update Email
-const setNewEmaill = async ({ email }: Pick<FormData, 'email'>, authUser: User ) => {
+const setNewEmaill = async ({ email }: Pick<PersonalData, 'email'>, authUser: User) => {
 	try {
 		updateEmail(authUser as User, email)
 	} catch (error) {
 		console.error(error)
 	}
 }
-export const handleChangeEmail = async (newEmail: string, authUser: User ) => {
+export const handleChangeEmail = async (newEmail: string, authUser: User) => {
 	try {
 		const checkEmail = await fetchUserCredential(auth, newEmail)
 		if (checkEmail.length > 0) {

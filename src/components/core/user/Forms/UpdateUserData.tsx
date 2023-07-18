@@ -1,5 +1,5 @@
 import { Box, Button, CardHeader, Flex, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '@/lib/chakra'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar } from '../ui/Avatar'
 import { useForm } from 'react-hook-form'
 
@@ -9,25 +9,21 @@ import { setProfileUpdate } from '../helpers/editHelpers'
 import { updateProfile } from '../helpers/editHelpers'
 
 import { UsernameInput } from '@/components/register/ui/UsernameInput'
-
+import { FormData } from '../helpers/editHelpers'
 interface FormProps {
 	onToggle: () => void
 	userId: string | undefined
 	valueBio: string
 	valueName: string
-	valueEmail: string
+	valuePhoto: string
 }
 
-export interface FormData {
-	bio: string
-	username: string
-}
-
-export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormProps) => {
+export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onToggle }: FormProps) => {
 	const { register, handleSubmit, setValue, formState } = useForm<FormData>({
 		defaultValues: {
 			bio: '',
 			username: '',
+			photo: '',
 		},
 	})
 	const { errors } = formState
@@ -35,13 +31,14 @@ export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormPr
 
 	const onSubmit = async (data: FormData) => {
 		await setProfileUpdate(data, userId)
-		await updateProfile({ name: data.username }, authUser)
+		await updateProfile({ username: data.username, photo: data.photo }, authUser)
 		onToggle()
 	}
 	useEffect(() => {
+		setValue('photo', valuePhoto)
 		setValue('bio', valueBio)
 		setValue('username', valueName)
-	}, [setValue, valueBio, valueName])
+	}, [setValue, valueBio, valueName, valuePhoto])
 
 	return (
 		<Box
@@ -57,6 +54,7 @@ export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormPr
 					</Box>
 					<Flex
 						w='full'
+						fontSize='lg'
 						flexDir='column'
 						gap='3'>
 						<UsernameInput
@@ -68,17 +66,29 @@ export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormPr
 				</Flex>
 			</CardHeader>
 			<FormControl>
-				<FormLabel htmlFor='description' />
+				<FormLabel htmlFor='profilePicture'>Profile Picture</FormLabel>
+				<Input
+					id='profilePicture'
+					borderColor='borderColor'
+					focusBorderColor='primary.900'
+					placeholder='Photo URL'
+					{...register('photo')}
+				/>
+			</FormControl>
+			<FormControl mt='5'>
+				<FormLabel htmlFor='description'>About You</FormLabel>
 				<Textarea
+					borderColor='borderColor'
 					id='description'
 					placeholder='Add a bio'
 					resize='none'
-					defaultValue={valueBio}
+					h='125px'
 					focusBorderColor='primary.900'
 					{...register('bio')}
 				/>
 			</FormControl>
 			<Button
+				variant='primary'
 				w='full'
 				type='submit'
 				mt='10'>

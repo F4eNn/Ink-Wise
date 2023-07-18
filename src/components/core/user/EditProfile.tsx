@@ -9,17 +9,15 @@ import { useAuth } from '@/hooks/useAuth'
 import { useToggle } from '@/hooks/useToggle'
 
 import { setInitData } from './helpers/editHelpers'
-import { usePathname } from 'next/navigation'
 import { Content } from './Content'
 import { UpdateUserData } from './Forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
-import { FormData } from './Forms/UpdateUserData'
+import { FormData } from './helpers/editHelpers'
 
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
 	const [newBio, setBio] = useState<Pick<FormData, 'bio'>>({ bio: '' })
 
-	const pathname = usePathname()
 	const { authUser } = useAuth()
 
 	const userId = authUser?.uid
@@ -33,7 +31,7 @@ export const EditProfile = () => {
 			})
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname])
+	}, [isEdit])
 
 	if (!authUser) return
 	return (
@@ -44,18 +42,17 @@ export const EditProfile = () => {
 						onToggle={toggleForm}
 						userId={userId}
 						valueName={authUser.displayName!}
+						valuePhoto={authUser.photoURL!}
 						valueBio={newBio.bio}
-						valueEmail={authUser.email!}
 					/>
 					<EditCredential />
 				</>
 			) : (
-				<Content
-					valueBio={newBio.bio.length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`}
-				/>
+				<Content valueBio={newBio.bio.trim().length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`} />
 			)}
 			{!isEdit && (
 				<Button
+				variant='primary'
 					mt='20'
 					type='button'
 					onClick={toggleForm}>

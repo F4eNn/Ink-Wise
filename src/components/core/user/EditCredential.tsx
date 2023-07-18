@@ -26,15 +26,18 @@ export const EditCredential = () => {
 			my='10'
 			spacing={4}>
 			<Text
-			align='center'
+				align='center'
 				color='red.500'
 				mb='5'
 				fontSize='lg'>
 				The changes made below require a re-login
 			</Text>
 			{!isHideButtons && (
-				<VStack w='full' spacing={{base: '3', lg: '5'}}>
+				<VStack
+					w='full'
+					spacing={{ base: '3', lg: '5' }}>
 					<Button
+						variant='primary'
 						onClick={() => {
 							setUpdateEmail(true), setIsHideButtons(true)
 						}}
@@ -42,6 +45,7 @@ export const EditCredential = () => {
 						Update Email
 					</Button>
 					<Button
+						variant='primary'
 						onClick={() => {
 							setUpdatePassword(true), setIsHideButtons(true)
 						}}
@@ -49,6 +53,7 @@ export const EditCredential = () => {
 						Update Password
 					</Button>
 					<Button
+						variant='primary'
 						onClick={() => {
 							setUpdateBoth(true), setIsHideButtons(true)
 						}}

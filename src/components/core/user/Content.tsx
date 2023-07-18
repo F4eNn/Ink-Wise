@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
 import { useAuth } from '@/hooks/useAuth'
@@ -12,7 +12,6 @@ export const Content = ({ valueBio }: EditContentProps) => {
 	const { authUser } = useAuth()
 
 	const { finalDate: CreationTime } = useDate(authUser?.metadata.creationTime!)
-
 	return (
 		<>
 			<CardHeader>

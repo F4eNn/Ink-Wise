@@ -3,7 +3,6 @@ import { Card as ChakraCard } from '@/lib/chakra'
 export const Card = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<ChakraCard
-			maxW='600px'
 			minW={{ md: '500px' }}
 			ml={['80px', '90px']}
 			mr='20px'

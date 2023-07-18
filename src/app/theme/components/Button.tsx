@@ -23,6 +23,17 @@ export const Button = defineStyleConfig({
 				bg: mode('#fafafa', '#3f3836')(props),
 			},
 		}),
+		primary: {
+			bg: 'reversePrimary300',
+			rounded: 'lg',
+			p: '3',
+			color: 'white',
+			transition: 'background-color .3s',
+			_hover: {
+				bg: 'reversePrimary300Hover',
+				textDecoration: 'none',
+			},
+		},
 	},
 	defaultProps: {},
 })
