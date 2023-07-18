@@ -5,9 +5,10 @@ import { UseFormRegister } from 'react-hook-form/dist/types/form'
 interface UsernameInput {
 	errors: string | undefined
 	register: Omit<UseFormRegister<{ username: string }>, 'password' | 'email'>
+	usernameValue?: string
 }
 
-export const UsernameInput = ({ errors, register }: UsernameInput) => {
+export const UsernameInput = ({ errors, register, usernameValue }: UsernameInput) => {
 	const containsSpecialChar = /(?=.*\W)/
 
 	return (

@@ -1,18 +1,12 @@
-'use client'
 import { Inter } from 'next/font/google'
 import { ChakraUiProvider } from './theme/ChakraUiProvider'
 import { Nav } from '@/components/core/Home/nav/Nav'
 import { Suspense } from 'react'
 import Loading from './loading'
 import { AuthProvider } from '@/components/register/context/AuthProvider'
-import { usePathname } from 'next/navigation'
-import { ProtectedRoute } from '@/components/ProtectedRoute'
+
 const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-	const currentPath = usePathname()
-	const registerPaths = ['/login', '/signup']
-	const noAuthRequired = ['/', '/login', '/signup']
-
 	return (
 		<html lang='en'>
 			<head>
@@ -26,14 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={inter.className}>
 				<ChakraUiProvider>
 					<AuthProvider>
-						{registerPaths.includes(currentPath) ? null : <Nav />}
-						{noAuthRequired.includes(currentPath) ? (
-							<Suspense fallback={<Loading />}>{children}</Suspense>
-						) : (
-							<ProtectedRoute>
-								<Suspense fallback={<Loading />}>{children}</Suspense>
-							</ProtectedRoute>
-						)}
+						<Suspense fallback={<Loading />}>
+							<Nav />
+							{children}
+						</Suspense>
 					</AuthProvider>
 				</ChakraUiProvider>
 			</body>

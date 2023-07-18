@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { IconButton, useColorMode, Box, Flex } from '../../../../lib/chakra'
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'

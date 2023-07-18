@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import { Box, Flex, VStack, Text, HStack, Link } from '@/lib/chakra'
 import { Logo } from '@/components/ui/Logo'

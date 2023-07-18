@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
 import { useAuth } from '@/hooks/useAuth'
@@ -6,11 +6,15 @@ import { useDate } from '@/hooks/useDate'
 
 interface EditContentProps {
 	valueBio: string
+	isEdit: boolean
 }
 
-export const Content = ({ valueBio }: EditContentProps) => {
+export const Content = ({ valueBio, isEdit }: EditContentProps) => {
 	const { authUser } = useAuth()
+
 	const { finalDate: CreationTime } = useDate(authUser?.metadata.creationTime!)
+
+	
 	return (
 		<>
 			<CardHeader>
@@ -19,10 +23,10 @@ export const Content = ({ valueBio }: EditContentProps) => {
 					alignItems='center'
 					gap={['5', '8']}>
 					<Box>
-						<Avatar size='2xl'/>
+						<Avatar size='2xl' />
 					</Box>
 					<Flex
-						alignSelf={['flex-start','unset']}
+						alignSelf={['flex-start', 'unset']}
 						flexDir='column'
 						gap={['3', '4']}>
 						<Text

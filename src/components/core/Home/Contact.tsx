@@ -4,7 +4,6 @@ import { MdEmail } from 'react-icons/md'
 import NextLink from 'next/link'
 import { BlobContact } from './ui/BlobContact'
 import { Reveal } from '@/components/ui/Reveal'
-import Image from 'next/image'
 export const Contact = () => {
 	return (
 		<VStack

@@ -12,6 +12,7 @@ type InputProps = {
 	type: string
 	palaceholder: string
 	register: any
+	usernameValue?: string
 	emailExist?: boolean
 	registerValue: {
 		required?: {
@@ -23,7 +24,7 @@ type InputProps = {
 	error: string | undefined
 }
 export const InputControl = (props: InputProps) => {
-	const { isInvalid, name, palaceholder, register, registerValue, type, error, emailExist } = props
+	const { isInvalid, name, palaceholder, register, registerValue, type, error, emailExist, usernameValue } = props
 
 	return (
 		<FormControl
@@ -39,6 +40,7 @@ export const InputControl = (props: InputProps) => {
 			<Input
 				id={name}
 				py={5}
+				defaultValue={usernameValue}
 				variant={'flushed'}
 				fontSize={'.8em'}
 				focusBorderColor='primary.900'

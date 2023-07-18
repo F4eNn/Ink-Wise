@@ -1,12 +1,14 @@
-import { Box, Button, CardHeader, Flex, FormControl, FormLabel, Input, Textarea } from '@/lib/chakra'
+import { Box, Button, CardHeader, Flex, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '@/lib/chakra'
 import React, { useEffect } from 'react'
-import { Avatar } from './ui/Avatar'
+import { Avatar } from '../ui/Avatar'
 import { useForm } from 'react-hook-form'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { setProfileUpdate } from './helpers/editHelpers'
-import { updateProfile } from './helpers/editHelpers'
+import { setProfileUpdate } from '../helpers/editHelpers'
+import { updateProfile } from '../helpers/editHelpers'
+
+import { UsernameInput } from '@/components/register/ui/UsernameInput'
 
 interface FormProps {
 	onToggle: () => void
@@ -18,27 +20,27 @@ interface FormProps {
 
 export interface FormData {
 	bio: string
-	name: string
+	username: string
 }
 
-export const EditUserData = ({ valueBio, userId, valueName, onToggle }: FormProps) => {
+export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormProps) => {
 	const { register, handleSubmit, setValue, formState } = useForm<FormData>({
 		defaultValues: {
 			bio: '',
-			name: '',
+			username: '',
 		},
 	})
-
+	const { errors } = formState
 	const { authUser } = useAuth()
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = async (data: FormData) => {
+		await setProfileUpdate(data, userId)
+		await updateProfile({ name: data.username }, authUser)
 		onToggle()
-		setProfileUpdate(data, userId)
-		updateProfile({ name: data.name }, authUser)
 	}
 	useEffect(() => {
 		setValue('bio', valueBio)
-		setValue('name', valueName)
+		setValue('username', valueName)
 	}, [setValue, valueBio, valueName])
 	return (
 		<Box
@@ -56,16 +58,11 @@ export const EditUserData = ({ valueBio, userId, valueName, onToggle }: FormProp
 						w='full'
 						flexDir='column'
 						gap='3'>
-						<FormControl>
-							<FormLabel htmlFor='name'>Username</FormLabel>
-							<Input
-								type='text'
-								id='name'
-								placeholder='Name'
-								focusBorderColor='primary.900'
-								{...register('name')}
-							/>
-						</FormControl>
+						<UsernameInput
+							errors={errors.username?.message}
+							register={register}
+							usernameValue={valueName}
+						/>
 					</Flex>
 				</Flex>
 			</CardHeader>
@@ -75,7 +72,7 @@ export const EditUserData = ({ valueBio, userId, valueName, onToggle }: FormProp
 					id='description'
 					placeholder='Add a bio'
 					resize='none'
-					defaultValue={valueBio.length == 0 ? 'Hi' : valueBio}
+					defaultValue={valueBio}
 					focusBorderColor='primary.900'
 					{...register('bio')}
 				/>

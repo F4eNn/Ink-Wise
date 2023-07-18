@@ -23,8 +23,8 @@ export const setInitData = async (userId: string) => {
 }
 
 //update general Info
-export const updateProfile = ({ name }: Pick<GeneralInfo, 'name'>, authUser: User | null) => {
-	updateUser(authUser as User, {
+export const updateProfile = async ({ name }: Pick<GeneralInfo, 'name'>, authUser: User | null) => {
+	await updateUser(authUser as User, {
 		displayName: name,
 	})
 }

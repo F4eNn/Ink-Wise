@@ -11,14 +11,14 @@ import { useToggle } from '@/hooks/useToggle'
 import { setInitData } from './helpers/editHelpers'
 import { usePathname } from 'next/navigation'
 import { Content } from './Content'
-import { EditUserData } from './EditUserData'
+import { UpdateUserData } from './Forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
-import { FormData } from './EditUserData'
-
+import { FormData } from './Forms/UpdateUserData'
 
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
-	const [dataChanges, setData] = useState<FormData>()
+	const [newBio, setBio] = useState<Pick<FormData, 'bio'>>({ bio: '' })
+	const [newUsername, setUsername] = useState<Pick<FormData, 'username'>>({ username: '' })
 
 	const pathname = usePathname()
 	const { authUser } = useAuth()
@@ -30,30 +30,30 @@ export const EditProfile = () => {
 			const unsub = onSnapshot(doc(db, 'user-profile', userId), doc => {
 				const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server'
 				if (doc.data() === undefined) return setInitData(userId)
-				setData(doc.data() as FormData)
+				setBio(doc.data() as FormData)
 			})
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname])
 
+	if (!authUser) return
 	return (
 		<Card>
 			{isEdit ? (
 				<>
-					<EditUserData
+					<UpdateUserData
 						onToggle={toggleForm}
 						userId={userId}
-						valueName={authUser!.displayName!}
-						valueBio={dataChanges!.bio}
-						valueEmail={authUser!.email!}
+						valueName={authUser.displayName!}
+						valueBio={newBio.bio}
+						valueEmail={authUser.email!}
 					/>
 					<EditCredential />
 				</>
 			) : (
 				<Content
-					valueBio={
-						dataChanges?.bio.length != 0 ? (dataChanges?.bio as string) : `Hello, I'm ${authUser?.displayName} 👋`
-					}
+					isEdit={isEdit}
+					valueBio={newBio.bio.length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`}
 				/>
 			)}
 			{!isEdit && (
