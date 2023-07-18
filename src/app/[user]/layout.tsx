@@ -1,9 +1,9 @@
-import { Pannel } from '@/components/core/Pannel/Pannel'
+import { Drawer } from '@/components/core/drawer/Drawer'
 import React from 'react'
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div>
-			<Pannel />
+			<Drawer />
 			{children}
 		</div>
 	)

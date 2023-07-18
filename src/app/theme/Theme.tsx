@@ -1,10 +1,10 @@
-'use client'
 import { extendTheme, withDefaultVariant } from '../../lib/chakra'
 import { StyleFunctionProps } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import { Button } from './components/Button'
 import { IconButton } from './components/IconButton'
 import { Link } from './components/Link'
+
 export const Theme = extendTheme(
 	{
 		textStyles: {
@@ -25,10 +25,11 @@ export const Theme = extendTheme(
 			error: '#fc8181',
 			'error.900': '#ff5e5e',
 			primary: {
-				900: '#e49800',
-				600: '#eec063',
-				300: '#ffda9a',
-				100: '#f0e8db',
+				900: '',
+				600: '',
+				300: '',
+				200: '',
+				100: '',
 			},
 			alphaLightBrown: '#c28f6813',
 			alphaCustomWhite: '#ffffffea',
@@ -57,6 +58,7 @@ export const Theme = extendTheme(
 					'--chakra-colors-primary-900': mode('#9a531b', '#e49800')(props),
 					'--chakra-colors-primary-600': mode('#9a531b', '#eec063')(props),
 					'--chakra-colors-primary-300': mode('#2b2522', '#ffda9a')(props),
+					'--chakra-colors-primary-200': mode('#f0e8db', '#484441')(props),
 					'--chakra-colors-primary-100': mode('#f0e8db', '#44413f')(props),
 					'--chakra-colors-reversePrimary300': mode(' #c27b44cf', '#2b2522')(props),
 					'--chakra-colors-reversePrimary300Hover': mode(' #c27b44', '#3f3632')(props),

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { useColorMode, Link } from '@/lib/chakra'
 import NextLink from 'next/link'
