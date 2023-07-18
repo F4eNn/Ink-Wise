@@ -42,6 +42,7 @@ export const UpdateUserData = ({ valueBio, userId, valueName, onToggle }: FormPr
 		setValue('bio', valueBio)
 		setValue('username', valueName)
 	}, [setValue, valueBio, valueName])
+
 	return (
 		<Box
 			as='form'

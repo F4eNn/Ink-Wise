@@ -21,15 +21,12 @@ import { EmailInput } from './ui/EmailInput'
 
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
-import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 
 export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const { listenOnSubmitForm } = useAuth()
-
-	// useProtectedRoute()
 
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
@@ -46,10 +43,12 @@ export const Signup = () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
-			// check if is submitted already that's why contains exclamation mark
+
 			listenOnSubmitForm(!isSubmitting, name)
+
 			setEmailExist(false)
 			setIsSubmitting(false)
+			
 			router.push(`/${name}`)
 			reset()
 		} catch (err: any) {

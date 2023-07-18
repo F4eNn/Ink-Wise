@@ -4,6 +4,7 @@ import { VStack, IconButton } from '@/lib/chakra'
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { DrawerContent } from './ui/DrawerContent'
+
 export const Drawer = () => {
 	const drawerRef = useRef<HTMLDivElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(drawerRef)

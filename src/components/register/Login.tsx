@@ -14,7 +14,7 @@ import { Toast } from './ui/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
-import { Center, useColorMode } from '@chakra-ui/react'
+import { Center, useColorMode } from '@/lib/chakra'
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)

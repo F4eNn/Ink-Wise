@@ -6,15 +6,13 @@ import { useDate } from '@/hooks/useDate'
 
 interface EditContentProps {
 	valueBio: string
-	isEdit: boolean
 }
 
-export const Content = ({ valueBio, isEdit }: EditContentProps) => {
+export const Content = ({ valueBio }: EditContentProps) => {
 	const { authUser } = useAuth()
 
 	const { finalDate: CreationTime } = useDate(authUser?.metadata.creationTime!)
 
-	
 	return (
 		<>
 			<CardHeader>

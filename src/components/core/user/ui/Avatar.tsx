@@ -1,14 +1,13 @@
-'use client'
 import { AvatarBadge, Avatar as ChakraAvatar } from '@/lib/chakra'
 import { useAuth } from '@/hooks/useAuth'
 
 import React from 'react'
 
-interface  AvatarProps {
+interface AvatarProps {
 	size: string
 }
 
-export const Avatar = ({size}:AvatarProps) => {
+export const Avatar = ({ size }: AvatarProps) => {
 	const { authUser } = useAuth()
 	return (
 		<ChakraAvatar
@@ -18,7 +17,7 @@ export const Avatar = ({size}:AvatarProps) => {
 			ml='5'
 			size={[size, 'xl', '2xl']}>
 			<AvatarBadge
-				borderWidth={['unset', '5px','7px']}
+				borderWidth={['unset', '5px', '7px']}
 				boxSize='.8em'
 				bg='green.500'
 			/>

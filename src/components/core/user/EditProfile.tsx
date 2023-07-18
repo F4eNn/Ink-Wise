@@ -18,7 +18,6 @@ import { FormData } from './Forms/UpdateUserData'
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
 	const [newBio, setBio] = useState<Pick<FormData, 'bio'>>({ bio: '' })
-	const [newUsername, setUsername] = useState<Pick<FormData, 'username'>>({ username: '' })
 
 	const pathname = usePathname()
 	const { authUser } = useAuth()
@@ -52,7 +51,6 @@ export const EditProfile = () => {
 				</>
 			) : (
 				<Content
-					isEdit={isEdit}
 					valueBio={newBio.bio.length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`}
 				/>
 			)}

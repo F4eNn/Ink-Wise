@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Box } from '@chakra-ui/react'
+import { Box } from '@/lib/chakra'
 export const GithubIcon = () => {
 	return (
 		<Box
