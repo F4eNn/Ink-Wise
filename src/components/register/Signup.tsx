@@ -15,9 +15,9 @@ import { GoogleBtn } from './ui/GoogleBtn'
 import { GitHubBtn } from './ui/GitHubBtn'
 import { Logo } from '../ui/Logo'
 import { RegisterLink } from './ui/RegisterLink'
-import { PasswordInput } from './ui/PasswordInput'
-import { UsernameInput } from './ui/UsernameInput'
-import { EmailInput } from './ui/EmailInput'
+import { PasswordInput } from '../ui/PasswordInput'
+import { UsernameInput } from '../ui/UsernameInput'
+import { EmailInput } from '../ui/EmailInput'
 
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
@@ -48,7 +48,7 @@ export const Signup = () => {
 
 			setEmailExist(false)
 			setIsSubmitting(false)
-			
+
 			router.push(`/${name}`)
 			reset()
 		} catch (err: any) {

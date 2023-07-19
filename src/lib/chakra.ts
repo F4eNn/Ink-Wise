@@ -33,6 +33,7 @@ export {
 	Button,
 	chakra,
 	AspectRatio,
+	Select,
 	defineStyleConfig,
 	extendTheme,
 	withDefaultVariant,

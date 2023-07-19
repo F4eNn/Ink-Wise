@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { setProfileUpdate } from '../../../../helpers/editProfile'
 import { updateProfile } from '../../../../helpers/editProfile'
 
-import { UsernameInput } from '@/components/register/ui/UsernameInput'
+import { UsernameInput } from '@/components/ui/UsernameInput'
 import { FormData } from '../../../../helpers/editProfile'
 interface FormProps {
 	onToggle: () => void

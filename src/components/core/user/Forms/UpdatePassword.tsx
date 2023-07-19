@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PasswordInput } from '@/components/register/ui/PasswordInput'
+import { PasswordInput } from '@/components/ui/PasswordInput'
 import { Box, Button } from '@/lib/chakra'
 import { UpdateButton } from '../ui/UpdateButton'
 import { useAuth } from '@/hooks/useAuth'

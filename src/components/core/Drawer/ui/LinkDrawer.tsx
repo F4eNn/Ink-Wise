@@ -12,6 +12,7 @@ type LinkDrawerProps = {
 export const LinkDrawer = ({ desc, icon, url, ariaLabel }: LinkDrawerProps) => {
 	return (
 		<Link
+			as={NextLink}
 			variant='linkButton'
 			height='45px'
             color='white'

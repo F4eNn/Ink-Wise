@@ -43,3 +43,22 @@ export const emailVal = {
 	},
 	validate: (email: string) => isEmail(email) || 'Provide valid email',
 }
+
+export const selectVal = {
+    required: {
+        value: true,
+		message: 'Select relevant field',
+	},
+}
+
+export const basicVal = {
+    required: {
+        value: true,
+        message: 'This field is required',
+    },
+    validate: {
+        hasMinLength: (username: string) => {
+            return username.trim().length >= 3 || 'min. 3 characters'
+        },
+    },
+}

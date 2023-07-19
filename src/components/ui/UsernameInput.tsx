@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputControl } from './InputControl'
+import { InputControl } from '../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
 import { usernameVal } from '@/helpers/validations'
 
@@ -8,8 +8,7 @@ interface UsernameInput {
 	register: Omit<UseFormRegister<{ username: string }>, 'password' | 'email'>
 }
 
-export const UsernameInput = ({ errors, register}: UsernameInput) => {
-
+export const UsernameInput = ({ errors, register }: UsernameInput) => {
 	return (
 		<InputControl
 			error={errors}

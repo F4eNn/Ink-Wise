@@ -1,15 +1,15 @@
 import React from 'react'
-import { InputControl } from './InputControl'
+import { InputControl } from '../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form'
 import { emailVal } from '@/helpers/validations'
 
-interface EmailProps  {
-    isExist?: boolean
-    errors: string | undefined
-    register: Omit<UseFormRegister<{email: string}>, 'password' | 'sdsad'>
+interface EmailProps {
+	isExist?: boolean
+	errors: string | undefined
+	register: Omit<UseFormRegister<{ email: string }>, 'password' | 'sdsad'>
 }
 
-export const EmailInput = ({isExist, errors, register}:EmailProps) => {
+export const EmailInput = ({ isExist, errors, register }: EmailProps) => {
 	return (
 		<InputControl
 			emailExist={isExist}

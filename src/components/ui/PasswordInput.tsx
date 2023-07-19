@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputControl } from './InputControl'
+import { InputControl } from '../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
 import { passwordVal } from '@/helpers/validations'
 
