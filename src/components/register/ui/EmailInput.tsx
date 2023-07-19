@@ -4,7 +4,7 @@ import { UseFormRegister } from 'react-hook-form'
 import { emailVal } from '@/helpers/validations'
 
 interface EmailProps  {
-    isExist: boolean
+    isExist?: boolean
     errors: string | undefined
     register: Omit<UseFormRegister<{email: string}>, 'password' | 'sdsad'>
 }

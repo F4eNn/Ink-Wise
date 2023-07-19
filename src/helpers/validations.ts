@@ -10,7 +10,7 @@ export const usernameVal = {
 	},
 	validate: {
 		hasMinLength: (username: string) => {
-			return username.length >= 3 || 'min. 3 characters'
+			return username.trim().length >= 3 || 'min. 3 characters'
 		},
 		hasSpecialChar: (username: string) => {
 			return !containsSpecialChar.test(username) || "Username can't contain special characters"
@@ -19,9 +19,13 @@ export const usernameVal = {
 }
 
 export const passwordVal = {
+	required: {
+		value: true,
+		message: 'This field is required',
+	},
 	validate: {
 		isShort: (password: string) => {
-			return password.length >= 6 || 'min. 6 characters'
+			return password.trim().length >= 6 || 'min. 6 characters'
 		},
 		hasBigLetter: (password: string) => {
 			return containsCapitalLetter.test(password) || 'Atleast one capital letter'

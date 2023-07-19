@@ -15,6 +15,8 @@ import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { Center, useColorMode } from '@/lib/chakra'
+import { EmailInput } from './ui/EmailInput'
+import { PasswordInput } from './ui/PasswordInput'
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -60,35 +62,13 @@ export const Login = () => {
 						mb={5}>
 						{InvalidCredentials && 'Email or password are Invalid!'}
 					</Center>
-					<InputControl
-						error={errors.email && errors.email.message}
-						isInvalid={!!errors.email}
-						name='email'
-						palaceholder='john.doe@johndoehub.com'
+					<EmailInput
+						errors={errors.email?.message}
 						register={register}
-						registerValue={{
-							required: {
-								value: true,
-								message: 'This field is required',
-							},
-							validate: email => email.trim().length > 0 || 'This field is required',
-						}}
-						type='email'
 					/>
-					<InputControl
-						error={errors.password && errors.password.message}
-						isInvalid={!!errors.password}
-						name='password'
-						palaceholder='Password'
+					<PasswordInput
+						errors={errors.password?.message}
 						register={register}
-						registerValue={{
-							required: {
-								value: true,
-								message: 'This field is required',
-							},
-							validate: password => password.trim().length > 0 || 'This field is required',
-						}}
-						type='password'
 					/>
 					<Submit
 						loadingText='Entering'
