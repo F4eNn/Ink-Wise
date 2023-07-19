@@ -30,12 +30,12 @@ export const Features = () => {
 						fill
 					/>
 				</AspectRatio>
-					<Feature
-						top='-100px'
-						left='0'
-						title='Intuitive Organization'
-						desc='Easily organize your notes with our intuitive system of categories, tags, and search functionality. Find the information you need at a glance.'
-					/>
+				<Feature
+					top='-100px'
+					left='0'
+					title='Intuitive Organization'
+					desc='Easily organize your notes with our intuitive system of categories, tags, and search functionality. Find the information you need at a glance.'
+				/>
 				<Flex
 					pos='relative'
 					gap='5'

@@ -10,7 +10,7 @@ import { useToggle } from '@/hooks/useToggle'
 
 import { setInitData } from '../../../helpers/editProfile'
 import { Content } from './Content'
-import { UpdateUserData } from './Forms/UpdateUserData'
+import { UpdateUserData } from './forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
 import { FormData } from '../../../helpers/editProfile'
 

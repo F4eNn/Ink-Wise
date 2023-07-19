@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Box, Button, VStack, Text } from '@/lib/chakra'
 
-import { UpdatePassword } from './Forms/UpdatePassword'
-import { UpdateEmail } from './Forms/UpdateEmail'
-import { UpdateAllCredentials } from './Forms/UpdateAllCredentials'
+import { UpdatePassword } from './forms/UpdatePassword'
+import { UpdateEmail } from './forms/UpdateEmail'
+import { UpdateAllCredentials } from './forms/UpdateAllCredentials'
 
 export type CredentialForm = {
 	password: string
