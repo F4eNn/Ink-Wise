@@ -9,7 +9,7 @@ import {
 	EmailAuthProvider,
 	fetchSignInMethodsForEmail,
 } from 'firebase/auth'
-import { getFirestore } from '@firebase/firestore'
+import { getFirestore, collection as firebaseCollection,addDoc as firebaseDoc } from '@firebase/firestore'
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -29,6 +29,9 @@ export const db = getFirestore(app)
 
 export const updateEmail = editEmail
 export const updateUser = updateProfile
+export const collection = firebaseCollection
+export const addDoc = firebaseDoc
+
 export const reauthenticate = reauthenticateWithCredential
 export const EmailProvider = EmailAuthProvider
 export const fetchUserCredential = fetchSignInMethodsForEmail

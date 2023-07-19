@@ -7,6 +7,8 @@ import { Button, Box, Heading } from '@/lib/chakra'
 import { TextArea } from '@/components/ui/TextArea'
 import { SelectInput } from '@/components/ui/SelectInput'
 
+import { addNote } from '@/helpers/note'
+
 export type NoteFormValue = {
 	title: string
 	content: string
@@ -15,7 +17,7 @@ export type NoteFormValue = {
 }
 
 export const CreateNote = () => {
-	const { register, formState, handleSubmit } = useForm<NoteFormValue>({
+	const { register, formState, handleSubmit, reset } = useForm<NoteFormValue>({
 		defaultValues: {
 			title: '',
 			content: '',
@@ -26,8 +28,9 @@ export const CreateNote = () => {
 
 	const { errors } = formState
 
-	const onSubmit = (data: NoteFormValue) => {
-		console.log(data)
+	const onSubmit = async (data: NoteFormValue) => {
+		await addNote(data)
+		reset()
 	}
 	return (
 		<Card>

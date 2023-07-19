@@ -1,5 +1,5 @@
-import { Box, Button, CardHeader, Flex, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from '@/lib/chakra'
-import React, { useEffect, useState } from 'react'
+import { Box, Button, CardHeader, Flex, FormControl, FormLabel, Input, Textarea } from '@/lib/chakra'
+import React, { useEffect } from 'react'
 import { Avatar } from '../ui/Avatar'
 import { useForm } from 'react-hook-form'
 

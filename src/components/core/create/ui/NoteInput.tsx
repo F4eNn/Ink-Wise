@@ -4,7 +4,6 @@ import { UseFormRegister } from 'react-hook-form/dist/types/form'
 import { NoteFormValue } from '../CreateNote'
 import { basicVal } from '@/helpers/validations'
 
-
 interface NoteInputProps {
 	errors: string | undefined
 	register: UseFormRegister<NoteFormValue>
