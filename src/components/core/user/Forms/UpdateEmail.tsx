@@ -4,7 +4,7 @@ import { Box, Button, Text } from '@/lib/chakra'
 import { UpdateButton } from '../ui/UpdateButton'
 import { useAuth } from '@/hooks/useAuth'
 
-import { handleChangeEmail } from '../helpers/editHelpers'
+import { handleChangeEmail } from '../../../../helpers/editProfile'
 import { useForm } from 'react-hook-form'
 import { EmailInput } from '@/components/register/ui/EmailInput'
 import { CredentialForm } from '../EditCredential'

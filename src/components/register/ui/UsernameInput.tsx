@@ -1,15 +1,14 @@
 import React from 'react'
 import { InputControl } from './InputControl'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
+import { usernameVal } from '@/helpers/validations'
 
 interface UsernameInput {
 	errors: string | undefined
 	register: Omit<UseFormRegister<{ username: string }>, 'password' | 'email'>
-	usernameValue?: string
 }
 
-export const UsernameInput = ({ errors, register, usernameValue }: UsernameInput) => {
-	const containsSpecialChar = /(?=.*\W)/
+export const UsernameInput = ({ errors, register}: UsernameInput) => {
 
 	return (
 		<InputControl
@@ -18,20 +17,7 @@ export const UsernameInput = ({ errors, register, usernameValue }: UsernameInput
 			name='username'
 			palaceholder='John'
 			register={register}
-			registerValue={{
-				required: {
-					value: true,
-					message: 'This field is required',
-				},
-				validate: {
-					hasMinLength: username => {
-						return username.length >= 3 || 'min. 3 characters'
-					},
-					hasSpecialChar: username => {
-						return !containsSpecialChar.test(username) || "Username can't contain special characters"
-					},
-				},
-			}}
+			validateInput={usernameVal}
 			type='text'
 		/>
 	)

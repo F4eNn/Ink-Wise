@@ -1,10 +1,11 @@
 import React, { useRef } from 'react'
-import { Box, VStack, Button, IconButton, Avatar } from '@/lib/chakra'
+import { Box, VStack, Button, IconButton } from '@/lib/chakra'
 import { ButtonProfile } from './ui/ButtonProfile'
 import { useAuth } from '@/hooks/useAuth'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { Link } from './ui/Link'
+import { Avatar } from './ui/Avatar'
 export const UserDropdown = () => {
 	const { authUser, logout } = useAuth()
 
@@ -40,12 +41,7 @@ export const UserDropdown = () => {
 						}}
 						icon={<SmallCloseIcon />}
 					/>
-					<Avatar
-						name={authUser?.displayName!}
-						alignSelf='flex-start'
-						ml='5'
-						size='lg'
-					/>
+					<Avatar size='lg' />
 					<Link
 						mt='5'
 						url={`/${authUser?.displayName}/edit-profile`}>

@@ -8,11 +8,11 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { useToggle } from '@/hooks/useToggle'
 
-import { setInitData } from './helpers/editHelpers'
+import { setInitData } from '../../../helpers/editProfile'
 import { Content } from './Content'
 import { UpdateUserData } from './Forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
-import { FormData } from './helpers/editHelpers'
+import { FormData } from '../../../helpers/editProfile'
 
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
@@ -52,7 +52,7 @@ export const EditProfile = () => {
 			)}
 			{!isEdit && (
 				<Button
-				variant='primary'
+					variant='primary'
 					mt='20'
 					type='button'
 					onClick={toggleForm}>

@@ -5,7 +5,7 @@ import { Box, Button } from '@/lib/chakra'
 import { UpdateButton } from '../ui/UpdateButton'
 import { useAuth } from '@/hooks/useAuth'
 
-import { handleChangePassword } from '../helpers/editHelpers'
+import { handleChangePassword } from '../../../../helpers/editProfile'
 import { useForm } from 'react-hook-form'
 import { CredentialForm } from '../EditCredential'
 

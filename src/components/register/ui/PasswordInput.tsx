@@ -1,6 +1,7 @@
 import React from 'react'
 import { InputControl } from './InputControl'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
+import { passwordVal } from '@/helpers/validations'
 
 interface PasswordProps {
 	errors: string | undefined
@@ -8,9 +9,6 @@ interface PasswordProps {
 }
 
 export const PasswordInput = ({ errors, register }: PasswordProps) => {
-	const containsCapitalLetter = /(?=.*[A-Z])/
-	const containsSpecialChar = /(?=.*\W)/
-
 	return (
 		<InputControl
 			error={errors}
@@ -18,19 +16,7 @@ export const PasswordInput = ({ errors, register }: PasswordProps) => {
 			name='password'
 			palaceholder='password'
 			register={register}
-			registerValue={{
-				validate: {
-					isShort: password => {
-						return password.length >= 6 || 'min. 6 characters'
-					},
-					hasBigLetter: password => {
-						return containsCapitalLetter.test(password) || 'Atleast one capital letter'
-					},
-					hasSpecialChar: password => {
-						return containsSpecialChar.test(password) || 'Atleast one special char.'
-					},
-				},
-			}}
+			validateInput={passwordVal}
 			type='password'
 		/>
 	)

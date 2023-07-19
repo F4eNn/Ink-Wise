@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { setProfileUpdate } from '../helpers/editHelpers'
-import { updateProfile } from '../helpers/editHelpers'
+import { setProfileUpdate } from '../../../../helpers/editProfile'
+import { updateProfile } from '../../../../helpers/editProfile'
 
 import { UsernameInput } from '@/components/register/ui/UsernameInput'
-import { FormData } from '../helpers/editHelpers'
+import { FormData } from '../../../../helpers/editProfile'
 interface FormProps {
 	onToggle: () => void
 	userId: string | undefined
@@ -60,7 +60,6 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 						<UsernameInput
 							errors={errors.username?.message}
 							register={register}
-							usernameValue={valueName}
 						/>
 					</Flex>
 				</Flex>

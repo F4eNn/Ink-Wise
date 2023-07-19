@@ -14,7 +14,7 @@ type InputProps = {
 	register: any
 	usernameValue?: string
 	emailExist?: boolean
-	registerValue: {
+	validateInput: {
 		required?: {
 			value: boolean
 			message: string
@@ -24,7 +24,7 @@ type InputProps = {
 	error: string | undefined
 }
 export const InputControl = (props: InputProps) => {
-	const { isInvalid, name, palaceholder, register, registerValue, type, error, emailExist, usernameValue } = props
+	const { isInvalid, name, palaceholder, register, validateInput, type, error, emailExist, usernameValue } = props
 
 	return (
 		<FormControl
@@ -47,7 +47,7 @@ export const InputControl = (props: InputProps) => {
 				type={type}
 				borderColor='borderColor'
 				placeholder={palaceholder}
-				{...register(name, registerValue)}
+				{...register(name, validateInput)}
 			/>
 			<FormErrorMessage as='p'>{error}</FormErrorMessage>
 			{emailExist ? (
