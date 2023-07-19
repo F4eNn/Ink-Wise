@@ -1,8 +1,8 @@
-import { Contact } from '@/components/core/Home/Contact'
-import { Features } from '@/components/core/Home/Features'
-import { Footer } from '@/components/core/Home/Footer'
-import { Hero } from '@/components/core/Home/Hero'
-import { WaveFooter } from '@/components/core/Home/ui/WaveFooter'
+import { Contact } from '@/components/core/home/Contact'
+import { Features } from '@/components/core/home/Features'
+import { Footer } from '@/components/core/home/Footer'
+import { Hero } from '@/components/core/home/Hero'
+import { WaveFooter } from '@/components/core/home/ui/WaveFooter'
 import { Container } from '@/components/ui/Container'
 import { Box } from '@/lib/chakra'
 import React from 'react'
@@ -16,7 +16,12 @@ const HomePage = () => {
 				<Contact />
 			</Container>
 			<footer>
-				<Box mt='40' h='1px' w='full' bg='primary.900'/>
+				<Box
+					mt='40'
+					h='1px'
+					w='full'
+					bg='primary.900'
+				/>
 				<Container>
 					<Footer />
 				</Container>
