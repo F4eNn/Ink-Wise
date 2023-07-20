@@ -47,7 +47,7 @@ export const UserDropdown = () => {
 						url={`/${authUser?.displayName}/edit-profile`}>
 						Edit Profile
 					</Link>
-					<Link url='/'>Feature</Link>
+					<Link url={`/${authUser?.displayName}`}>Dashboard</Link>
 					<Button
 						variant='outlineDark'
 						mt='6'

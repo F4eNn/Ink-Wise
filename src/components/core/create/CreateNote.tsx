@@ -8,15 +8,19 @@ import { TextArea } from '@/components/ui/TextArea'
 import { SelectInput } from '@/components/ui/SelectInput'
 
 import { addNote } from '@/helpers/note'
+import { useAuth } from '@/hooks/useAuth'
 
 export type NoteFormValue = {
 	title: string
 	content: string
 	categoryOption: string
 	tagOption: string
+	uid: string
 }
 
 export const CreateNote = () => {
+	const { authUser } = useAuth()
+
 	const { register, formState, handleSubmit, reset } = useForm<NoteFormValue>({
 		defaultValues: {
 			title: '',
@@ -25,11 +29,12 @@ export const CreateNote = () => {
 			tagOption: '',
 		},
 	})
-
+	
 	const { errors } = formState
-
+	
 	const onSubmit = async (data: NoteFormValue) => {
-		await addNote(data)
+		if(!authUser) return
+		await addNote({...data, uid: authUser.uid})
 		reset()
 	}
 	return (

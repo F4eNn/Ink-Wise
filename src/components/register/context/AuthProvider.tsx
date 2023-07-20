@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				setAuthUser(user)
 			} else {
 				setAuthUser(null)
-				router.push('/login')
 			}
 		})
 		return () => {
@@ -56,6 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			await signOut(auth)
 			setAuthUser(null)
 			router.back()
+			
 		} catch (err) {
 			console.error(err)
 		}
