@@ -1,54 +1,43 @@
-'use client'
 import { db } from '@/config/firebase'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Column } from './ui/Column'
+import { Flex } from '@/lib/chakra'
 
-type NoteValues = {
-	notes: {
-		[x: string]: {
-			category: string
-			content: string
-			tagOption: string
-			title: string
-		}
+export type NoteValues = {
+	[x: string]: {
+		category: string
+		content: string
+		tagOption: string
+		title: string
+		id: string
+	}
+}
+type DashboardColumns = {
+	[key in 'column-1' | 'column-2' | 'column-3' | string]: {
+		id: key
+		title: 'Important' | 'Urgent' | 'Minor'
+		taskIds: string[]
 	}
 }
 
-export type ColumnsType = {
-	columns: {
-		'column-1': {
-			id: 'column-1'
-			title: 'Important'
-			taskIds: string[]
-		}
-		'column-2': {
-			id: 'column-2'
-			title: 'Urgent'
-			taskIds: string[]
-		}
-		'column-3': {
-			id: 'column-3'
-			title: 'Minor'
-			taskIds: string[]
-		}
-	}
+export type DashboardData = {
+	tasks: NoteValues
+	columns: DashboardColumns
 	columnOrder: ['column-1', 'column-2', 'column-3']
 }
 
-type Dashboard = NoteValues & ColumnsType
-
-const initialData: Dashboard = {
-	notes: {
-		uid: {
+export const initialData: DashboardData = {
+	tasks: {
+		note: {
 			category: '',
 			content: '',
+			id: '',
 			tagOption: '',
 			title: '',
 		},
 	},
-
 	columns: {
 		'column-1': {
 			id: 'column-1',
@@ -68,10 +57,12 @@ const initialData: Dashboard = {
 	},
 	columnOrder: ['column-1', 'column-2', 'column-3'],
 }
+interface DashboardProps {
+	getNotesPositions: React.Dispatch<React.SetStateAction<DashboardData>>
+	noteState: DashboardData
+}
 
-export const Dashboard = () => {
-	const [noteState, setNoteState] = useState<Dashboard>(initialData)
-
+export const Dashboard = ({ getNotesPositions, noteState }: DashboardProps) => {
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
 
@@ -81,7 +72,7 @@ export const Dashboard = () => {
 		const getNotes = async () => {
 			const querySnapshot = await getDocs(q)
 
-			setNoteState(prev => {
+			getNotesPositions((prev: DashboardData) => {
 				const newNote = { ...prev }
 
 				newNote.columns['column-1'].taskIds = []
@@ -89,53 +80,55 @@ export const Dashboard = () => {
 				newNote.columns['column-3'].taskIds = []
 
 				querySnapshot.forEach(doc => {
-					const noteId = doc.id
 					const noteData = doc.data()
+					const taskId = doc.id
 
-					const toColumn1 = noteData.tagOption === 'important'
-					const toColumn2 = noteData.tagOption === 'urgent'
-					const toColumn3 = noteData.tagOption === 'minor'
+					newNote.columns['column-1'].taskIds.push(taskId)
 
-					newNote.notes[noteId] = {
-						category: noteData.category,
-						content: noteData.content,
-						tagOption: noteData.tagOption,
-						title: noteData.title,
-					}
-					if (toColumn1) {
-						newNote.columns['column-1'] = {
-							...newNote.columns['column-1'],
-							taskIds: [...newNote.columns['column-1'].taskIds, noteId],
+					if (Object.keys(newNote.tasks)[0] === 'note') {
+						newNote.tasks = {
+							[taskId]: {
+								category: noteData.category,
+								content: noteData.content,
+								id: taskId,
+								tagOption: noteData.tagOption,
+								title: noteData.title,
+							},
 						}
-					}
-					if (toColumn2) {
-						newNote.columns['column-2'] = {
-							...newNote.columns['column-2'],
-							taskIds: [...newNote.columns['column-2'].taskIds, noteId],
-						}
-					}
-
-					if (toColumn3) {
-						newNote.columns['column-3'] = {
-							...newNote.columns['column-3'],
-							taskIds: [...newNote.columns['column-3'].taskIds, noteId],
+					} else {
+						newNote.tasks = {
+							...newNote.tasks,
+							[taskId]: {
+								category: noteData.category,
+								content: noteData.content,
+								id: taskId,
+								tagOption: noteData.tagOption,
+								title: noteData.title,
+							},
 						}
 					}
 				})
-
 				return newNote
 			})
 		}
 		getNotes()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authUser])
-	console.log(noteState)
+
 	return (
-		<div>
-			{/* {noteState.columnOrder.map((columnId: 'column-1' | 'column-2' | 'column-3', index: number) => {
+		<Flex gap='5'>
+			{noteState.columnOrder.map((columnId: 'column-1' | 'column-2' | 'column-3', index: number) => {
 				const column = noteState.columns[columnId]
-				return ''
-			})} */}
-		</div>
+				const tasks = column.taskIds.map(taskId => noteState.tasks[taskId])
+				return (
+					<Column
+						id={column.id}
+						title={column.title}
+						key={column.id}
+						tasks={tasks}
+					/>
+				)
+			})}
+		</Flex>
 	)
 }
