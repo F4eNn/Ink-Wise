@@ -65,6 +65,7 @@ interface DashboardProps {
 export const Dashboard = ({ getNotesPositions, noteState }: DashboardProps) => {
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
+	const uniqueTaskIds = new Set()
 
 	useEffect(() => {
 		if (!authUser) return
@@ -75,15 +76,14 @@ export const Dashboard = ({ getNotesPositions, noteState }: DashboardProps) => {
 			getNotesPositions((prev: DashboardData) => {
 				const newNote = { ...prev }
 
-				newNote.columns['column-1'].taskIds = []
-				newNote.columns['column-2'].taskIds = []
-				newNote.columns['column-3'].taskIds = []
-
 				querySnapshot.forEach(doc => {
 					const noteData = doc.data()
 					const taskId = doc.id
 
-					newNote.columns['column-1'].taskIds.push(taskId)
+					if (!uniqueTaskIds.has(taskId)) {
+						newNote.columns['column-1'].taskIds.push(taskId)
+						uniqueTaskIds.add(taskId)
+					}
 
 					if (Object.keys(newNote.tasks)[0] === 'note') {
 						newNote.tasks = {

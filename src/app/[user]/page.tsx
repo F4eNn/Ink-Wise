@@ -17,25 +17,55 @@ const UserPage = () => {
 			return
 		}
 
-		const column = notesPositions.columns[source.droppableId]
-		const newTaskIds = Array.from(column.taskIds)
+		const start = notesPositions.columns[source.droppableId]
+		const finish = notesPositions.columns[destination.droppableId]
 
-		newTaskIds.splice(source.index, 1)
-		newTaskIds.splice(destination.index, 0, draggableId)
+		if (start === finish) {
+			const newTaskIds = Array.from(start.taskIds)
+			newTaskIds.splice(source.index, 1)
+			newTaskIds.splice(destination.index, 0, draggableId)
 
-		const newColumn = {
-			...column,
-			taskIds: newTaskIds,
+			const newColumn = {
+				...start,
+				taskIds: newTaskIds,
+			}
+
+			const newState = {
+				...notesPositions,
+				columns: {
+					...notesPositions.columns,
+					[newColumn.id]: newColumn,
+				},
+			}
+
+			setNotesPositions(newState)
+			return
 		}
-		const newSet = {
+
+		// Moving from one list to another
+		const startTaskIds = Array.from(start.taskIds)
+		startTaskIds.splice(source.index, 1)
+		const newStart = {
+			...start,
+			taskIds: startTaskIds,
+		}
+
+		const finishTaskIds = Array.from(finish.taskIds)
+		finishTaskIds.splice(destination.index, 0, draggableId)
+		const newFinish = {
+			...finish,
+			taskIds: finishTaskIds,
+		}
+
+		const newState = {
 			...notesPositions,
 			columns: {
 				...notesPositions.columns,
-				[newColumn.id]: newColumn,
+				[newStart.id]: newStart,
+				[newFinish.id]: newFinish,
 			},
 		}
-
-		setNotesPositions(newSet)
+		setNotesPositions(newState)
 	}
 	console.log(notesPositions)
 	return (
@@ -45,7 +75,10 @@ const UserPage = () => {
 				ml='100px'
 				display='flex'
 				justifyContent='center'>
-				<Dashboard getNotesPositions={setNotesPositions} noteState={notesPositions}/>
+				<Dashboard
+					getNotesPositions={setNotesPositions}
+					noteState={notesPositions}
+				/>
 			</Box>
 		</DragDropContext>
 	)
