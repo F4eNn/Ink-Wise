@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Container, Heading } from '@/lib/chakra'
 import { Note } from './Note'
-import { Dashboard, NoteValues } from '../Dashboard'
+import { Dashboard } from '../Dashboard'
 import { Droppable } from 'react-beautiful-dnd'
 
 interface ColumnProps {
