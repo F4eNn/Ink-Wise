@@ -1,4 +1,7 @@
-import { Box, Text } from '@/lib/chakra'
+import { db } from '@/config/firebase'
+import { useAuth } from '@/hooks/useAuth'
+import { Box, Button, Heading, Text } from '@/lib/chakra'
+import { FieldValue, arrayRemove, arrayUnion, deleteField, doc, getDoc, updateDoc } from 'firebase/firestore'
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
@@ -11,25 +14,19 @@ export type NoteProps = {
 	index: number
 }
 
-export const Note = ({ category, content, id, tagOption, title, index }: NoteProps) => {
+export const Note = () => {
+	const { authUser } = useAuth()
+	const userId = authUser?.uid
+
 	return (
-		<Draggable
-			draggableId={id}
-			index={index}>
-			{provided => (
-				<Box
-					{...provided.draggableProps}
-					{...provided.dragHandleProps}
-					ref={provided.innerRef}
-					my='5'
-          bg='white'
-					border='1px solid orange'
-					h='50px'
-          fontSize='xs'
-					p='3'>
-					<Text>{title}</Text>
-				</Box>
-			)}
-		</Draggable>
+		<Box
+			my='5'
+			fontSize='xs'
+			p='3'>
+			<Text>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde et fuga molestias. Vitae fuga sed illo, aliquid
+				repellendus explicabo eligendi?
+			</Text>
+		</Box>
 	)
 }

@@ -1,44 +1,55 @@
 import { db } from '@/config/firebase'
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
-import { Column } from './ui/Column'
-import { Flex } from '@/lib/chakra'
+import { Container } from './ui/Container'
+import { Flex, Heading } from '@/lib/chakra'
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { NoteValues } from '../create/CreateNote'
+import { Card } from '../user/ui/Card'
 
-
-import { initialData } from '../create/CreateNote'
-
-
+type Note = NoteValues & { id: string }
 
 export const Dashboard = () => {
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
 
+	const [notes, setNotes] = useState<Note[]>()
 
+	// const getAllNotes = async () => {
+	// 	const q = query(collection(db, 'notes'), where('userId', '==', userId))
+	// 	const notesSnapshot = await getDocs(q)
+	// 	const filteredData = notesSnapshot.docs.map(note => ({ ...note.data(), id: note.id } as Note))
+	// 	setNotes(filteredData)
+	// }
 
-	
+	// useEffect(() => {
+	// 	if (!userId) return
+	// 	getAllNotes()
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [userId])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	useEffect(() => {
-		if (!authUser) return
-		const setInitData = async () => {
-			setDoc(doc(db, 'notes', userId!), initialData)
-		}
-		setInitData()
-	})
-
-	return <Flex gap='5'>jhj</Flex>
+	return (
+		<Card>
+			<Flex flexDir='column'>
+				<Heading
+					as='h1'
+					mb='16'>
+					Your Notes
+				</Heading>
+				<Flex
+					flexWrap='wrap'
+					gap='10'>
+					<Container tag='important' />
+					<Container tag='urgent' />
+					<Container tag='urgent' />
+					<Container tag='minor' />
+					<Container tag='important' />
+					<Container tag='urgent' />
+					<Container tag='important' />
+					<Container tag='urgent' />
+					<Container tag='minor' />
+				</Flex>
+			</Flex>
+		</Card>
+	)
 }
