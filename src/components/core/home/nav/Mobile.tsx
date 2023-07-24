@@ -5,7 +5,8 @@ import { useAuth } from '../../../../hooks/useAuth'
 import { UserDropdown } from '../../user/UserDropdown'
 import { useToggle } from '@/hooks/useToggle'
 import Link from 'next/link'
-
+import { motion } from '@/lib/motion'
+import { loginAnimation, signupAnimation } from '../animations/animations'
 export const Mobile = () => {
 	const mobileNavRef = useRef(null)
 	const dividerRef = useRef(null)
@@ -14,6 +15,7 @@ export const Mobile = () => {
 	const closeNavOnOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.target != mobileNavRef.current && e.target != dividerRef.current) return toggleNav()
 	}
+
 	return (
 		<Box display={[null, null, 'none']}>
 			{authUser ? (
@@ -54,6 +56,8 @@ export const Mobile = () => {
 				</Button>
 			)}
 			<Box
+				as={motion.div}
+				animate={isOpen ? 'open' : 'closed'}
 				onClick={closeNavOnOverlay}
 				position='fixed'
 				left={isOpen ? '0' : '100%'}
@@ -74,7 +78,10 @@ export const Mobile = () => {
 					fontSize='1.5em'
 					color='darkBrown'
 					h='full'>
-					<ListItem mt={'20vh'}>
+					<ListItem
+						as={motion.li}
+						variants={loginAnimation}
+						mt={'20vh'}>
 						<Link href='/login'>Login</Link>
 					</ListItem>
 					<Divider
@@ -85,7 +92,9 @@ export const Mobile = () => {
 						bg='mediumGold'
 						size='2em'
 					/>
-					<ListItem>
+					<ListItem
+						as={motion.li}
+						variants={signupAnimation}>
 						<Link href='/signup'>Sign up</Link>
 					</ListItem>
 				</UnorderedList>

@@ -10,6 +10,7 @@ import React from 'react'
 const HomePage = () => {
 	return (
 		<>
+			
 			<Container>
 				<Hero />
 				<Features />

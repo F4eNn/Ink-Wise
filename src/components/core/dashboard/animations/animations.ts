@@ -1,4 +1,3 @@
-import { AnimationProps } from 'framer-motion'
 
 export const projectAnimation = {
 	initial: { opacity: 0, x: 100 },

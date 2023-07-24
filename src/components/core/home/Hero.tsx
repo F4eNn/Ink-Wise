@@ -1,9 +1,13 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { Flex, Heading, AspectRatio, Text, Box } from '@/lib/chakra'
 import { Reveal } from '@/components/ui/Reveal'
 import { LinkButton } from './ui/LinkButton'
+import { motion, useScroll } from 'framer-motion'
 export const Hero = () => {
+	const { scrollYProgress } = useScroll()
+
 	return (
 		<Flex
 			mt={['10', null, '16']}
@@ -55,6 +59,18 @@ export const Hero = () => {
 					<LinkButton url='/signup'>Get started</LinkButton>
 				</Box>
 			</Box>
+			<Box
+				as={motion.div}
+				pos='fixed'
+				top='0'
+				left='0'
+				bottom='0'
+				w='4px'
+				bg='primary.900'
+				transformOrigin='0 0'
+				zIndex='999'
+				style={{ scaleY: scrollYProgress }}
+			/>
 		</Flex>
 	)
 }
