@@ -37,8 +37,10 @@ export const Container = ({ tag }: { tag: string }) => {
 			as={motion.div}
 			{...projectAnimation}
 			rounded='2xl'
-			borderBottomColor={getColorByTag(tag)}
+			borderColor={getColorByTag(tag)}
 			borderBottomWidth='1px'
+			borderLeftWidth='1px'
+			borderRightWidth='1px'
 			transition='.3s linear'
 			_hover={{
 				boxShadow: `0 2px 5px 2px  ${getColorByTag(tag)}`,

@@ -1,9 +1,7 @@
 import { db } from '@/config/firebase'
 import { useAuth } from '@/hooks/useAuth'
-import { Box, Button, Heading, Text } from '@/lib/chakra'
-import { FieldValue, arrayRemove, arrayUnion, deleteField, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { Box, Text } from '@/lib/chakra'
 import React from 'react'
-import { Draggable } from 'react-beautiful-dnd'
 
 export type NoteProps = {
 	category: string
