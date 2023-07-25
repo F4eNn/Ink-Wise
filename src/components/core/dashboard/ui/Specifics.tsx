@@ -12,7 +12,7 @@ interface SpecificsProps {
 
 export const Specifics = ({ category, tag, created }: SpecificsProps) => {
 	return (
-		<Box w={['100%', '40%']}>
+		<Box w={['100%',null, '40%']}>
 			<Heading
 				as='h2'
 				mb='10'

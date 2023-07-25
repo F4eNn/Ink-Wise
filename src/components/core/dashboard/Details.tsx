@@ -17,6 +17,9 @@ import { Specifics } from './ui/Specifics'
 import { Author } from './ui/Author'
 import { Button } from './ui/Button'
 
+import { motion} from 'framer-motion'
+import { modalAnimation } from './animations/animations'
+
 interface DetailsProps {
 	onClose: () => void
 	isOpen: boolean
@@ -28,6 +31,7 @@ interface DetailsProps {
 }
 
 export const Details = ({ isOpen, onClose, title, category, content, tag, created }: DetailsProps) => {
+
 	return (
 		<Modal
 			size='6xl'
@@ -40,6 +44,8 @@ export const Details = ({ isOpen, onClose, title, category, content, tag, create
 				backdropBlur='10px'
 			/>
 			<ModalContent
+				as={motion.section}
+				{...modalAnimation}
 				bg='blackAlpha.700'
 				borderWidth='1px'
 				borderColor='primary.900'
