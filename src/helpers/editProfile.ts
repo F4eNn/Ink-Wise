@@ -31,7 +31,7 @@ export const updateProfile = async (
 export const setProfileUpdate = async (data: Pick<FormData, 'bio'>, userId: string | undefined) => {
 	if (!userId) return
 	try {
-		const setBio = await setDoc(doc(db, 'user-profile', userId), {
+		await setDoc(doc(db, 'user-profile', userId), {
 			bio: data.bio,
 		})
 	} catch (error) {

@@ -16,7 +16,7 @@ export type NoteValues = {
 	title: string
 	content: string
 	category: string
-	tagOption: string
+	tag: string
 	userId: string
 }
 
@@ -24,7 +24,7 @@ export type NoteFormValue = {
 	title: string
 	content: string
 	category: string
-	tagOption: string
+	tag: string
 	id: string
 }
 
@@ -37,7 +37,7 @@ export const CreateNote = () => {
 			title: '',
 			content: '',
 			category: '',
-			tagOption: '',
+			tag: '',
 		},
 	})
 
@@ -57,6 +57,7 @@ export const CreateNote = () => {
 		})
 		reset()
 	}
+	
 	return (
 		<Card>
 			<Heading
@@ -90,8 +91,8 @@ export const CreateNote = () => {
 					register={register}
 				/>
 				<SelectInput
-					error={errors.tagOption?.message}
-					name='tagOption'
+					error={errors.tag?.message}
+					name='tag'
 					option='important'
 					option2='urgent'
 					option3='minor'
