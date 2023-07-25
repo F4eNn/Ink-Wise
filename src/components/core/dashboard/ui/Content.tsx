@@ -11,7 +11,7 @@ export const Content = ({ content }: ContentProps) => {
 			my='5'
 			fontSize='xs'
 			p='3'>
-			<Text>{content}</Text>
+			<Text as='i' noOfLines={[1, 2]} >{content}</Text>
 		</Box>
 	)
 }

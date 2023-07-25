@@ -11,6 +11,7 @@ import { SelectInput } from '@/components/ui/SelectInput'
 import { useAuth } from '@/hooks/useAuth'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '@/config/firebase'
+import { useDate } from '@/hooks/useDate'
 
 export type NoteValues = {
 	title: string
@@ -18,6 +19,7 @@ export type NoteValues = {
 	category: string
 	tag: string
 	userId: string
+	created: string
 }
 
 export type NoteFormValue = {
@@ -49,15 +51,17 @@ export const CreateNote = () => {
 			...data,
 		})
 	}
+	const [createTime] = useDate()
 	const onSubmit = async (data: NoteFormValue) => {
 		if (!authUser || !userId) return
 		await addNote({
 			...data,
 			userId: userId,
+			created: createTime,
 		})
 		reset()
 	}
-	
+
 	return (
 		<Card>
 			<Heading

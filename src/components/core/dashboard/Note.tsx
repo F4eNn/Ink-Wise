@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { Box, Button } from '@/lib/chakra'
-import { motion } from '@/lib/motion'
-import { buttonAnimation } from './animations/animations'
+import React, { Dispatch, SetStateAction, Suspense } from 'react'
+import { Box, useDisclosure } from '@/lib/chakra'
+
 import { getAllNotes } from './helpers/note'
 import { Notes } from './Dashboard'
 
@@ -12,6 +11,8 @@ import { NoteHeading } from './ui/NoteHeading'
 import { Content } from './ui/Content'
 import { Tag } from './ui/Tag'
 import { NoteContainer } from './ui/NoteContainer'
+import { Details } from './Details'
+import { Button } from './ui/Button'
 
 interface ContainerProps {
 	content: string
@@ -19,17 +20,19 @@ interface ContainerProps {
 	tag: string
 	title: string
 	id: string
+	created: string
 	userId: string
 	setNewNotes: Dispatch<SetStateAction<Notes[] | undefined>>
 }
 
-export const Note = ({ tag, category, content, title, id, setNewNotes, userId }: ContainerProps) => {
+export const Note = ({ tag, category, content, title, id, setNewNotes, userId, created }: ContainerProps) => {
+	const { isOpen, onClose, onOpen } = useDisclosure()
+
 	const deleteNote = async (noteId: string) => {
 		const noteDoc = doc(db, 'notes', noteId)
 		await deleteDoc(noteDoc)
 		await getAllNotes(userId, setNewNotes)
 	}
-
 	return (
 		<NoteContainer>
 			<Box>
@@ -38,16 +41,17 @@ export const Note = ({ tag, category, content, title, id, setNewNotes, userId }:
 					title={title}
 				/>
 				<Content content={content} />
+				<Details
+					category={category}
+					content={content}
+					title={title}
+					isOpen={isOpen}
+					onClose={onClose}
+					tag={tag}
+					created={created}
+				/>
 				<Tag tag={tag} />
-				<Button
-					as={motion.button}
-					{...buttonAnimation}
-					variant='primary'
-					my='5'
-					ml='auto'
-					display='block'>
-					Details
-				</Button>
+				<Button onInteraction={onOpen}>Details</Button>
 			</Box>
 		</NoteContainer>
 	)

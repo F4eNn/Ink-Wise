@@ -1,7 +1,6 @@
 import { defineStyleConfig } from '../../../lib/chakra'
 import { StyleFunctionProps } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
-
 export const Button = defineStyleConfig({
 	baseStyle: {
 		textTransform: 'capitalize',

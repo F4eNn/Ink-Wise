@@ -41,7 +41,7 @@ export const UserDropdown = () => {
 						}}
 						icon={<SmallCloseIcon />}
 					/>
-					<Avatar size='lg' />
+					<Avatar size={['lg', 'xl', '2xl']} />
 					<Link
 						mt='5'
 						url={`/${authUser?.displayName}/edit-profile`}>

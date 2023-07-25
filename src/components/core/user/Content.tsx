@@ -10,8 +10,8 @@ interface EditContentProps {
 
 export const Content = ({ valueBio }: EditContentProps) => {
 	const { authUser } = useAuth()
-
-	const { finalDate: CreationTime } = useDate(authUser?.metadata.creationTime!)
+	const accCreatedTime = authUser?.metadata.creationTime!
+	const [CreationTime] = useDate(accCreatedTime)
 	return (
 		<>
 			<CardHeader>
@@ -20,7 +20,7 @@ export const Content = ({ valueBio }: EditContentProps) => {
 					alignItems='center'
 					gap={['5', '8']}>
 					<Box>
-						<Avatar size='2xl' />
+						<Avatar size={['2xl', 'xl', '2xl']} />
 					</Box>
 					<Flex
 						alignSelf={['flex-start', 'unset']}

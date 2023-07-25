@@ -60,6 +60,10 @@ export const Theme = extendTheme(
 					'--chakra-colors-primary-300': mode('#2b2522', '#ffda9a')(props),
 					'--chakra-colors-primary-200': mode('#f0e8db', '#484441')(props),
 					'--chakra-colors-primary-100': mode('#f0e8db', '#44413f')(props),
+					'--chakra-colors-background-image': mode(
+						'linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.468312324929972) 37%, rgba(238,233,216,1) 100%)',
+						'linear-gradient(45deg, rgba(2,0,36,1) 0%, #261b05 100%, rgba(0,212,255,1) 100%)'
+					)(props),
 					'--chakra-colors-reversePrimary300': mode(' #c27b44cf', '#2b2522')(props),
 					'--chakra-colors-reversePrimary300Hover': mode(' #c27b44', '#3f3632')(props),
 					'--chakra-colors-default': mode('#2b2522', '#fff ')(props),
@@ -68,7 +72,6 @@ export const Theme = extendTheme(
 					'--chakra-colors-borderColor': mode('#9a531b', 'gray')(props),
 					'--chakra-colors-grayish': mode('#808080', '#d1d1d1')(props),
 					'--chakra-colors-alphaCustomWhite': mode('#ffffffea', '#000000b3')(props),
-					
 				},
 				'#__next': {
 					minHeight: `100vh`,
