@@ -39,7 +39,7 @@ export const Dashboard = () => {
 				</Heading>
 				<Flex
 					flexWrap='wrap'
-					gap='10'>
+					gap='9'>
 					{note}
 				</Flex>
 			</Flex>

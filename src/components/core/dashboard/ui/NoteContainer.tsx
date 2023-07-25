@@ -10,7 +10,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			as={motion.div}
 			{...noteAnimation}
 			rounded='2xl'
-            h='250px'
+            h='275px'
 			borderColor={'primary.900'}
 			borderBottomWidth='1px'
 			borderLeftWidth='1px'

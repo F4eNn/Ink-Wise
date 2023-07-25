@@ -1,24 +1,15 @@
 import React from 'react'
-import {
-	Center,
-	Divider,
-	Flex,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-	ModalOverlay,
-	Text,
-} from '@/lib/chakra'
+import { Center, Divider, Flex, ModalCloseButton } from '@/lib/chakra'
 
 import { Specifics } from './ui/Specifics'
 import { Author } from './ui/Author'
 import { Button } from './ui/Button'
-
-import { motion} from 'framer-motion'
-import { modalAnimation } from './animations/animations'
+import { ModalOverlay } from './ui/ModalOverlay'
+import { ModalContent } from './ui/ModalContent'
+import { ModalHeader } from './ui/ModalHeader'
+import { ModalBody } from './ui/ModalBody'
+import { DescriptionNote } from './ui/DescriptionNote'
+import { ModalFooter } from './ui/ModalFooter'
 
 interface DetailsProps {
 	onClose: () => void
@@ -31,58 +22,15 @@ interface DetailsProps {
 }
 
 export const Details = ({ isOpen, onClose, title, category, content, tag, created }: DetailsProps) => {
-
 	return (
-		<Modal
-			size='6xl'
-			onClose={onClose}
+		<ModalOverlay
 			isOpen={isOpen}
-			isCentered
-			motionPreset='scale'>
-			<ModalOverlay
-				backdropFilter='auto'
-				backdropBlur='10px'
-			/>
-			<ModalContent
-				as={motion.section}
-				{...modalAnimation}
-				bg='blackAlpha.700'
-				borderWidth='1px'
-				borderColor='primary.900'
-				color='white'>
-				<ModalHeader
-					fontSize='5xl'
-					bgGradient='linear(to-r, primary.900, #ffffff)'
-					bgClip='text'
-					fontWeight='extrabold'
-					textTransform='capitalize'
-					textAlign='center'>
-					{title}
-				</ModalHeader>
+			onClose={onClose}>
+			<ModalContent>
+				<ModalHeader title={title} />
 				<ModalCloseButton />
-				<ModalBody
-					fontSize='xl'
-					display='flex'
-					maxW='850px'
-					w='full'
-					margin='0 auto'
-					alignItems='center'
-					flexDir='column'>
-					<Text
-						w='full'
-						pos='relative'
-						_after={{
-							content: "''",
-							pos: 'absolute',
-							top: '-2',
-							left: '0',
-							w: '100%',
-							h: '1px',
-							bgGradient: 'linear(to-r, primary.900, #ffffff)',
-						}}
-						textAlign='center'>
-						{content}
-					</Text>
+				<ModalBody>
+					<DescriptionNote content={content} />
 					<Flex
 						mt='16'
 						justifyContent='space-between'
@@ -100,10 +48,8 @@ export const Details = ({ isOpen, onClose, title, category, content, tag, create
 						<Author />
 					</Flex>
 				</ModalBody>
-				<ModalFooter my='5'>
-					<Button onInteraction={onClose}>Close</Button>
-				</ModalFooter>
+				<ModalFooter onClose={onClose} />
 			</ModalContent>
-		</Modal>
+		</ModalOverlay>
 	)
 }

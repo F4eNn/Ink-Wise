@@ -15,9 +15,7 @@ export const Button = ({ onInteraction, children }: ButtonProps) => {
 			onClick={onInteraction}
 			variant='primary'
 			px={['6', '10']}
-			ml='auto'
-			mt={['7', '2']}
-			display='block'>
+			mt={['7', '2']}>
 			{children}
 		</ChakraButton>
 	)

@@ -7,9 +7,10 @@ interface TagProps {
 	tag: string
 	fontSize?: string | 'xs'
 	iconSize?: string | '.7em'
+	width?: 'unset' | '40px'
 }
 
-export const Tag = ({ tag, fontSize = 'xs', iconSize = '.7em' }: TagProps) => {
+export const Tag = ({ tag, fontSize = 'xs', iconSize = '.7em', width = 'unset' }: TagProps) => {
 	return (
 		<Flex
 			alignItems='center'
@@ -18,7 +19,7 @@ export const Tag = ({ tag, fontSize = 'xs', iconSize = '.7em' }: TagProps) => {
 			color={getColorByTag(tag)}
 			fontSize={fontSize}>
 			<Box
-				w='40px'
+				w={width}
 				display='flex'
 				justifyContent='center'>
 				<BsCircleFill size={iconSize} />

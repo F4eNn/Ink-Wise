@@ -22,6 +22,7 @@ export const Specifics = ({ category, tag, created }: SpecificsProps) => {
 			<Tag
 				tag={tag}
 				fontSize='xl'
+                width='40px'
 				iconSize='.9em'
 			/>
 			<Box

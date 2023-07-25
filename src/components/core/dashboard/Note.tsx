@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, Suspense } from 'react'
-import { Box, useDisclosure } from '@/lib/chakra'
+import { Box, Flex, useDisclosure } from '@/lib/chakra'
 
 import { getAllNotes } from './helpers/note'
 import { Notes } from './Dashboard'
@@ -35,24 +35,29 @@ export const Note = ({ tag, category, content, title, id, setNewNotes, userId, c
 	}
 	return (
 		<NoteContainer>
-			<Box>
-				<NoteHeading
-					category={category}
-					title={title}
-				/>
-				<Content content={content} />
-				<Details
-					category={category}
-					content={content}
-					title={title}
-					isOpen={isOpen}
-					onClose={onClose}
-					tag={tag}
-					created={created}
-				/>
+			<NoteHeading
+				category={category}
+				title={title}
+			/>
+			<Content content={content} />
+			<Details
+				category={category}
+				content={content}
+				title={title}
+				isOpen={isOpen}
+				onClose={onClose}
+				tag={tag}
+				created={created}
+			/>
+			<Box ml='3'>
 				<Tag tag={tag} />
-				<Button onInteraction={onOpen}>Details</Button>
 			</Box>
+			<Flex
+				justifyContent='space-between'
+				mt='5'>
+				<Button>Edit</Button>
+				<Button onInteraction={onOpen}>Details</Button>
+			</Flex>
 		</NoteContainer>
 	)
 }
