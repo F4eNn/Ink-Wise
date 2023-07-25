@@ -4,7 +4,7 @@ import { Note } from './Note'
 import { Flex, Heading } from '@/lib/chakra'
 import { NoteValues } from '../create/CreateNote'
 import { Card } from '../user/ui/Card'
-import { getAllNotes } from '@/helpers/note'
+import { getAllNotes } from './helpers/note'
 
 export type Notes = NoteValues & { id: string }
 
