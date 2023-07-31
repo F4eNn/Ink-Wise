@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth'
 import React from 'react'
 
 interface AvatarProps {
-	size: string[] | string
+	size: string[] | string 
 	withBadge?: boolean | true
 	marginLeft?: string | '5'
 }

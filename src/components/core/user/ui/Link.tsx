@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as ChakraLink } from '@/lib/chakra'
+import { Link as ChakraLink, MenuItem } from '@/lib/chakra'
 import NextLink from 'next/link'
 
 type LinkProps = {
@@ -10,14 +10,11 @@ type LinkProps = {
 
 export const Link = ({url, children, mt}: LinkProps) => {
 	return (
-		<ChakraLink
-			color='default'
+		<MenuItem
 			as={NextLink}
 			mt={mt}
-			variant='linkButton'
-			w='70%'
 			href={url}>
 			{children}
-		</ChakraLink>
+		</MenuItem>
 	)
 }

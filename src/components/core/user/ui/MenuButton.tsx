@@ -1,16 +1,12 @@
 import React from 'react'
-import { IconButton, Icon } from '@/lib/chakra'
+import { IconButton, Icon, MenuButton as ChakraMenuButton } from '@/lib/chakra'
 import { FaUserCircle } from 'react-icons/fa'
 
-type ButtonProps = {
-	isOpenHelper: () => void
-}
-
-export const ButtonProfile = ({ isOpenHelper }: ButtonProps) => {
+export const MenuButton = () => {
 	return (
-		<IconButton
-			aria-label='user details'
-			role='group'
+		<ChakraMenuButton
+			as={IconButton}
+			aria-label='user profile'
 			display='flex'
 			alignItems='center'
 			variant='default'
@@ -26,7 +22,6 @@ export const ButtonProfile = ({ isOpenHelper }: ButtonProps) => {
 					as={FaUserCircle}
 				/>
 			}
-			onClick={isOpenHelper}
 		/>
 	)
 }

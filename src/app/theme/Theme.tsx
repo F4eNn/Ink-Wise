@@ -4,6 +4,7 @@ import { mode } from '@chakra-ui/theme-tools'
 import { Button } from './components/Button'
 import { IconButton } from './components/IconButton'
 import { Link } from './components/Link'
+import { menuTheme } from './components/MenuTheme'
 
 export const Theme = extendTheme(
 	{
@@ -90,6 +91,7 @@ export const Theme = extendTheme(
 			Button,
 			IconButton,
 			Link,
+			Menu: menuTheme
 		},
 	},
 	withDefaultVariant({
