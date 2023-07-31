@@ -8,25 +8,24 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { useToggle } from '@/hooks/useToggle'
 
-import { setInitData } from '../../../helpers/editProfile'
 import { Content } from './Content'
 import { UpdateUserData } from './forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
 import { FormData } from '../../../helpers/editProfile'
+import { useDate } from '@/hooks/useDate'
 
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
 	const [newBio, setBio] = useState<Pick<FormData, 'bio'>>({ bio: '' })
 
 	const { authUser } = useAuth()
-
 	const userId = authUser?.uid
+	const [created] = useDate(authUser?.metadata.creationTime)
 
 	useEffect(() => {
 		if (userId) {
-			const unsub = onSnapshot(doc(db, 'user-profile', userId), doc => {
-				const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server'
-				if (doc.data() === undefined) return setInitData(userId)
+			onSnapshot(doc(db, 'user-profile', userId), doc => {
+				doc.metadata.hasPendingWrites ? 'Local' : 'Server'
 				setBio(doc.data() as FormData)
 			})
 		}
@@ -41,6 +40,7 @@ export const EditProfile = () => {
 					<UpdateUserData
 						onToggle={toggleForm}
 						userId={userId}
+						created={created}
 						valueName={authUser.displayName!}
 						valuePhoto={authUser.photoURL!}
 						valueBio={newBio.bio}
@@ -48,7 +48,10 @@ export const EditProfile = () => {
 					<EditCredential />
 				</>
 			) : (
-				<Content valueBio={newBio.bio.trim().length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`} />
+				<Content
+					valueBio={newBio.bio.trim().length != 0 ? newBio.bio : `Hello, I'm ${authUser.displayName} 👋`}
+					created={created}
+				/>
 			)}
 			{!isEdit && (
 				<Button

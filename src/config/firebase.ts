@@ -9,7 +9,7 @@ import {
 	EmailAuthProvider,
 	fetchSignInMethodsForEmail,
 } from 'firebase/auth'
-import { getFirestore, collection as firebaseCollection,addDoc as firebaseDoc } from '@firebase/firestore'
+import { getFirestore, collection as firebaseCollection, addDoc as firebaseDoc } from '@firebase/firestore'
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

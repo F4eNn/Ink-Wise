@@ -32,6 +32,7 @@ export const UpdateEmail = ({ setCategoryVisible, updateEmail, setUpdateEmail }:
 		try {
 			const isAllowChangeEmail = await handleChangeEmail(data.email, authUser)
 			if (isAllowChangeEmail) {
+				console.log(data.email)
 				setIsEmailExist(false)
 				logout()
 			} else {

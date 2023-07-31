@@ -2,16 +2,16 @@ import React from 'react'
 import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
 import { useAuth } from '@/hooks/useAuth'
-import { useDate } from '@/hooks/useDate'
+
 
 interface EditContentProps {
 	valueBio: string
+	created: string
 }
 
-export const Content = ({ valueBio }: EditContentProps) => {
+export const Content = ({ valueBio, created }: EditContentProps) => {
 	const { authUser } = useAuth()
-	const accCreatedTime = authUser?.metadata.creationTime!
-	const [CreationTime] = useDate(accCreatedTime)
+
 	return (
 		<>
 			<CardHeader>
@@ -61,7 +61,7 @@ export const Content = ({ valueBio }: EditContentProps) => {
 					<Text
 						as='span'
 						color='primary.900'>
-						{CreationTime}
+						{created}
 					</Text>
 				</Text>
 			</CardBody>

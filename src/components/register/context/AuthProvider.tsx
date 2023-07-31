@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
 	const router = useRouter()
-
 	const [authUser, setAuthUser] = useState<User | null>(null)
 	const showToast = (username: string) => {
 		toast({

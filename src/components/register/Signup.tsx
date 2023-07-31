@@ -22,6 +22,9 @@ import { EmailInput } from '../ui/EmailInput'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../hooks/useAuth'
 
+import { setUserData } from '@/helpers/editProfile'
+import { useDate } from '@/hooks/useDate'
+
 export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
@@ -43,6 +46,7 @@ export const Signup = () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
+			await setUserData(auth.currentUser?.uid!, name)
 
 			listenOnSubmitForm(!isSubmitting, name)
 

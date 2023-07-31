@@ -23,6 +23,7 @@ interface ContainerProps {
 }
 
 export const Note = ({ tag, category, content, title, id, setNewNotes, userId, created }: ContainerProps) => {
+	
 	const { isOpen: isOpenDetails, onClose: onCloseDetails, onOpen: onOpenDetails } = useDisclosure()
 	const { isOpen: isOpenEdit, onClose: onCloseEdit, onOpen: onOpenEdit } = useDisclosure()
 	const noteValues = { tag: tag, category: category, title: title, content: content }

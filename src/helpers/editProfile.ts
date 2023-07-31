@@ -1,5 +1,5 @@
 import { User, db, updateUser, updateEmail, fetchUserCredential, auth, updatePassword } from '@/config/firebase'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 
 interface PersonalData {
 	name: string
@@ -13,11 +13,11 @@ export interface FormData {
 	photo: string
 }
 
-export const setInitData = async (userId: string) => {
-	await setDoc(doc(db, 'user-profile', userId), { bio: '' })
+export const setUserData = async (userId: string, name: string) => {
+	await setDoc(doc(db, 'user-profile', userId), { bio: '', photo: '', joined: '', name: name })
 }
 
-//update general Info
+//update general firebase Info
 export const updateProfile = async (
 	{ username, photo }: Pick<FormData, 'username' | 'photo'>,
 	authUser: User | null
@@ -28,11 +28,18 @@ export const updateProfile = async (
 	})
 }
 
-export const setProfileUpdate = async (data: Pick<FormData, 'bio'>, userId: string | undefined) => {
+export const setProfileUpdate = async (
+	data: Partial<FormData> & { email?: string },
+	userId: string | undefined,
+	joined: string
+) => {
 	if (!userId) return
 	try {
-		await setDoc(doc(db, 'user-profile', userId), {
+		await updateDoc(doc(db, 'user-profile', userId), {
 			bio: data.bio,
+			photo: data.photo,
+			name: data.username,
+			joined: joined,
 		})
 	} catch (error) {
 		console.error(error)
