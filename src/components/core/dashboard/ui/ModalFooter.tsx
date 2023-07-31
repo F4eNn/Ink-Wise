@@ -2,7 +2,11 @@ import React from 'react'
 import { ModalFooter as ChakraModalFooter } from '@/lib/chakra'
 import { Button } from './Button'
 
-export const ModalFooter = ({ onClose }: { onClose: () => void }) => {
+interface ButtonProps {
+	onClose: () => void
+}
+
+export const ModalFooter = ({ onClose }: ButtonProps) => {
 	return (
 		<ChakraModalFooter my='5'>
 			<Button onInteraction={onClose}>Close</Button>

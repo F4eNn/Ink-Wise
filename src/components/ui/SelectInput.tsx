@@ -2,7 +2,7 @@ import { FormControl, FormErrorMessage, Select } from '@/lib/chakra'
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { selectVal } from '@/helpers/validations'
-import { NoteFormValue } from '../core/create/CreateNote'
+import { NoteFormValue } from '../core/create/NoteForm' 
 
 type NoteFormKey = keyof NoteFormValue
 
@@ -14,14 +14,25 @@ interface SelectInputProps {
 	register: UseFormRegister<NoteFormValue>
 	name: NoteFormKey
 	error: string | undefined
+	defaultValue?: string
 }
 
-export const SelectInput = ({ name, option, option2, option3, placeholder, register, error }: SelectInputProps) => {
+export const SelectInput = ({
+	name,
+	option,
+	option2,
+	option3,
+	placeholder,
+	register,
+	error,
+	defaultValue,
+}: SelectInputProps) => {
 	return (
 		<FormControl isInvalid={!!error}>
 			<Select
 				textTransform='capitalize'
 				focusBorderColor='primary.900'
+				defaultValue={defaultValue}
 				placeholder={placeholder}
 				mt='5'
 				{...register(name, selectVal)}>

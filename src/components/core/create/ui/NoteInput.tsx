@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputControl } from '../../../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
-import { NoteFormValue } from '../CreateNote'
+import { NoteFormValue } from '../NoteForm'
 import { basicVal } from '@/helpers/validations'
 
 interface NoteInputProps {

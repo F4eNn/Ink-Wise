@@ -9,6 +9,7 @@ export const getAllNotes = async (userId: string, setNote: Dispatch<SetStateActi
 	const filteredData = notesSnapshot.docs.map(note => ({ ...note.data(), id: note.id } as Notes))
 	setNote(filteredData)
 }
+
 export const getColorByCategory = (category: string) => {
     switch (category) {
         case 'work':
@@ -21,6 +22,7 @@ export const getColorByCategory = (category: string) => {
             return 'gray'
     }
 }
+
 export const getColorByTag = (tag: string) => {
     switch (tag) {
         case 'urgent':
