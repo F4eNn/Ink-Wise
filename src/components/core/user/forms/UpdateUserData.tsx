@@ -51,8 +51,12 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 				<Flex
 					gap='7'
 					alignItems='center'>
-					<Box >
-						<Avatar size={['lg', 'xl', '2xl']} />
+					<Box>
+						<Avatar
+							size={['lg', 'xl', '2xl']}
+							name={authUser!.displayName!}
+							src={authUser!.photoURL!}
+						/>
 					</Box>
 					<Flex
 						w='full'

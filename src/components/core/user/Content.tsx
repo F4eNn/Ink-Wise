@@ -1,17 +1,16 @@
 import React from 'react'
 import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
-import { useAuth } from '@/hooks/useAuth'
-
 
 interface EditContentProps {
 	valueBio: string
 	created: string
+	name: string
+	email?: string
+	photo: string
 }
 
-export const Content = ({ valueBio, created }: EditContentProps) => {
-	const { authUser } = useAuth()
-
+export const Content = ({ valueBio, created, name, email, photo }: EditContentProps) => {
 	return (
 		<>
 			<CardHeader>
@@ -20,7 +19,11 @@ export const Content = ({ valueBio, created }: EditContentProps) => {
 					alignItems='center'
 					gap={['5', '8']}>
 					<Box>
-						<Avatar size={['2xl', 'xl', '2xl']} />
+						<Avatar
+							size={['2xl', 'xl', '2xl']}
+							name={name}
+							src={photo}
+						/>
 					</Box>
 					<Flex
 						alignSelf={['flex-start', 'unset']}
@@ -34,9 +37,9 @@ export const Content = ({ valueBio, created }: EditContentProps) => {
 								color='primary.900'>
 								@
 							</Text>
-							{authUser?.displayName}
+							{name}
 						</Text>
-						<Text fontSize={['md', 'lg']}>{authUser?.email}</Text>
+						<Text fontSize={['md', 'lg']}>{email}</Text>
 					</Flex>
 				</Flex>
 			</CardHeader>
@@ -44,7 +47,7 @@ export const Content = ({ valueBio, created }: EditContentProps) => {
 				<Text
 					fontSize={['md', 'lg']}
 					as='i'>
-					{valueBio}
+					{valueBio.trim().length != 0 ? valueBio : `Hello, I'm ${name} 👋`}
 				</Text>
 				<Text
 					fontSize={['md', 'lg']}

@@ -1,21 +1,21 @@
 import { AvatarBadge, Avatar as ChakraAvatar } from '@/lib/chakra'
-import { useAuth } from '@/hooks/useAuth'
 
 import React from 'react'
 
 interface AvatarProps {
-	size: string[] | string 
+	size: string[] | string
 	withBadge?: boolean | true
 	marginLeft?: string | '5'
+	name: string
+	src: string
 }
 
-export const Avatar = ({ size, withBadge = true, marginLeft = '5' }: AvatarProps) => {
-	const { authUser } = useAuth()
+export const Avatar = ({ size, withBadge = true, marginLeft = '5', name, src }: AvatarProps) => {
 	return (
 		<ChakraAvatar
-			name={authUser ? (authUser?.displayName as string) : ''}
+			name={name}
 			alignSelf='flex-start'
-			src={authUser ? (authUser?.photoURL as string) : ''}
+			src={src}
 			ml={marginLeft}
 			size={size}>
 			{withBadge && (
