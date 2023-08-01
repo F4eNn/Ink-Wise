@@ -10,6 +10,7 @@ import { updateProfile } from '../../../../helpers/editProfile'
 
 import { UsernameInput } from '@/components/ui/UsernameInput'
 import { FormData } from '../../../../helpers/editProfile'
+
 interface FormProps {
 	onToggle: () => void
 	userId: string | undefined
@@ -31,7 +32,6 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 	const { authUser } = useAuth()
 
 	const onSubmit = async (data: FormData) => {
-		console.log(data.bio)
 		await setProfileUpdate(data, userId, created)
 		await updateProfile({ username: data.username, photo: data.photo }, authUser)
 		onToggle()
@@ -51,8 +51,8 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 				<Flex
 					gap='7'
 					alignItems='center'>
-					<Box>
-						<Avatar size='lg' />
+					<Box >
+						<Avatar size={['lg', 'xl', '2xl']} />
 					</Box>
 					<Flex
 						w='full'

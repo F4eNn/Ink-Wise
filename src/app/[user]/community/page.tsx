@@ -6,13 +6,13 @@ import { PageWrapper } from '@/components/ui/PageWrapper'
 import { Box, Flex } from '@/lib/chakra'
 import { Community } from '@/components/core/community/Community'
 
-const CommunityPage = () => {
+const CommunityPage = async () => {
 	return (
 		<PageWrapper>
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full', md: 'unset' }}>
+				<Box w={{ base: 'full', md: '800px' }}>
 					<Community />
 				</Box>
 				<Box

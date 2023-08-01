@@ -18,7 +18,7 @@ export const UserDropdown = () => {
 				borderColor='borderColor'
 				rounded='xl'
 				borderWidth='1px'>
-				<Avatar size={['xl','xl', '2xl']} />
+				<Avatar size={['xl', 'xl', '2xl']} />
 				<Flex
 					alignItems='center'
 					flexDir='column'>

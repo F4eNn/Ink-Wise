@@ -80,6 +80,9 @@ export const Theme = extendTheme(
 				li: {
 					listStyle: 'none',
 				},
+				a: {
+					textDecoration: 'none'
+				}
 			}),
 		},
 
