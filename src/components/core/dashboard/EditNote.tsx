@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { ModalOverlay } from './ui/ModalOverlay'
 import { ModalContent } from './ui/ModalContent'
 import { ModalCloseButton, ModalFooter, Button } from '@/lib/chakra'
 import { ModalHeader } from './ui/ModalHeader'
 import { ModalBody } from './ui/ModalBody'
 
-import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
-import { db } from '@/config/firebase'
+import { arrayUnion, deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, db } from '@/config/firebase'
 import { getAllNotes } from './helpers/note'
 
 import { NoteForm, NoteFormValue } from '../create/NoteForm'
@@ -21,6 +21,8 @@ interface EditNoteProps {
 	tag: string
 	userId: string
 	noteId: string
+	created: string
+
 	setNewNotes: Dispatch<SetStateAction<Notes[] | undefined>>
 }
 
@@ -42,10 +44,18 @@ export const EditNote = ({
 	setNewNotes,
 	userId,
 	noteId,
+	created,
 }: EditNoteProps) => {
+	
+	const moveToBin = async () => {
+		const docRef = collection(db, 'bin')
+		await addDoc(docRef, { title, created, category, content, tag, userId })
+	}
+
 	const deleteNote = async (noteId: string) => {
 		const noteDoc = doc(db, 'notes', noteId)
 		await deleteDoc(noteDoc)
+		await moveToBin()
 		await getAllNotes(userId, setNewNotes)
 	}
 	const updateNote = async ({ category, content, noteId, tag, title }: UpdateNote) => {
@@ -57,6 +67,7 @@ export const EditNote = ({
 		updateNote({ ...data, noteId })
 		onClose()
 	}
+
 	return (
 		<ModalOverlay
 			isOpen={isOpen}

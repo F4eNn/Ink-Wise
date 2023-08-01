@@ -15,7 +15,6 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			borderBottomWidth='1px'
 			borderLeftWidth='1px'
 			borderRightWidth='1px'
-			transition='.3s linear'
 			_hover={{
 				boxShadow: `0px 2px 3px 1px  ${colorMode === 'dark' ? '#e49800' : '#c4c4c4f7'}`,
 			}}

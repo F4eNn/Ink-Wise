@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction} from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { Box, Flex, useDisclosure } from '@/lib/chakra'
 
 import { Notes } from './Dashboard'
@@ -23,10 +23,9 @@ interface ContainerProps {
 }
 
 export const Note = ({ tag, category, content, title, id, setNewNotes, userId, created }: ContainerProps) => {
-	
 	const { isOpen: isOpenDetails, onClose: onCloseDetails, onOpen: onOpenDetails } = useDisclosure()
 	const { isOpen: isOpenEdit, onClose: onCloseEdit, onOpen: onOpenEdit } = useDisclosure()
-	const noteValues = { tag: tag, category: category, title: title, content: content }
+	const noteValues = { tag, category, title, content, created }
 
 	return (
 		<NoteContainer>
@@ -39,7 +38,6 @@ export const Note = ({ tag, category, content, title, id, setNewNotes, userId, c
 				{...noteValues}
 				isOpen={isOpenDetails}
 				onClose={onCloseDetails}
-				created={created}
 			/>
 			<EditNote
 				{...noteValues}

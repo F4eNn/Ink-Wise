@@ -18,17 +18,19 @@ export const Author = () => {
 			</Heading>
 			<Flex
 				gap={'3'}
-				flexDir={['column',null, 'row']}
+				flexDir={['column', null, 'row']}
 				alignItems='center'>
 				<Box>
 					<Avatar
 						size='2xl'
-                        marginLeft='0'
+						marginLeft='0'
 						withBadge={false}
+						name={authUser!.displayName!}
+						src={authUser!.photoURL!}
 					/>
 				</Box>
 				<Text
-                    alignSelf={{md: 'flex-end'}}
+					alignSelf={{ md: 'flex-end' }}
 					fontSize='2xl'
 					color='primary.900'
 					as='span'>
