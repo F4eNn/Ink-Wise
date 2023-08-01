@@ -1,14 +1,19 @@
 import React, { ReactNode } from 'react'
-import { ListItem as ChakraListItem, Link } from '@/lib/chakra'
-import NextLink from 'next/link'
+import { ListItem as ChakraListItem } from '@/lib/chakra'
+import Link from 'next/link'
 import { motion } from '@/lib/motion'
 import { ListAnimation } from '../animations/community'
+import { url } from 'inspector'
+
 interface ListItemProps {
 	children: ReactNode
 	urlName: string
+	bio: string
+	joined: string
+	photo: string
 }
 
-export const ListItem = ({ children, urlName }: ListItemProps) => {
+export const ListItem = ({ children, urlName, photo, bio, joined }: ListItemProps) => {
 	return (
 		<ChakraListItem
 			{...ListAnimation}
@@ -22,9 +27,12 @@ export const ListItem = ({ children, urlName }: ListItemProps) => {
 			px='3'
 			py='6'>
 			<Link
-				as={NextLink}
 				style={{ textDecoration: 'none' }}
-				href={`?about=${urlName}`}>
+				href={{
+					query: {
+						about: [urlName, bio, joined, photo],
+					},
+				}}>
 				{children}
 			</Link>
 		</ChakraListItem>

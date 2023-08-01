@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import { CardList } from './ui/CardList'
 import { ListItem } from './ui/ListItem'
 import { ListItemContent } from './ui/ListItemContent'
+import { Content } from '../user/Content'
 
 export type CommunityUser = {
 	photo: string
@@ -21,7 +22,8 @@ export const Community = () => {
 	const [users, setUsers] = useState<CommunityUser[]>()
 
 	const searchParams = useSearchParams()
-	const isUsers = searchParams.get('about') === 'users'
+	const isUsers = searchParams.get('about') !== 'users'
+	const [name, bio, joined, photo] = searchParams.getAll('about')
 
 	useEffect(() => {
 		const getCommunity = async () => {
@@ -35,20 +37,28 @@ export const Community = () => {
 
 	return (
 		<Card>
-			<Flex
-				h='80vh'
-				overflow='hidden'
-				flexDir='column'>
-				<CardList>
-					{users?.map(user => (
-						<ListItem
-							key={user.id}
-							urlName={user.name}>
-							<ListItemContent name={user.name} photo={user.photo} />
-						</ListItem>
-					))}
-				</CardList>
-			</Flex>
+			{!isUsers ? (
+				<Flex
+					h='80vh'
+					overflow='hidden'
+					flexDir='column'>
+					<CardList>
+						{users?.map(user => (
+							<ListItem
+								key={user.id}
+								urlName={user.name}
+								{...user}>
+								<ListItemContent {...user} />
+							</ListItem>
+						))}
+					</CardList>
+				</Flex>
+			) : (
+				<Content
+					created={joined}
+					valueBio={bio}
+				/>
+			)}
 		</Card>
 	)
 }
