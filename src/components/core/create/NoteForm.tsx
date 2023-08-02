@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { NoteInput } from './ui/NoteInput'
 import { TextArea } from '@/components/ui/inputs/TextArea'
 import { SelectInput } from '@/components/ui/inputs/SelectInput'
-import { Box, Button } from '@/lib/chakra'
+import { Button, Flex } from '@/lib/chakra'
 import { useForm } from 'react-hook-form'
 
 export type NoteFormValue = {
@@ -58,9 +58,12 @@ export const NoteForm = ({
 	}
 
 	return (
-		<Box
+		<Flex
 			w='full'
 			as='form'
+			flexDir='column'
+			gap='5'
+			fontSize='xl'
 			onSubmit={handleSubmit(onSubmit)}>
 			<NoteInput
 				errors={errors.title?.message}
@@ -98,6 +101,6 @@ export const NoteForm = ({
 				type='submit'>
 				{buttonDesc}
 			</Button>
-		</Box>
+		</Flex>
 	)
 }

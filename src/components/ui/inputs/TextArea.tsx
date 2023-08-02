@@ -19,10 +19,15 @@ export const TextArea = ({ name, placeholder, register, title, error }: TextArea
 		<FormControl
 			mt='5'
 			isInvalid={!!error}>
-			<FormLabel htmlFor={name}>{title}</FormLabel>
+			<FormLabel
+				fontSize='inherit'
+				htmlFor={name}>
+				{title}
+			</FormLabel>
 			<Textarea
 				borderColor='borderColor'
 				id={name}
+				fontSize='inherit'
 				placeholder={placeholder}
 				maxH='450px'
 				resize='vertical'

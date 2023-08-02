@@ -31,6 +31,8 @@ export const SelectInput = ({
 		<FormControl isInvalid={!!error}>
 			<Select
 				textTransform='capitalize'
+				fontSize='inherit'
+				
 				focusBorderColor='primary.900'
 				defaultValue={defaultValue}
 				placeholder={placeholder}
