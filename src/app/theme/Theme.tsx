@@ -32,14 +32,15 @@ export const Theme = extendTheme(
 				200: '',
 				100: '',
 			},
-			alphaLightBrown: '#c28f6813',
-			alphaCustomWhite: '#ffffffea',
-			borderColor: 'gray',
-			default: '#fff',
-			defaultReverse: '#2b2522',
-			reversePrimary300: '#ffda9a',
-			reversePrimary300Hover: '#3f3632',
-			grayish: '#d1d1d1',
+			focusColor: '',
+			alphaLightBrown: '',
+			alphaCustomWhite: '',
+			borderColor: '',
+			default: '#',
+			defaultReverse: '',
+			reversePrimary300: '',
+			reversePrimary300Hover: '',
+			grayish: '',
 		},
 		styles: {
 			global: (props: Record<string, any> | StyleFunctionProps) => ({
@@ -61,16 +62,14 @@ export const Theme = extendTheme(
 					'--chakra-colors-primary-300': mode('#2b2522', '#ffda9a')(props),
 					'--chakra-colors-primary-200': mode('#f0e8db', '#484441')(props),
 					'--chakra-colors-primary-100': mode('#f0e8db', '#44413f')(props),
-					'--chakra-colors-background-image': mode(
-						'linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.468312324929972) 37%, rgba(238,233,216,1) 100%)',
-						'linear-gradient(45deg, rgba(2,0,36,1) 0%, #261b05 100%, rgba(0,212,255,1) 100%)'
-					)(props),
+
 					'--chakra-colors-reversePrimary300': mode(' #c27b44cf', '#2b2522')(props),
 					'--chakra-colors-reversePrimary300Hover': mode(' #c27b44', '#3f3632')(props),
 					'--chakra-colors-default': mode('#2b2522', '#fff ')(props),
 					'--chakra-colors-defaultReverse': mode('#fff ', '#2b2522')(props),
 					'--chakra-colors-alphaLightBrown': mode('#c28f6813', '')(props),
 					'--chakra-colors-borderColor': mode('#9a531b', 'gray')(props),
+					'--chakra-colors-focusColor': mode('#895025', '#e49800')(props),
 					'--chakra-colors-grayish': mode('#808080', '#d1d1d1')(props),
 					'--chakra-colors-alphaCustomWhite': mode('#ffffffea', '#000000b3')(props),
 				},
@@ -81,8 +80,8 @@ export const Theme = extendTheme(
 					listStyle: 'none',
 				},
 				a: {
-					textDecoration: 'none'
-				}
+					textDecoration: 'none',
+				},
 			}),
 		},
 
@@ -94,7 +93,7 @@ export const Theme = extendTheme(
 			Button,
 			IconButton,
 			Link,
-			Menu: menuTheme
+			Menu: menuTheme,
 		},
 	},
 	withDefaultVariant({

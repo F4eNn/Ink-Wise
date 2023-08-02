@@ -33,13 +33,11 @@ export const Dashboard = () => {
 
 	return (
 		<Card>
-			<Flex flexDir='column'>
-				<Heading title='Your Notes' />
-				<Flex
-					flexWrap='wrap'
-					gap='9'>
-					{note}
-				</Flex>
+			<Heading title='Your Notes' />
+			<Flex
+				flexWrap='wrap'
+				gap='9'>
+				{note}
 			</Flex>
 		</Card>
 	)

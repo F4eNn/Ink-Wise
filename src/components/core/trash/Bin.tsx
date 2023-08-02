@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
 import { NoteHeading } from '../dashboard/ui/NoteHeading'
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, useDisclosure } from '@/lib/chakra'
 import { Content } from '../dashboard/ui/Content'
 import { Tag } from '../dashboard/ui/Tag'
 import { Heading } from '@/components/ui/Heading'
+
+import { Modal } from './ui/Modal'
 
 type TrashNoteValues = {
 	category: string
@@ -22,13 +24,13 @@ type TrashNoteValues = {
 
 export const Bin = () => {
 	const [trashNotes, setTrashNotes] = useState<TrashNoteValues[]>()
+	const { isOpen, onClose, onOpen } = useDisclosure()
 
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
 
 	const getTrashNotes = async () => {
 		const q = query(collection(db, 'bin'), where('userId', '==', userId))
-
 		try {
 			const binSnapshot = await getDocs(q)
 			const convertData = binSnapshot.docs.map(item => ({ ...item.data(), id: item.id } as TrashNoteValues))
@@ -39,7 +41,6 @@ export const Bin = () => {
 	}
 	const deleteNote = async (id: string) => {
 		const noteDoc = doc(db, 'bin', id)
-
 		try {
 			await deleteDoc(noteDoc)
 			await getTrashNotes()
@@ -91,8 +92,14 @@ export const Bin = () => {
 								justifyContent='space-between'
 								mt='5'>
 								<Button onClick={() => restoreNote(note)}>Restore</Button>
-								<Button onClick={() => deleteNote(note.id)}>Remove</Button>
+								<Button onClick={onOpen}>Remove</Button>
 							</Flex>
+							<Modal
+								deleteNote={deleteNote}
+								id={note.id}
+								isOpen={isOpen}
+								onClose={onClose}
+							/>
 						</NoteContainer>
 					))}
 				</Flex>

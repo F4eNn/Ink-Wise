@@ -6,8 +6,8 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { handleChangeEmail, handleChangePassword } from '../../../../helpers/editProfile'
 import { useForm } from 'react-hook-form'
-import { EmailInput } from '@/components/ui/EmailInput'
-import { PasswordInput } from '@/components/ui/PasswordInput'
+import { EmailInput } from '@/components/ui/inputs/EmailInput'
+import { PasswordInput } from '@/components/ui/inputs/PasswordInput'
 import { CredentialForm } from '../EditCredential'
 
 interface UpdateEmailProps {

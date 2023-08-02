@@ -4,12 +4,12 @@ import { Center, Divider, Flex, ModalCloseButton } from '@/lib/chakra'
 import { Specifics } from './ui/Specifics'
 import { Author } from './ui/Author'
 import { Button } from './ui/Button'
-import { ModalOverlay } from './ui/ModalOverlay'
-import { ModalContent } from './ui/ModalContent'
-import { ModalHeader } from './ui/ModalHeader'
-import { ModalBody } from './ui/ModalBody'
+import { ModalOverlay } from '../../ui/modal/ModalOverlay'
+import { ModalContent } from '../../ui/modal/ModalContent'
+import { ModalHeader } from '../../ui/modal/ModalHeader'
+import { ModalBody } from '../../ui/modal/ModalBody'
 import { DescriptionNote } from './ui/DescriptionNote'
-import { ModalFooter } from './ui/ModalFooter'
+import { ModalFooter } from '../../ui/modal/ModalFooter'
 
 interface DetailsProps {
 	onClose: () => void

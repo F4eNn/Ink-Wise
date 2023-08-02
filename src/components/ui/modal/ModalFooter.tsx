@@ -1,6 +1,6 @@
 import React from 'react'
 import { ModalFooter as ChakraModalFooter } from '@/lib/chakra'
-import { Button } from './Button'
+import { Button } from '../../core/dashboard/ui/Button'
 
 interface ButtonProps {
 	onClose: () => void

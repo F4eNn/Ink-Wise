@@ -2,7 +2,7 @@ import { basicVal } from '@/helpers/validations'
 import { FormControl, FormErrorMessage, FormLabel, Textarea } from '@/lib/chakra'
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import { NoteFormValue } from '../core/create/NoteForm'
+import { NoteFormValue } from '../../core/create/NoteForm'
 
 type NoteFormKey = keyof NoteFormValue
 

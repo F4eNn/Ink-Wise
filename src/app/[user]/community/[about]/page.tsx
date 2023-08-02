@@ -1,11 +1,24 @@
+'use client'
 import { AboutUser } from '@/components/core/community/AboutUser'
-import { Card } from '@/components/core/user/ui/Card'
+import Hero from '@/components/ui/Hero'
+import { PageWrapper } from '@/components/ui/PageWrapper'
+import { Box, Flex } from '@/lib/chakra'
 
 const AboutUserPage = () => {
 	return (
-		<Card>
-			<AboutUser />
-		</Card>
+		<PageWrapper>
+			<Flex justifyContent='center'>
+				<Box w={{ base: 'full', md: '800px' }}>
+					<AboutUser />
+				</Box>
+				<Box
+					display={{ base: 'none', xl: 'block' }}
+					w='full'
+					maxW='700px'>
+					<Hero src='/search-people.png' />
+				</Box>
+			</Flex>
+		</PageWrapper>
 	)
 }
 

@@ -5,12 +5,13 @@ interface ModalOverlayProps {
 	onClose: () => void
 	isOpen: boolean
 	children: ReactNode
+	size?: string | '6xl'
 }
 
-export const ModalOverlay = ({ isOpen, onClose, children }: ModalOverlayProps) => {
+export const ModalOverlay = ({ isOpen, onClose, children, size = '6xl' }: ModalOverlayProps) => {
 	return (
 		<Modal
-			size='6xl'
+			size={size}
 			onClose={onClose}
 			isOpen={isOpen}
 			isCentered

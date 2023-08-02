@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { ReactNode } from 'react'
-import { modalAnimation } from '../animations/animations'
+import { modalAnimation } from '../../core/dashboard/animations/animations'
 import { ModalContent as Content } from '@/lib/chakra'
 export const ModalContent = ({ children }: { children: ReactNode }) => {
 	return (

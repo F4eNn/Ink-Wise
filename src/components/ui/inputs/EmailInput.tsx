@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputControl } from '../register/ui/InputControl'
+import { InputControl } from '../../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form'
 import { emailVal } from '@/helpers/validations'
 

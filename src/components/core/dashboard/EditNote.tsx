@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
-import { ModalOverlay } from './ui/ModalOverlay'
-import { ModalContent } from './ui/ModalContent'
+import { ModalOverlay } from '../../ui/modal/ModalOverlay'
+import { ModalContent } from '../../ui/modal/ModalContent'
 import { ModalCloseButton, ModalFooter, Button } from '@/lib/chakra'
-import { ModalHeader } from './ui/ModalHeader'
-import { ModalBody } from './ui/ModalBody'
+import { ModalHeader } from '../../ui/modal/ModalHeader'
+import { ModalBody } from '../../ui/modal/ModalBody'
 
 import { arrayUnion, deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { addDoc, collection, db } from '@/config/firebase'
@@ -46,7 +46,6 @@ export const EditNote = ({
 	noteId,
 	created,
 }: EditNoteProps) => {
-	
 	const moveToBin = async () => {
 		const docRef = collection(db, 'bin')
 		await addDoc(docRef, { title, created, category, content, tag, userId, noteId })

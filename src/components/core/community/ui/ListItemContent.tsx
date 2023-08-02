@@ -22,7 +22,7 @@ export const ListItemContent = ({ name, photo }: ListItemContentProps) => {
 					as='h2'
 					bgGradient='linear(to-l, primary.300, primary.900)'
 					bgClip='text'
-					fontSize={['2xl', '3xl', '5xl']}
+					fontSize={['2xl', '3xl', '4xl']}
 					fontWeight='extrabold'>
 					{name}
 				</Heading>

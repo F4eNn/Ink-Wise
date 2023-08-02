@@ -15,8 +15,8 @@ import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { Center, useColorMode } from '@/lib/chakra'
-import { EmailInput } from '../ui/EmailInput'
-import { PasswordInput } from '../ui/PasswordInput'
+import { EmailInput } from '../ui/inputs/EmailInput'
+import { PasswordInput } from '../ui/inputs/PasswordInput'
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)

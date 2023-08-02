@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { NoteInput } from './ui/NoteInput'
-import { TextArea } from '@/components/ui/TextArea'
-import { SelectInput } from '@/components/ui/SelectInput'
+import { TextArea } from '@/components/ui/inputs/TextArea'
+import { SelectInput } from '@/components/ui/inputs/SelectInput'
 import { Box, Button } from '@/lib/chakra'
 import { useForm } from 'react-hook-form'
 
