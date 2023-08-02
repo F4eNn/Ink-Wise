@@ -5,12 +5,12 @@ import { BsCircleFill } from 'react-icons/bs'
 
 interface TagProps {
 	tag: string
-	fontSize?: string | 'xs'
+	fontSize?: string | 'md'
 	iconSize?: string | '.7em'
 	width?: 'unset' | '40px'
 }
 
-export const Tag = ({ tag, fontSize = 'xs', iconSize = '.7em', width = 'unset' }: TagProps) => {
+export const Tag = ({ tag, fontSize = 'md', iconSize = '.7em', width = 'unset' }: TagProps) => {
 	return (
 		<Flex
 			alignItems='center'

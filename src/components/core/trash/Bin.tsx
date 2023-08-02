@@ -90,7 +90,7 @@ export const Bin = () => {
 							</Box>
 							<Flex
 								justifyContent='space-between'
-								mt='5'>
+								my='8'>
 								<Button onClick={() => restoreNote(note)}>Restore</Button>
 								<Button onClick={onOpen}>Remove</Button>
 							</Flex>

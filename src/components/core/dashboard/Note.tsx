@@ -10,6 +10,7 @@ import { NoteContainer } from './ui/NoteContainer'
 import { Details } from './Details'
 import { Button } from './ui/Button'
 import { EditNote } from './EditNote'
+import { ButtonBox } from './ui/ButtonBox'
 
 interface ContainerProps {
 	content: string
@@ -50,12 +51,12 @@ export const Note = ({ tag, category, content, title, id, setNewNotes, userId, c
 			<Box ml='3'>
 				<Tag tag={tag} />
 			</Box>
-			<Flex
-				justifyContent='space-between'
-				mt='5'>
-				<Button onInteraction={onOpenEdit}>Edit</Button>
-				<Button onInteraction={onOpenDetails}>Details</Button>
-			</Flex>
+			<ButtonBox
+				desc='Edit'
+				desc2='Details'
+				onHandleClick={onOpenEdit}
+				onHandleClick2={onOpenDetails}
+			/>
 		</NoteContainer>
 	)
 }

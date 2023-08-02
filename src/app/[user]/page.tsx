@@ -3,7 +3,7 @@ import { Box, Flex } from '@/lib/chakra'
 
 const UserPage = () => {
 	return (
-		<Flex>
+		<Flex flexDir='column'>
 			<Dashboard />
 		</Flex>
 	)

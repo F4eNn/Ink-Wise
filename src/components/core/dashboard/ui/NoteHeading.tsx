@@ -16,11 +16,11 @@ export const NoteHeading = ({ category, title }: HeadingProps) => {
 			<ChakraHeading
 				my={'5'}
 				as='h2'
-				fontSize='xl'>
+				fontSize='2xl'>
 				{title}
 			</ChakraHeading>
 			<Box color={getColorByCategory(category)}>
-				<BiSolidBookmarkAlt size='2em' />
+				<BiSolidBookmarkAlt size='2.5em' />
 			</Box>
 		</Flex>
 	)

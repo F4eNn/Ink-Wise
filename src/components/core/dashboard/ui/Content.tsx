@@ -8,10 +8,17 @@ interface ContentProps {
 export const Content = ({ content }: ContentProps) => {
 	return (
 		<Box
-			my='5'
+			my='3'
 			fontSize='xs'
+			color='grayish'
 			p='3'>
-			<Text as='i' noOfLines={[1, 2]} >{content}</Text>
+			<Text
+				as='i'
+				fontSize='lg'
+				h={[null, null, '52px']}
+				noOfLines={[1, 2]}>
+				{content}
+			</Text>
 		</Box>
 	)
 }
