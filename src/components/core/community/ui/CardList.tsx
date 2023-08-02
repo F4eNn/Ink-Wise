@@ -19,6 +19,7 @@ export const CardList = ({ children }: { children: ReactNode }) => {
 			pr='6'
 			pl='2'
 			css={customScrollbarStyle}
+			overflowX='hidden'
 			overflowY='auto'>
 			{children}
 		</UnorderedList>

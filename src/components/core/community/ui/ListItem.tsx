@@ -3,7 +3,7 @@ import { ListItem as ChakraListItem } from '@/lib/chakra'
 import Link from 'next/link'
 import { motion } from '@/lib/motion'
 import { ListAnimation } from '../animations/community'
-import { url } from 'inspector'
+import { useAuth } from '@/hooks/useAuth'
 
 interface ListItemProps {
 	children: ReactNode
@@ -14,6 +14,8 @@ interface ListItemProps {
 }
 
 export const ListItem = ({ children, urlName, photo, bio, joined }: ListItemProps) => {
+	const { authUser } = useAuth()
+
 	return (
 		<ChakraListItem
 			{...ListAnimation}
@@ -29,8 +31,9 @@ export const ListItem = ({ children, urlName, photo, bio, joined }: ListItemProp
 			<Link
 				style={{ textDecoration: 'none' }}
 				href={{
+					pathname: `/${authUser?.displayName}/community/${urlName}`,
 					query: {
-						about: [urlName, bio, joined, photo],
+						about: [urlName, photo, bio, joined],
 					},
 				}}>
 				{children}

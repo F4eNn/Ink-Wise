@@ -34,7 +34,7 @@ export const DrawerContent = ({ alignItems, size, isOpen }: OpenDrawerProps) => 
 					/>
 					<LinkDrawer
 						icon={<FaUsers />}
-						url={`/${authUser?.displayName}/community?about=users`}
+						url={`/${authUser?.displayName}/community`}
 						ariaLabel='community'
 						desc='Community'
 					/>
@@ -59,7 +59,7 @@ export const DrawerContent = ({ alignItems, size, isOpen }: OpenDrawerProps) => 
 						icon={<AiOutlinePlus />}
 					/>
 					<LinkIconPannel
-						url={`/${authUser.displayName}/community?about=users`}
+						url={`/${authUser.displayName}/community`}
 						ariaLabel='Create'
 						icon={<FaUsers />}
 					/>

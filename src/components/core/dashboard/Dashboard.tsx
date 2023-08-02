@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Note } from './Note'
-import { Flex, Heading } from '@/lib/chakra'
+import { Flex } from '@/lib/chakra'
 import { NoteValues } from '../create/CreateNote'
 import { Card } from '../user/ui/Card'
 import { getAllNotes } from './helpers/note'
+import { Heading } from '@/components/ui/Heading'
 
 export type Notes = NoteValues & { id: string }
 
@@ -33,11 +34,7 @@ export const Dashboard = () => {
 	return (
 		<Card>
 			<Flex flexDir='column'>
-				<Heading
-					as='h1'
-					mb='16'>
-					Your Notes
-				</Heading>
+				<Heading title='Your Notes' />
 				<Flex
 					flexWrap='wrap'
 					gap='9'>

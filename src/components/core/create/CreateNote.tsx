@@ -3,13 +3,13 @@
 import React from 'react'
 import { Card } from '../user/ui/Card'
 import { useForm } from 'react-hook-form'
-import { Heading } from '@/lib/chakra'
 
 import { useAuth } from '@/hooks/useAuth'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '@/config/firebase'
 import { useDate } from '@/hooks/useDate'
 import { NoteForm } from './NoteForm'
+import { Heading } from '@/components/ui/Heading'
 
 export type NoteValues = {
 	title: string
@@ -52,12 +52,7 @@ export const CreateNote = () => {
 
 	return (
 		<Card>
-			<Heading
-				as='h1'
-				mb='10'
-				textAlign='center'>
-				Create your first note!
-			</Heading>
+			<Heading title='Create Your Note' />
 			<NoteForm
 				onSendForm={onSubmit}
 				buttonDesc='Create'

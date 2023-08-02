@@ -8,6 +8,7 @@ import { NoteHeading } from '../dashboard/ui/NoteHeading'
 import { Box, Button, Flex } from '@chakra-ui/react'
 import { Content } from '../dashboard/ui/Content'
 import { Tag } from '../dashboard/ui/Tag'
+import { Heading } from '@/components/ui/Heading'
 
 type TrashNoteValues = {
 	category: string
@@ -50,7 +51,7 @@ export const Bin = () => {
 	const restoreNote = async (data: TrashNoteValues) => {
 		const { category, content, created, title, tag, userId } = data
 		const noteRef = collection(db, 'notes')
-	
+
 		await addDoc(noteRef, {
 			category,
 			content,
@@ -62,7 +63,6 @@ export const Bin = () => {
 		await deleteNote(data.id)
 		await getTrashNotes()
 	}
-	
 
 	useEffect(() => {
 		if (!userId) return
@@ -71,29 +71,32 @@ export const Bin = () => {
 	}, [userId])
 
 	return (
-		<Card>
-			<Flex
-				flexDir='column'
-				gap='10'>
-				{trashNotes?.map((note: any) => (
-					<NoteContainer key={note.noteId}>
-						<NoteHeading
-							category={note.category}
-							title={note.title}
-						/>
-						<Content content={note.content} />
-						<Box>
-							<Tag tag={note.tag} />
-						</Box>
-						<Flex
-							justifyContent='space-between'
-							mt='5'>
-							<Button onClick={() => restoreNote(note)}>Restore</Button>
-							<Button onClick={() => deleteNote(note.id)}>Remove</Button>
-						</Flex>
-					</NoteContainer>
-				))}
-			</Flex>
-		</Card>
+		<>
+			<Card>
+				<Flex
+					flexDir='column'
+					gap='10'>
+					<Heading title='Forgotten Notes' />
+					{trashNotes?.map((note: any) => (
+						<NoteContainer key={note.noteId}>
+							<NoteHeading
+								category={note.category}
+								title={note.title}
+							/>
+							<Content content={note.content} />
+							<Box>
+								<Tag tag={note.tag} />
+							</Box>
+							<Flex
+								justifyContent='space-between'
+								mt='5'>
+								<Button onClick={() => restoreNote(note)}>Restore</Button>
+								<Button onClick={() => deleteNote(note.id)}>Remove</Button>
+							</Flex>
+						</NoteContainer>
+					))}
+				</Flex>
+			</Card>
+		</>
 	)
 }
