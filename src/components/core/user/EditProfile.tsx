@@ -15,8 +15,6 @@ import { FormData } from '../../../helpers/editProfile'
 import { useDate } from '@/hooks/useDate'
 
 export const EditProfile = () => {
-
-
 	const [isEdit, toggleForm] = useToggle()
 	const [newBio, setBio] = useState<Pick<FormData, 'bio'>>({ bio: '' })
 

@@ -49,7 +49,7 @@ export const EditNote = ({
 	
 	const moveToBin = async () => {
 		const docRef = collection(db, 'bin')
-		await addDoc(docRef, { title, created, category, content, tag, userId })
+		await addDoc(docRef, { title, created, category, content, tag, userId, noteId })
 	}
 
 	const deleteNote = async (noteId: string) => {

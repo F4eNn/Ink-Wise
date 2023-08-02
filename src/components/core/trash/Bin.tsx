@@ -1,6 +1,6 @@
-import { collection, db } from '@/config/firebase'
+import { addDoc, collection, db } from '@/config/firebase'
 import { useAuth } from '@/hooks/useAuth'
-import { doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
@@ -16,25 +16,56 @@ type TrashNoteValues = {
 	tag: string
 	userId: string
 	title: string
-	noteId: string
+	id: string
 }
 
 export const Bin = () => {
 	const [trashNotes, setTrashNotes] = useState<TrashNoteValues[]>()
+
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
 
+	const getTrashNotes = async () => {
+		const q = query(collection(db, 'bin'), where('userId', '==', userId))
+
+		try {
+			const binSnapshot = await getDocs(q)
+			const convertData = binSnapshot.docs.map(item => ({ ...item.data(), id: item.id } as TrashNoteValues))
+			setTrashNotes(convertData)
+		} catch (err) {
+			console.error(err)
+		}
+	}
+	const deleteNote = async (id: string) => {
+		const noteDoc = doc(db, 'bin', id)
+
+		try {
+			await deleteDoc(noteDoc)
+			await getTrashNotes()
+		} catch (err) {
+			console.error(err)
+		}
+	}
+
+	const restoreNote = async (data: TrashNoteValues) => {
+		const { category, content, created, title, tag, userId } = data
+		const noteRef = collection(db, 'notes')
+	
+		await addDoc(noteRef, {
+			category,
+			content,
+			created,
+			title,
+			tag,
+			userId,
+		})
+		await deleteNote(data.id)
+		await getTrashNotes()
+	}
+	
+
 	useEffect(() => {
 		if (!userId) return
-		const getTrashNotes = async () => {
-			const q = query(collection(db, 'bin'), where('userId', '==', userId))
-
-			const binSnapshot = await getDocs(q)
-
-			const convertData = binSnapshot.docs.map(item => ({ ...item.data(), noteId: item.id } as TrashNoteValues))
-
-			setTrashNotes(convertData)
-		}
 		getTrashNotes()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [userId])
@@ -45,7 +76,7 @@ export const Bin = () => {
 				flexDir='column'
 				gap='10'>
 				{trashNotes?.map((note: any) => (
-					<NoteContainer key={note.created}>
+					<NoteContainer key={note.noteId}>
 						<NoteHeading
 							category={note.category}
 							title={note.title}
@@ -54,7 +85,12 @@ export const Bin = () => {
 						<Box>
 							<Tag tag={note.tag} />
 						</Box>
-						<Button mt='7' w='full'>Restore</Button>
+						<Flex
+							justifyContent='space-between'
+							mt='5'>
+							<Button onClick={() => restoreNote(note)}>Restore</Button>
+							<Button onClick={() => deleteNote(note.id)}>Remove</Button>
+						</Flex>
 					</NoteContainer>
 				))}
 			</Flex>
