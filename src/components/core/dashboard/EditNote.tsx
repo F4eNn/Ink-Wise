@@ -11,6 +11,7 @@ import { getAllNotes } from './helpers/note'
 
 import { NoteForm, NoteFormValue } from '../create/NoteForm'
 import { Notes } from './Dashboard'
+import { useAuth } from '@/hooks/useAuth'
 
 interface EditNoteProps {
 	isOpen: boolean
@@ -46,6 +47,8 @@ export const EditNote = ({
 	noteId,
 	created,
 }: EditNoteProps) => {
+	const { Toast } = useAuth()
+
 	const moveToBin = async () => {
 		const docRef = collection(db, 'bin')
 		await addDoc(docRef, { title, created, category, content, tag, userId, noteId })
@@ -56,6 +59,7 @@ export const EditNote = ({
 		await deleteDoc(noteDoc)
 		await moveToBin()
 		await getAllNotes(userId, setNewNotes)
+		Toast({ isHeading: false, desc: 'Note in trash!' })
 	}
 	const updateNote = async ({ category, content, noteId, tag, title }: UpdateNote) => {
 		const noteDoc = doc(db, 'notes', noteId)
@@ -64,6 +68,7 @@ export const EditNote = ({
 	}
 	const onUpdate = async (data: NoteFormValue) => {
 		updateNote({ ...data, noteId })
+		Toast({ isHeading: false, desc: 'Updated note!' })
 		onClose()
 	}
 

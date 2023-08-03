@@ -4,6 +4,7 @@ import { TextArea } from '@/components/ui/inputs/TextArea'
 import { SelectInput } from '@/components/ui/inputs/SelectInput'
 import { Button, Flex } from '@/lib/chakra'
 import { useForm } from 'react-hook-form'
+import { useAuth } from '@/hooks/useAuth'
 
 export type NoteFormValue = {
 	title: string
@@ -32,6 +33,8 @@ export const NoteForm = ({
 	buttonDesc,
 	applyReset = true,
 }: NoteFormProps) => {
+	const { Toast } = useAuth()
+
 	const { register, formState, handleSubmit, setValue, reset } = useForm<NoteFormValue>({
 		defaultValues: {
 			title: '',
@@ -54,6 +57,7 @@ export const NoteForm = ({
 		onSendForm(data)
 		if (applyReset) {
 			reset()
+			Toast({ isHeading: false, desc: 'Note created!', username: null })
 		}
 	}
 

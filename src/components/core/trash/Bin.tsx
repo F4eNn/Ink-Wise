@@ -24,8 +24,9 @@ type TrashNoteValues = {
 
 export const Bin = () => {
 	const [trashNotes, setTrashNotes] = useState<TrashNoteValues[]>()
+	const [noteId, setNoteId] = useState('')
 	const { isOpen, onClose, onOpen } = useDisclosure()
-
+	const { Toast } = useAuth()
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
 
@@ -39,11 +40,12 @@ export const Bin = () => {
 			console.error(err)
 		}
 	}
-	const deleteNote = async (id: string) => {
+	const deleteNote = async (id: string, deleteToast: boolean | true = true) => {
 		const noteDoc = doc(db, 'bin', id)
 		try {
 			await deleteDoc(noteDoc)
 			await getTrashNotes()
+			Toast({ isHeading: false, desc: deleteToast ? 'Deleted note!' : 'Restored note!' })
 		} catch (err) {
 			console.error(err)
 		}
@@ -61,7 +63,7 @@ export const Bin = () => {
 			tag,
 			userId,
 		})
-		await deleteNote(data.id)
+		await deleteNote(data.id, false)
 		await getTrashNotes()
 	}
 
@@ -92,16 +94,21 @@ export const Bin = () => {
 								justifyContent='space-between'
 								my='8'>
 								<Button onClick={() => restoreNote(note)}>Restore</Button>
-								<Button onClick={onOpen}>Remove</Button>
+								<Button
+									onClick={() => {
+										onOpen(), setNoteId(note.id)
+									}}>
+									Remove
+								</Button>
 							</Flex>
-							<Modal
-								deleteNote={deleteNote}
-								id={note.id}
-								isOpen={isOpen}
-								onClose={onClose}
-							/>
 						</NoteContainer>
 					))}
+					<Modal
+						deleteNote={deleteNote}
+						id={noteId}
+						isOpen={isOpen}
+						onClose={onClose}
+					/>
 				</Flex>
 			</Card>
 		</>

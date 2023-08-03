@@ -8,6 +8,7 @@ export const MenuButton = () => {
 			as={IconButton}
 			aria-label='user profile'
 			display='flex'
+			zIndex='9999'
 			alignItems='center'
 			variant='default'
 			icon={

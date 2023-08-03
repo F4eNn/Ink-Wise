@@ -9,14 +9,13 @@ import { GitHubBtn } from './ui/GitHubBtn'
 import { RegisterLink } from './ui/RegisterLink'
 import { auth } from '../../config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { InputControl } from './ui/InputControl'
-import { Toast } from './ui/Toast'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { Center, useColorMode } from '@/lib/chakra'
 import { EmailInput } from '../ui/inputs/EmailInput'
 import { PasswordInput } from '../ui/inputs/PasswordInput'
+
 export const Login = () => {
 	const { colorMode } = useColorMode()
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,7 +51,6 @@ export const Login = () => {
 		<>
 			<Form handleSubmit={handleSubmit(onSubmit)}>
 				<Logo size='100%' />
-				<Toast />
 				<Card>
 					<GoogleBtn mode={colorMode} />
 					<GitHubBtn mode={colorMode} />

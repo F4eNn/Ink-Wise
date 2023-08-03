@@ -1,9 +1,10 @@
 import React from 'react'
 import { User } from '@/config/firebase'
+import { ToastProps } from './AuthProvider'
 const initValues = {
-	listenOnSubmitForm: (value?: boolean, username?: string) => {},
 	logout: () => {},
-	authUser: {} as User | null
+	authUser: {} as User | null,
+	Toast: ({ isHeading = false, desc, username }: ToastProps) => {},
 }
 
 export const AuthCtx = React.createContext(initValues)

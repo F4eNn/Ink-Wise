@@ -29,7 +29,7 @@ export const Signup = () => {
 	const { colorMode } = useColorMode()
 	const [emailExist, setEmailExist] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const { listenOnSubmitForm } = useAuth()
+	const { Toast } = useAuth()
 
 	const { register, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
@@ -47,8 +47,7 @@ export const Signup = () => {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
 			await setUserData(auth.currentUser?.uid!, name)
-
-			listenOnSubmitForm(!isSubmitting, name)
+			Toast({ isHeading: true, desc: "We've created your account for you.", username: name })
 
 			setEmailExist(false)
 			setIsSubmitting(false)

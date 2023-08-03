@@ -7,32 +7,41 @@ import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 
+export interface ToastProps {
+	isHeading: boolean | false
+	desc: string
+	username?: string | null
+}
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
 	const router = useRouter()
 	const [authUser, setAuthUser] = useState<User | null>(null)
-	const showToast = (username: string) => {
+
+
+	
+
+	const Toast = ({ isHeading = false, desc, username }: ToastProps) => {
 		toast({
 			position: 'top-right',
-			duration: 5000,
+			duration: 1750,
 			render: () => (
 				<Box
 					mt={20}
-					bgGradient='linear(to-r, #ffdc9f, gold)'
+					bgGradient='linear(to-r, #ffdc9f, primary.900)'
 					py={3}
 					px={4}
-					color='#313131'
+					color='darkBrown'
 					rounded='8px'>
-					<Heading fontSize='1.2em'>{`Hello ${username} 😄`}</Heading>
-					<Text as='p'>{"We've created your account for you."}</Text>
+					{isHeading && <Heading fontSize='1.2em'>{`Hello ${username} 😄`}</Heading>}
+					<Text
+						as='p'
+						fontWeight='bold'>
+						{desc}
+					</Text>
 				</Box>
 			),
 		})
-	}
-	const listenOnSubmitForm = (value?: boolean, username?: string) => {
-		if (value && username) {
-			showToast(username)
-		}
 	}
 
 	useEffect(() => {
@@ -54,15 +63,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			await signOut(auth)
 			setAuthUser(null)
 			router.back()
-			
 		} catch (err) {
 			console.error(err)
 		}
 	}
 	const data = {
 		authUser,
-		listenOnSubmitForm,
 		logout,
+		Toast,
 	}
 
 	return <AuthCtx.Provider value={data}>{children}</AuthCtx.Provider>
