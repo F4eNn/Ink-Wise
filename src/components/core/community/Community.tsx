@@ -33,7 +33,7 @@ export const Community = () => {
 		<Card mb='unset'>
 			<Heading title='Our Community' />
 			<Flex
-				h='78vh'
+				h={{ md: 'calc(100vh - 250px)' }}
 				overflow='hidden'
 				flexDir='column'>
 				<CardList>

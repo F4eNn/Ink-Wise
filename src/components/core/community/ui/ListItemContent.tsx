@@ -11,14 +11,15 @@ export const ListItemContent = ({ name, photo }: ListItemContentProps) => {
 		<>
 			<Flex
 				gap={{ base: '5', md: 'unset' }}
-				alignItems={{ base: 'center', md: 'unset' }}>
+				flexDir={{base: 'column', sm: 'unset'}}
+				alignItems={{ base: 'center', sm: 'unset' }}>
 				<Avatar
-					size={['lg', 'xl', '2xl']}
+					size={['xl', '2xl']}
 					src={photo}
 					name={name}
 				/>
 				<Heading
-					mx={{ md: 'auto' }}
+					mx={{ sm: 'auto' }}
 					as='h2'
 					bgGradient='linear(to-l, primary.300, primary.900)'
 					bgClip='text'

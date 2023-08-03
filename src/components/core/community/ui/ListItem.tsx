@@ -26,6 +26,7 @@ export const ListItem = ({ children, urlName, photo, bio, joined }: ListItemProp
 			borderWidth='1px'
 			borderColor='borderColor'
 			rounded='xl'
+			maxW='650px'
 			px='3'
 			py='6'>
 			<Link

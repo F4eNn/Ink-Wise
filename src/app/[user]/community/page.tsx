@@ -12,13 +12,13 @@ const CommunityPage = async () => {
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full', md: '800px' }}>
+				<Box w={{ base: 'full', md: '100vw' }}>
 					<Community />
 				</Box>
 				<Box
 					display={{ base: 'none', xl: 'block' }}
 					w='full'
-					maxW='700px'>
+					maxW={{ xl: '700px', '2xl': '35vw' }}>
 					<Hero src='/community.png' />
 				</Box>
 			</Flex>

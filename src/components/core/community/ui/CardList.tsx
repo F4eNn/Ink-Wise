@@ -16,9 +16,13 @@ const customScrollbarStyle = {
 export const CardList = ({ children }: { children: ReactNode }) => {
 	return (
 		<UnorderedList
-			pr='6'
-			pl='2'
+			pr={['1','6']}
+			pl={['1' ,'2']}
 			css={customScrollbarStyle}
+			display='flex'
+			gap='10'
+			flexWrap='wrap'
+			justifyContent='space-around'
 			overflowX='hidden'
 			overflowY='auto'>
 			{children}
