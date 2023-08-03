@@ -13,3 +13,15 @@ export const modalAnimation: Variants = {
 	initial: { opacity: 0, y: -100 },
 	whileInView: { opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.5 } },
 }
+export const linkVariant: Variants = {
+	hidden: { scale: 1 },
+	visible: {
+		scale: [1, 1.05, 1],
+		transition: {
+			duration: 2,
+			ease: 'easeInOut',
+			times: [0, 0.2, 0.5, 0.8, 1],
+			repeat: Infinity,
+		},
+	},
+}

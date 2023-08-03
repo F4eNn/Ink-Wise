@@ -5,13 +5,15 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
 import { NoteHeading } from '../dashboard/ui/NoteHeading'
-import { Box, Button, Flex, useDisclosure } from '@/lib/chakra'
+import { Box, Button, Flex, useDisclosure, Heading as ChakraHeading } from '@/lib/chakra'
 import { Content } from '../dashboard/ui/Content'
 import { Tag } from '../dashboard/ui/Tag'
+
 import { Heading } from '@/components/ui/Heading'
 
 import { Modal } from './ui/Modal'
 import { CardList } from '../community/ui/CardList'
+import { EmptyIcon } from '../../ui/EmptyIcon'
 
 type TrashNoteValues = {
 	category: string
@@ -30,6 +32,7 @@ export const Bin = () => {
 	const { Toast } = useAuth()
 	const { authUser } = useAuth()
 	const userId = authUser?.uid
+	const binIsEmpty = trashNotes?.length === 0
 
 	const getTrashNotes = async () => {
 		const q = query(collection(db, 'bin'), where('userId', '==', userId))
@@ -77,7 +80,7 @@ export const Bin = () => {
 	return (
 		<>
 			<Card mb='unset'>
-				<Heading title='Forgotten Notes' />
+				<Heading title={!binIsEmpty ? 'Forgotten notes' : 'Bin is empty'} />
 				<Flex
 					flexDir='column'
 					h={{ md: 'calc(100vh - 250px)' }}
@@ -107,6 +110,11 @@ export const Bin = () => {
 							</NoteContainer>
 						))}
 					</CardList>
+					{binIsEmpty && (
+						<Box w='300px'>
+							<EmptyIcon />
+						</Box>
+					)}
 				</Flex>
 				<Modal
 					deleteNote={deleteNote}
