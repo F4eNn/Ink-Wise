@@ -20,7 +20,7 @@ export const CardList = ({ children }: { children: ReactNode }) => {
 			pl={['1' ,'2']}
 			css={customScrollbarStyle}
 			display='flex'
-			gap='10'
+			gap='5'
 			flexWrap='wrap'
 			justifyContent='space-around'
 			overflowX='hidden'

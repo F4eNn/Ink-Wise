@@ -11,6 +11,7 @@ import { Tag } from '../dashboard/ui/Tag'
 import { Heading } from '@/components/ui/Heading'
 
 import { Modal } from './ui/Modal'
+import { CardList } from '../community/ui/CardList'
 
 type TrashNoteValues = {
 	category: string
@@ -75,41 +76,44 @@ export const Bin = () => {
 
 	return (
 		<>
-			<Card>
+			<Card mb='unset'>
+				<Heading title='Forgotten Notes' />
 				<Flex
 					flexDir='column'
-					gap='10'>
-					<Heading title='Forgotten Notes' />
-					{trashNotes?.map((note: any) => (
-						<NoteContainer key={note.noteId}>
-							<NoteHeading
-								category={note.category}
-								title={note.title}
-							/>
-							<Content content={note.content} />
-							<Box>
-								<Tag tag={note.tag} />
-							</Box>
-							<Flex
-								justifyContent='space-between'
-								my='8'>
-								<Button onClick={() => restoreNote(note)}>Restore</Button>
-								<Button
-									onClick={() => {
-										onOpen(), setNoteId(note.id)
-									}}>
-									Remove
-								</Button>
-							</Flex>
-						</NoteContainer>
-					))}
-					<Modal
-						deleteNote={deleteNote}
-						id={noteId}
-						isOpen={isOpen}
-						onClose={onClose}
-					/>
+					h={{ md: 'calc(100vh - 250px)' }}
+					overflow='hidden'>
+					<CardList>
+						{trashNotes?.map((note: any) => (
+							<NoteContainer key={note.noteId}>
+								<NoteHeading
+									category={note.category}
+									title={note.title}
+								/>
+								<Content content={note.content} />
+								<Box>
+									<Tag tag={note.tag} />
+								</Box>
+								<Flex
+									justifyContent='space-between'
+									my='8'>
+									<Button onClick={() => restoreNote(note)}>Restore</Button>
+									<Button
+										onClick={() => {
+											onOpen(), setNoteId(note.id)
+										}}>
+										Remove
+									</Button>
+								</Flex>
+							</NoteContainer>
+						))}
+					</CardList>
 				</Flex>
+				<Modal
+					deleteNote={deleteNote}
+					id={noteId}
+					isOpen={isOpen}
+					onClose={onClose}
+				/>
 			</Card>
 		</>
 	)

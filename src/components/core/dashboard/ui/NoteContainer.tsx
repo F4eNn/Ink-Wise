@@ -10,6 +10,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			as={motion.div}
 			{...noteAnimation}
 			rounded='2xl'
+			mb='5'
             minH='275px'
 			borderColor={'primary.900'}
 			borderBottomWidth='1px'
@@ -18,7 +19,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			_hover={{
 				boxShadow: `0px 2px 3px 1px  ${colorMode === 'dark' ? '#e49800' : '#c4c4c4f7'}`,
 			}}
-			maxW='500px'>
+			maxW='450px'>
 			{children}
 			
 		</Container>

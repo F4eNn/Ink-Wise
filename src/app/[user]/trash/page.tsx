@@ -11,13 +11,13 @@ const TrashPage = () => {
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full', md: '750px' }}>
+				<Box w={{ base: 'full', md: '100vw' }}>
 					<Bin />
 				</Box>
 				<Box
 					display={{ base: 'none', xl: 'block' }}
 					w='full'
-					maxW='700px'>
+					maxW={{ xl: '700px', '2xl': '35vw' }}>
 					<Hero src='/trash.png' />
 				</Box>
 			</Flex>
