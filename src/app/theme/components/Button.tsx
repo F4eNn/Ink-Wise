@@ -25,7 +25,8 @@ export const Button = defineStyleConfig({
 		primary: {
 			bg: 'reversePrimary300',
 			rounded: 'lg',
-			p: '3',
+			p: '5',
+			fontSize: '1.1em',
 			color: 'white',
 			transition: 'background-color .3s',
 			_hover: {

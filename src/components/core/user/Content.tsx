@@ -1,6 +1,7 @@
 import React from 'react'
 import { CardHeader, CardBody, Flex, Text, Box } from '@/lib/chakra'
 import { Avatar } from './ui/Avatar'
+import { Friends } from './ui/Friends'
 
 interface EditContentProps {
 	valueBio: string
@@ -8,9 +9,10 @@ interface EditContentProps {
 	name: string
 	email?: string
 	photo: string
+	headingFriends?: 'Friends'
 }
 
-export const Content = ({ valueBio, created, name, email, photo }: EditContentProps) => {
+export const Content = ({ valueBio, created, name, email, photo, headingFriends }: EditContentProps) => {
 	return (
 		<>
 			<CardHeader>
@@ -45,20 +47,13 @@ export const Content = ({ valueBio, created, name, email, photo }: EditContentPr
 			</CardHeader>
 			<CardBody>
 				<Text
+					color='grayish'
 					fontSize={['md', 'lg']}
 					as='i'>
 					{valueBio.trim().length != 0 ? valueBio : `Hello, I'm ${name} 👋`}
 				</Text>
-				<Text
-					fontSize={['md', 'lg']}
-					mt='10'>
-					Friends:{' '}
-					<Text
-						as='i'
-						color='primary.900'>
-						I&apos;m Working on it
-					</Text>
-				</Text>
+				<Friends heading={headingFriends} />
+
 				<Text>
 					Joined:{' '}
 					<Text

@@ -8,13 +8,13 @@ const AboutUserPage = () => {
 	return (
 		<PageWrapper>
 			<Flex justifyContent='center'>
-				<Box w={{ base: 'full', md: '800px' }}>
+				<Box w={{ base: 'full', md: '100%' }}>
 					<AboutUser />
 				</Box>
 				<Box
 					display={{ base: 'none', xl: 'block' }}
 					w='full'
-					maxW='700px'>
+					maxW={{ xl: '700px', '2xl': '50%' }}>
 					<Hero src='/search-people.png' />
 				</Box>
 			</Flex>

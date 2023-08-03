@@ -11,13 +11,13 @@ const EditProfilePage = () => {
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full', md: '750px' }}>
+				<Box w={{ base: 'full'}}>
 					<EditProfile />
 				</Box>
 				<Box
 					display={{ base: 'none', xl: 'block' }}
 					w='full'
-					maxW='700px'>
+					maxW={{ xl: '700px', '2xl': '50%' }}>
 					<Hero src='/edit-profile.png' />
 				</Box>
 			</Flex>

@@ -13,6 +13,7 @@ import { UpdateUserData } from './forms/UpdateUserData'
 import { EditCredential } from './EditCredential'
 import { FormData } from '../../../helpers/editProfile'
 import { useDate } from '@/hooks/useDate'
+import { Heading } from '@/components/ui/Heading'
 
 export const EditProfile = () => {
 	const [isEdit, toggleForm] = useToggle()
@@ -35,6 +36,7 @@ export const EditProfile = () => {
 	if (!authUser) return
 	return (
 		<Card>
+			<Heading title='Edit profile' />
 			{isEdit ? (
 				<>
 					<UpdateUserData
@@ -59,7 +61,7 @@ export const EditProfile = () => {
 			{!isEdit && (
 				<Button
 					variant='primary'
-					mt='20'
+					mt='5'
 					type='button'
 					onClick={toggleForm}>
 					Update profile
