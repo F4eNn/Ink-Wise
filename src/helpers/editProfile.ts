@@ -13,8 +13,8 @@ export interface FormData {
 	photo: string
 }
 
-export const setUserData = async (userId: string, name: string) => {
-	await setDoc(doc(db, 'user-profile', userId), { bio: '', photo: '', joined: '', name: name })
+export const setUserData = async (userId: string, name: string, joined: string) => {
+	await setDoc(doc(db, 'user-profile', userId), { bio: '', photo: '', joined: joined, name: name })
 }
 
 //update general firebase Info
@@ -28,18 +28,13 @@ export const updateProfile = async (
 	})
 }
 
-export const setProfileUpdate = async (
-	data: Partial<FormData> & { email?: string },
-	userId: string | undefined,
-	joined: string
-) => {
+export const setProfileUpdate = async (data: Partial<FormData> & { email?: string }, userId: string | undefined) => {
 	if (!userId) return
 	try {
 		await updateDoc(doc(db, 'user-profile', userId), {
 			bio: data.bio,
 			photo: data.photo,
 			name: data.username,
-			joined: joined,
 		})
 	} catch (error) {
 		console.error(error)

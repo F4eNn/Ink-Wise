@@ -17,10 +17,9 @@ interface FormProps {
 	valueBio: string
 	valueName: string
 	valuePhoto: string
-	created: string
 }
 
-export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onToggle, created }: FormProps) => {
+export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onToggle }: FormProps) => {
 	const { register, handleSubmit, setValue, formState } = useForm<FormData>({
 		defaultValues: {
 			bio: '',
@@ -32,7 +31,7 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 	const { authUser } = useAuth()
 
 	const onSubmit = async (data: FormData) => {
-		await setProfileUpdate(data, userId, created)
+		await setProfileUpdate(data, userId)
 		await updateProfile({ username: data.username, photo: data.photo }, authUser)
 		onToggle()
 	}

@@ -46,12 +46,6 @@ export const DrawerContent = ({ alignItems, size, isOpen }: OpenDrawerProps) => 
 						desc='Community'
 					/>
 					<LinkDrawer
-						icon={<IoMdPersonAdd />}
-						url={`/${authUser?.displayName}/find-friend`}
-						ariaLabel='add friend'
-						desc='Add friend'
-					/>
-					<LinkDrawer
 						icon={<DeleteIcon />}
 						url={`/${authUser?.displayName}/trash`}
 						ariaLabel='Trash'
@@ -74,11 +68,6 @@ export const DrawerContent = ({ alignItems, size, isOpen }: OpenDrawerProps) => 
 						url={`/${authUser.displayName}/community`}
 						ariaLabel='community'
 						icon={<FaUsers />}
-					/>
-					<LinkIconPannel
-						url={`/${authUser.displayName}/find-friend`}
-						ariaLabel='add friend'
-						icon={<IoMdPersonAdd />}
 					/>
 					<LinkIconPannel
 						url={`/${authUser.displayName}/trash`}

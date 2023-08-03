@@ -42,7 +42,6 @@ export const EditProfile = () => {
 					<UpdateUserData
 						onToggle={toggleForm}
 						userId={userId}
-						created={created}
 						valueName={authUser.displayName!}
 						valuePhoto={authUser.photoURL!}
 						valueBio={newBio.bio}

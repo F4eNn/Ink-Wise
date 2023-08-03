@@ -40,13 +40,14 @@ export const Signup = () => {
 	})
 	const { errors } = formState
 	const router = useRouter()
+	const [joined] = useDate()
 
 	const signUp = async (email: string, password: string, name: string) => {
 		setIsSubmitting(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
-			await setUserData(auth.currentUser?.uid!, name)
+			await setUserData(auth.currentUser?.uid!, name, joined)
 			Toast({ isHeading: true, desc: "We've created your account for you.", username: name, fontWeight: 'unset' })
 
 			setEmailExist(false)
@@ -62,7 +63,6 @@ export const Signup = () => {
 	const onSubmit: SubmitHandler<FieldValues> = data => {
 		signUp(data.email, data.password, data.username)
 	}
-
 	return (
 		<Form handleSubmit={handleSubmit(onSubmit)}>
 			<Logo size='100%' />
