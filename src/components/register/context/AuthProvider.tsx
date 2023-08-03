@@ -6,22 +6,26 @@ import { User } from '@/config/firebase'
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-
+import { usePathname } from 'next/navigation'
 export interface ToastProps {
 	isHeading: boolean | false
 	desc: string
 	username?: string | null
+	fontWeight?: string | 'bold'
 }
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const toast = useToast()
+
+	const pathname = usePathname()
 	const router = useRouter()
 	const [authUser, setAuthUser] = useState<User | null>(null)
 
+	const noAuthPath = ['/', '/signup', '/login']
 
-	
+	// console.log(noAuthPath.includes(pathname))
 
-	const Toast = ({ isHeading = false, desc, username }: ToastProps) => {
+	const Toast = ({ isHeading = false, desc, username, fontWeight = 'bold' }: ToastProps) => {
 		toast({
 			position: 'top-right',
 			duration: 1750,
@@ -36,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 					{isHeading && <Heading fontSize='1.2em'>{`Hello ${username} 😄`}</Heading>}
 					<Text
 						as='p'
-						fontWeight='bold'>
+						fontWeight={fontWeight}>
 						{desc}
 					</Text>
 				</Box>
@@ -50,6 +54,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				setAuthUser(user)
 			} else {
 				setAuthUser(null)
+				if (noAuthPath.includes(pathname)) return
+				router.push('/login')
 			}
 		})
 		return () => {
@@ -62,7 +68,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		try {
 			await signOut(auth)
 			setAuthUser(null)
-			router.back()
 		} catch (err) {
 			console.error(err)
 		}

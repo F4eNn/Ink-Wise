@@ -47,7 +47,7 @@ export const Signup = () => {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
 			await setUserData(auth.currentUser?.uid!, name)
-			Toast({ isHeading: true, desc: "We've created your account for you.", username: name })
+			Toast({ isHeading: true, desc: "We've created your account for you.", username: name, fontWeight: 'unset' })
 
 			setEmailExist(false)
 			setIsSubmitting(false)
