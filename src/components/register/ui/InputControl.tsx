@@ -1,6 +1,7 @@
 import { Text, FormControl, FormErrorMessage, FormLabel, Input } from '@/lib/chakra'
 import React from 'react'
 
+// eslint-disable-next-line no-unused-vars
 type ValidateFunction = (value: string) => boolean | string
 
 type ValidateObject = {

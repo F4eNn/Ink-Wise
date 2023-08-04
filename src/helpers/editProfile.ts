@@ -15,7 +15,7 @@ export interface FormData {
 }
 
 export const setUserData = async (userId: string, name: string, joined: string) => {
-	await setDoc(doc(db, 'user-profile', userId), { bio: '', photo: '', joined: joined, name: name })
+	await setDoc(doc(db, 'user-profile', userId), { bio: '', photo: '', joined, name })
 }
 
 //update general firebase Info
@@ -38,6 +38,7 @@ export const setProfileUpdate = async (data: Partial<FormData> & { email?: strin
 			name: data.username,
 		})
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error(error)
 	}
 }
@@ -47,6 +48,7 @@ const setNewEmaill = async ({ email }: Pick<PersonalData, 'email'>, authUser: Us
 	try {
 		updateEmail(authUser as User, email)
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error(error)
 	}
 }
@@ -54,12 +56,11 @@ const setNewEmaill = async ({ email }: Pick<PersonalData, 'email'>, authUser: Us
 export const handleChangeEmail = async (newEmail: string, authUser: User) => {
 	try {
 		const checkEmail = await fetchSignInMethodsForEmail(auth, newEmail)
-		if (checkEmail.length > 0) {
-		} else {
-			setNewEmaill({ email: newEmail }, authUser)
-			return true
-		}
+		const isExistEmail = checkEmail.length > 0
+		if (!isExistEmail) setNewEmaill({ email: newEmail }, authUser)
+		return true
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error('Error during email change')
 	}
 }
@@ -70,6 +71,7 @@ export const handleChangePassword = async (newPassword: string, authUser: User) 
 		await updatePassword(authUser, newPassword)
 		return true
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error('Error during password change')
 	}
 }

@@ -9,7 +9,7 @@ import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { usePathname } from 'next/navigation'
 
 export const Nav = () => {
-	
+
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isScroll, setIsScroll] = useState(false)
 

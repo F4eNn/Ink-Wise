@@ -47,7 +47,7 @@ export const Hero = () => {
 						color='grayish'
 						fontSize='lg'>
 						{
-							"Stay organized with customizable organization options, allowing you to tag, categorize, and label your notes for easy retrieval. Need to find specific content? InkWise's powerful search functionality enables you to locate information quickly, saving you valuable time and effort."
+							'Stay organized with customizable organization options, allowing you to tag, categorize, and label your notes for easy retrieval. Need to find specific content? InkWise\'s powerful search functionality enables you to locate information quickly, saving you valuable time and effort.'
 						}
 					</Text>
 				</Reveal>

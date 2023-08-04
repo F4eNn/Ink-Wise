@@ -11,7 +11,7 @@ export const Logo = ({ size }: { size?: string }) => {
 			as={NextLink}
 			_hover={{ textDecoration: 'none' }}
 			href='/'
-			bgImage={colorMode === 'dark' ? "url('/dark-logo.png')" : "url('/light-logo-desktop.png')"}
+			bgImage={colorMode === 'dark' ? 'url(\'/dark-logo.png\')' : 'url(\'/light-logo-desktop.png\')'}
 			bgPos='center'
 			bgSize='cover'
 			bgRepeat='no-repeat'

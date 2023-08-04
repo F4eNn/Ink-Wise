@@ -4,6 +4,7 @@ export const useScrollPosition = () => {
     const [scrollPosition, setScrollPosition] = useState(0)
 
     useEffect(() => {
+        // eslint-disable-next-line no-undef
         let throttleTimeout: NodeJS.Timeout | null = null
 
         const handleScroll = () => {

@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
-import { Box } from '@/lib/chakra'
-import { useColorMode } from '@/lib/chakra'
+import { Box,useColorMode} from '@/lib/chakra'
 
 export const WaveFooter = () => {
 	const { colorMode } = useColorMode()
@@ -12,7 +11,7 @@ export const WaveFooter = () => {
 			bgRepeat='no-repeat'
 			bgPos='center'
 			bgSize='cover'
-			bgImage={colorMode === 'dark' ? "url('./wave.svg')" : "url('./wave-dark.svg')"}
+			bgImage={colorMode === 'dark' ? 'url(\'./wave.svg\')' : 'url(\'./wave-dark.svg\')'}
 		/>
 	)
 }

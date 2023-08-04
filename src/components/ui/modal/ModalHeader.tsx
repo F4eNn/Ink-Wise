@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { ModalHeader as Header } from '@/lib/chakra'
 
 export const ModalHeader = ({ title }: { title: string }) => {
