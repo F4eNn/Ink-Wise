@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					content='width=device-width, initial-scale=1.0'
 				/>
 				<meta
-					name='description'
+					name='desc'
 					content='Ink Wise - Your intelligent notebook for organizing and managing notes.'
 				/>
 			</head>

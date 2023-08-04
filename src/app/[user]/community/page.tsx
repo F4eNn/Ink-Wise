@@ -19,7 +19,7 @@ const CommunityPage = async () => {
 					display={{ base: 'none', xl: 'block' }}
 					w='full'
 					maxW={{ xl: '700px', '2xl': '35vw' }}>
-					<Hero src='/community.png' />
+					<Hero src='/Community.png' />
 				</Box>
 			</Flex>
 		</PageWrapper>

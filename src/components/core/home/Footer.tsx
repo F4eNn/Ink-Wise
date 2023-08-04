@@ -15,13 +15,12 @@ export const Footer = () => {
 			mt='10'
 			w='full'
 			pos='relative'>
-			
-				<Logo  />
+			<Logo />
 
 			<Flex
 				flexDir={{ base: 'column', md: 'row' }}
 				alignItems='center'
-				justifyContent={{base:'center' , md: 'space-around'}}
+				justifyContent={{ base: 'center', md: 'space-around' }}
 				gap={5}
 				w='full'>
 				<VStack
@@ -47,7 +46,7 @@ export const Footer = () => {
 					<Link
 						as={NextLink}
 						target='_blank'
-
+						rel='noopener noreferrer'
 						href='https://github.com/F4eNn/Ink-Wise'
 						_hover={{ color: 'grayish' }}>
 						<BsGithub
@@ -59,6 +58,7 @@ export const Footer = () => {
 						as={NextLink}
 						href='https://discordapp.com/users/992404385705513010'
 						target='_blank'
+						rel='noopener noreferrer'
 						color=' #7289da'
 						_hover={{ color: '#5774df' }}>
 						<BsDiscord

@@ -47,6 +47,8 @@ export const Contact = () => {
 					color='white'
 					gap='3'
 					href='mailto:mateusz4k@outlook.com'
+					target='_blank'
+					rel='noopener noreferrer'
 					variant='linkButton'>
 					Share Thoughts <MdEmail size='1.6em' />
 				</Link>
