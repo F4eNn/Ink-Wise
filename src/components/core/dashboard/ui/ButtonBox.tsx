@@ -12,7 +12,8 @@ interface ButtonBox {
 export const ButtonBox = ({ desc, desc2, onHandleClick2, onHandleClick }: ButtonBox) => {
 	return (
 		<Flex
-			justifyContent='space-between'
+			justifyContent='flex-end'
+			gap='5'
 			my='8'>
 			<Button onInteraction={onHandleClick}>{desc}</Button>
 			<Button onInteraction={onHandleClick2}>{desc2}</Button>

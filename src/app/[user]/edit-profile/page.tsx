@@ -11,7 +11,7 @@ const EditProfilePage = () => {
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full'}}>
+				<Box w={{ base: 'full' }}>
 					<EditProfile />
 				</Box>
 				<Box

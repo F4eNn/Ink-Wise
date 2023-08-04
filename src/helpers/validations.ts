@@ -12,6 +12,9 @@ export const usernameVal = {
 		hasMinLength: (username: string) => {
 			return username.trim().length >= 3 || 'min. 3 characters'
 		},
+		hasMaxLength: (username: string) => {
+			return username.trim().length <= 12 || 'max. 12 characters'
+		},
 		hasSpecialChar: (username: string) => {
 			return !containsSpecialChar.test(username) || "Username can't contain special characters"
 		},

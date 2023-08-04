@@ -35,7 +35,7 @@ export const EditProfile = () => {
 
 	if (!authUser) return
 	return (
-		<Card>
+		<Card  maxW='850px'>
 			<Heading title='Edit profile' />
 			{isEdit ? (
 				<>

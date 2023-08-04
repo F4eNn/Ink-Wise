@@ -1,6 +1,13 @@
 import React, { ReactNode } from 'react'
 import { Card as ChakraCard } from '@/lib/chakra'
-export const Card = ({ children, mb = '10' }: { children: ReactNode, mb?: string | '10' }) => {
+
+interface CardProps {
+	children: ReactNode
+	mb?: string | '10'
+	maxW?: string | '850px'
+}
+
+export const Card = ({ children, mb = '10', maxW = 'unset' }: CardProps) => {
 	return (
 		<ChakraCard
 			minW={{ md: '500px' }}
@@ -9,6 +16,7 @@ export const Card = ({ children, mb = '10' }: { children: ReactNode, mb?: string
 			mt={[null, '10']}
 			mb={mb}
 			bg='none'
+			maxW={maxW}
 			pl={[null, null, '5']}
 			borderLeftWidth={[null, null, '1px']}
 			borderColor='borderColor'

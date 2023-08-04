@@ -34,6 +34,18 @@ export const Button = defineStyleConfig({
 				textDecoration: 'none',
 			},
 		},
+		danger: {
+			bg: 'error.900',
+			rounded: 'lg',
+			p: '5',
+			fontSize: '1.1em',
+			color: 'white',
+			transition: 'background-color .3s',
+			_hover: {
+				bg: 'error',
+				textDecoration: 'none',
+			},
+		},
 	},
 	defaultProps: {},
 })

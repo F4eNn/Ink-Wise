@@ -49,4 +49,5 @@ export {
 	extendTheme,
 	withDefaultVariant,
 	useDisclosure,
+	Tooltip
 } from '@chakra-ui/react'

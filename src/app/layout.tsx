@@ -7,7 +7,6 @@ import { AuthProvider } from '@/components/register/context/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
@@ -16,6 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0'
+				/>
+				<meta
+					name='description'
+					content='Ink Wise - Your intelligent notebook for organizing and managing notes.'
 				/>
 			</head>
 

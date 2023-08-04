@@ -66,7 +66,7 @@ export const DrawerContent = ({ alignItems, size, isOpen }: OpenDrawerProps) => 
 					/>
 					<LinkIconPannel
 						url={`/${authUser.displayName}/community`}
-						ariaLabel='community'
+						ariaLabel='Community'
 						icon={<FaUsers />}
 					/>
 					<LinkIconPannel

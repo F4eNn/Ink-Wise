@@ -21,6 +21,7 @@ export const Theme = extendTheme(
 			lightBrown: '#9a531b',
 			veryLightBrown: '#c28f6813',
 			darkBrown: '#2b2522',
+			navbar: '#0d0d0d',
 			darkBrownHover: '#3f3632',
 			veryLightGrey: '#f7f7f7eb',
 			error: '#fc8181',
@@ -71,7 +72,8 @@ export const Theme = extendTheme(
 					'--chakra-colors-borderColor': mode('#9a531b', 'gray')(props),
 					'--chakra-colors-focusColor': mode('#895025', '#e49800')(props),
 					'--chakra-colors-grayish': mode('#808080', '#d1d1d1')(props),
-					'--chakra-colors-alphaCustomWhite': mode('#ffffffea', '#000000b3')(props),
+					'--chakra-colors-alphaCustomWhite': mode('#ffffffea', '#000000a3')(props),
+					'--chakra-colors-navbar': mode('#ffffffea', '#0f0b04')(props),
 				},
 				'#__next': {
 					minHeight: `100vh`,

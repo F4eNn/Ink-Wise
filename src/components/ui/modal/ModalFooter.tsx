@@ -9,7 +9,7 @@ interface ButtonProps {
 export const ModalFooter = ({ onClose }: ButtonProps) => {
 	return (
 		<ChakraModalFooter my='5'>
-			<Button onInteraction={onClose}>Close</Button>
+			<Button  onInteraction={onClose}>Close</Button>
 		</ChakraModalFooter>
 	)
 }

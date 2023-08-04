@@ -92,7 +92,7 @@ export const EditNote = ({
 				</ModalBody>
 				<ModalFooter>
 					<Button
-						bg='error'
+						variant='danger'
 						onClick={() => deleteNote(noteId)}>
 						Delete
 					</Button>

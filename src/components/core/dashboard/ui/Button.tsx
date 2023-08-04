@@ -13,6 +13,7 @@ export const Button = ({ onInteraction, children }: ButtonProps) => {
 			{...buttonAnimation}
 			as={motion.button}
 			onClick={onInteraction}
+			w='140px'
 			variant='primary'
 			px={['6', '10']}
 			mt={['7', '2']}>

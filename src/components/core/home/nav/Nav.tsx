@@ -39,7 +39,7 @@ export const Nav = () => {
 					top='0'
 					pos={isScroll ? 'fixed' : 'static'}
 					transition='background-color .5s'
-					bg={isScroll ? 'alphaCustomWhite' : ''}>
+					bg={isScroll ? 'navbar' : ''}>
 					<Flex
 						alignItems={'center'}
 						justifyContent={'space-between'}

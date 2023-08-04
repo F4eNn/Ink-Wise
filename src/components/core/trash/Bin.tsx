@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
 import { NoteHeading } from '../dashboard/ui/NoteHeading'
-import { Box, Button, Flex, useDisclosure, Heading as ChakraHeading } from '@/lib/chakra'
+import { Box, Button, Flex, useDisclosure, Heading as ChakraHeading, ListItem } from '@/lib/chakra'
 import { Content } from '../dashboard/ui/Content'
 import { Tag } from '../dashboard/ui/Tag'
 
@@ -87,27 +87,35 @@ export const Bin = () => {
 					overflow='hidden'>
 					<CardList>
 						{trashNotes?.map((note: any) => (
-							<NoteContainer key={note.noteId}>
-								<NoteHeading
-									category={note.category}
-									title={note.title}
-								/>
-								<Content content={note.content} />
-								<Box>
-									<Tag tag={note.tag} />
-								</Box>
-								<Flex
-									justifyContent='space-between'
-									my='8'>
-									<Button onClick={() => restoreNote(note)}>Restore</Button>
-									<Button
-										onClick={() => {
-											onOpen(), setNoteId(note.id)
-										}}>
-										Remove
-									</Button>
-								</Flex>
-							</NoteContainer>
+							<ListItem key={note.noteId}>
+								<NoteContainer>
+									<NoteHeading
+										category={note.category}
+										title={note.title}
+									/>
+									<Content content={note.content} />
+									<Box>
+										<Tag tag={note.tag} />
+									</Box>
+									<Flex
+										justifyContent='flex-end'
+										gap='8'
+										my='8'>
+										<Button
+											variant='primary'
+											onClick={() => restoreNote(note)}>
+											Restore
+										</Button>
+										<Button
+											variant='danger'
+											onClick={() => {
+												onOpen(), setNoteId(note.id)
+											}}>
+											Remove
+										</Button>
+									</Flex>
+								</NoteContainer>
+							</ListItem>
 						))}
 					</CardList>
 					{binIsEmpty && (
