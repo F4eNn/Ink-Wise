@@ -1,11 +1,10 @@
-
 import { useAuth } from '@/hooks/useAuth'
 import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
 import { NoteHeading } from '../dashboard/ui/NoteHeading'
-import { Box, Button, Flex, useDisclosure, Heading as ChakraHeading, ListItem } from '@/lib/chakra'
+import { Box, Button, Flex, useDisclosure, ListItem } from '@/lib/chakra'
 import { Content } from '../dashboard/ui/Content'
 import { Tag } from '../dashboard/ui/Tag'
 
@@ -29,9 +28,11 @@ type TrashNoteValues = {
 export const Bin = () => {
 	const [trashNotes, setTrashNotes] = useState<TrashNoteValues[]>()
 	const [noteId, setNoteId] = useState('')
+
 	const { isOpen, onClose, onOpen } = useDisclosure()
-	const { Toast } = useAuth()
-	const { authUser } = useAuth()
+
+	const { Toast, authUser } = useAuth()
+
 	const userId = authUser?.uid
 	const binIsEmpty = trashNotes?.length === 0
 
@@ -42,6 +43,7 @@ export const Bin = () => {
 			const convertData = binSnapshot.docs.map(item => ({ ...item.data(), id: item.id } as TrashNoteValues))
 			setTrashNotes(convertData)
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.error(err)
 		}
 	}
@@ -52,6 +54,7 @@ export const Bin = () => {
 			await getTrashNotes()
 			Toast({ isHeading: false, desc: deleteToast ? 'Deleted note!' : 'Restored note!' })
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.error(err)
 		}
 	}
@@ -70,6 +73,11 @@ export const Bin = () => {
 		})
 		await deleteNote(data.id, false)
 		await getTrashNotes()
+	}
+
+	const removeNote = (noteId: string) => {
+		setNoteId(noteId)
+		onOpen()
 	}
 
 	useEffect(() => {
@@ -114,7 +122,7 @@ export const Bin = () => {
 										<Button
 											variant='danger'
 											onClick={() => {
-												onOpen(), setNoteId(note.id)
+												removeNote(note.id)
 											}}>
 											Remove
 										</Button>

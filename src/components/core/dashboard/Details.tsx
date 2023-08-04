@@ -3,7 +3,6 @@ import { Center, Divider, Flex, ModalCloseButton } from '@/lib/chakra'
 
 import { Specifics } from './ui/Specifics'
 import { Author } from './ui/Author'
-import { Button } from './ui/Button'
 import { ModalOverlay } from '../../ui/modal/ModalOverlay'
 import { ModalContent } from '../../ui/modal/ModalContent'
 import { ModalHeader } from '../../ui/modal/ModalHeader'

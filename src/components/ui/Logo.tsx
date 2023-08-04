@@ -15,8 +15,8 @@ export const Logo = ({ size }: { size?: string }) => {
 			bgPos='center'
 			bgSize='cover'
 			bgRepeat='no-repeat'
-			w={size || ['11em', null, '20em']}
-			h={'100px'}
+			w={size || ['11em', null, '16em']}
+			h={['65px', '80px']}
 		/>
 	)
 }

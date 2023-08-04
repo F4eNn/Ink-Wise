@@ -22,7 +22,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			}}
 			>
 			{children}
-			
+
 		</Container>
 	)
 }

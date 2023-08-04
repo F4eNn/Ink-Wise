@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Box, Flex, useDisclosure } from '@/lib/chakra'
+import { Box, useDisclosure } from '@/lib/chakra'
 
 import { Notes } from './Dashboard'
 
@@ -8,7 +8,6 @@ import { Content } from './ui/Content'
 import { Tag } from './ui/Tag'
 import { NoteContainer } from './ui/NoteContainer'
 import { Details } from './Details'
-import { Button } from './ui/Button'
 import { EditNote } from './EditNote'
 import { ButtonBox } from './ui/ButtonBox'
 

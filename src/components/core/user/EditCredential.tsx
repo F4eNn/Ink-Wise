@@ -16,6 +16,19 @@ export const EditCredential = () => {
 	const [updatedBoth, setUpdateBoth] = useState(false)
 	const [isHideButtons, setIsHideButtons] = useState(false)
 
+	const updateUserEmail = () => {
+		setUpdateEmail(true)
+		setIsHideButtons(true)
+	}
+	const updateUserPassword = () => {
+		setUpdatePassword(true)
+		setIsHideButtons(true)
+	}
+	const updateAll = () => {
+		setUpdateBoth(true)
+		setIsHideButtons(true)
+	}
+
 	return (
 		<VStack
 			borderWidth='1px'
@@ -38,25 +51,19 @@ export const EditCredential = () => {
 					spacing={{ base: '3', lg: '5' }}>
 					<Button
 						variant='primary'
-						onClick={() => {
-							setUpdateEmail(true), setIsHideButtons(true)
-						}}
+						onClick={updateUserEmail}
 						w='full'>
 						Update Email
 					</Button>
 					<Button
 						variant='primary'
-						onClick={() => {
-							setUpdatePassword(true), setIsHideButtons(true)
-						}}
+						onClick={updateUserPassword}
 						w='full'>
 						Update Password
 					</Button>
 					<Button
 						variant='primary'
-						onClick={() => {
-							setUpdateBoth(true), setIsHideButtons(true)
-						}}
+						onClick={updateAll}
 						w='full'>
 						Update Both
 					</Button>

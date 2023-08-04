@@ -27,8 +27,9 @@ import { useDate } from '@/hooks/useDate'
 
 export const Signup = () => {
 	const { colorMode } = useColorMode()
+
 	const [emailExist, setEmailExist] = useState(false)
-	const [isSubmitting, setIsSubmitting] = useState(false)
+
 	const { Toast } = useAuth()
 
 	const { register, handleSubmit, formState, reset } = useForm({
@@ -38,25 +39,22 @@ export const Signup = () => {
 			password: '',
 		},
 	})
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 	const router = useRouter()
 	const [joined] = useDate()
 
 	const signUp = async (email: string, password: string, name: string) => {
-		setIsSubmitting(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
-			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.log(err))
+			// eslint-disable-next-line no-console
+			await updateProfile(auth.currentUser!, { displayName: name }).catch(err => console.error(err))
 			await setUserData(auth.currentUser?.uid!, name, joined)
-			Toast({ isHeading: true, desc: "We've created your account for you.", username: name, fontWeight: 'unset' })
 
+			Toast({ isHeading: true, desc: 'We\'ve created your account for you.', username: name, fontWeight: 'unset' })
 			setEmailExist(false)
-			setIsSubmitting(false)
-
 			router.push(`/${name}`)
 			reset()
 		} catch (err: any) {
-			setIsSubmitting(false)
 			if ((err as { code: string }).code == 'auth/email-already-in-use') return setEmailExist(true)
 		}
 	}

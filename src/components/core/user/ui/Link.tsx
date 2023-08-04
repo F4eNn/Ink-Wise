@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as ChakraLink, MenuItem } from '@/lib/chakra'
+import { MenuItem } from '@/lib/chakra'
 import NextLink from 'next/link'
 
 type LinkProps = {

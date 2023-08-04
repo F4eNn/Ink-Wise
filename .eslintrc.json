@@ -1,3 +1,19 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"no-duplicate-imports": "error",
+		"no-console": "warn",
+		"no-empty": "error",
+		"no-undef": "error",
+		"no-unused-vars":"error",
+		"no-unused-expressions": "error",
+		"object-shorthand": "error",
+		"prefer-arrow-callback": "error",
+		"no-multi-spaces": "error",
+		"no-trailing-spaces": "error",
+		"no-else-return": "error",
+		"prefer-destructuring": "error",
+		"no-empty-function": "error",
+		"quotes": ["error", "single"]
+	}
 }

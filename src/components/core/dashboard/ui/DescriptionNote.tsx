@@ -8,7 +8,7 @@ export const DescriptionNote = ({ content }: { content: string }) => {
 			w='full'
 			pos='relative'
 			_after={{
-				content: "''",
+				content: '\'\'',
 				pos: 'absolute',
 				top: '-2',
 				left: '0',

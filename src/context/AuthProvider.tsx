@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { AuthCtx } from './Auth'
-import { auth } from '../../../config/firebase'
+import { auth } from '../config/firebase'
 
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { User, onAuthStateChanged, signOut } from 'firebase/auth'

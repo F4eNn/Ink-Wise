@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { NoteInput } from './ui/NoteInput'
 import { TextArea } from '@/components/ui/inputs/TextArea'
 import { SelectInput } from '@/components/ui/inputs/SelectInput'
-import { Button, Flex } from '@/lib/chakra'
+import { Flex } from '@/lib/chakra'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '@/hooks/useAuth'
+import { SubmitButton } from '@/components/ui/SubmitButton'
 
 export type NoteFormValue = {
 	title: string
@@ -15,6 +16,7 @@ export type NoteFormValue = {
 }
 
 interface NoteFormProps {
+	// eslint-disable-next-line no-unused-vars
 	onSendForm: (data: NoteFormValue) => Promise<void>
 	title?: string
 	content?: string
@@ -44,7 +46,7 @@ export const NoteForm = ({
 		},
 	})
 
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 
 	useEffect(() => {
 		setValue('title', title!)
@@ -98,13 +100,12 @@ export const NoteForm = ({
 				placeholder='Tags'
 				register={register}
 			/>
-			<Button
-				mt='5'
-				w='full'
-				variant='primary'
-				type='submit'>
+			<SubmitButton
+				isLoading={isSubmitting}
+				loadingText='Creating'
+				mt='5'>
 				{buttonDesc}
-			</Button>
+			</SubmitButton>
 		</Flex>
 	)
 }

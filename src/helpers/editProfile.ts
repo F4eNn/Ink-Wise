@@ -1,4 +1,3 @@
-
 import { auth, db } from '@/config/firebase'
 import { User, fetchSignInMethodsForEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
@@ -51,6 +50,7 @@ const setNewEmaill = async ({ email }: Pick<PersonalData, 'email'>, authUser: Us
 		console.error(error)
 	}
 }
+// update Email
 export const handleChangeEmail = async (newEmail: string, authUser: User) => {
 	try {
 		const checkEmail = await fetchSignInMethodsForEmail(auth, newEmail)
@@ -63,6 +63,7 @@ export const handleChangeEmail = async (newEmail: string, authUser: User) => {
 		console.error('Error during email change')
 	}
 }
+
 // update Password
 export const handleChangePassword = async (newPassword: string, authUser: User) => {
 	try {

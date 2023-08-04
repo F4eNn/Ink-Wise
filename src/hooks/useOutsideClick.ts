@@ -10,7 +10,6 @@ export const useOutsideClick = (ref: RefObject<HTMLDivElement>, defaultState = f
       toggleState()
     }
   }
-
   useEffect(() => {
     setRef(ref)
     window.document.addEventListener('click', outsideHandler)

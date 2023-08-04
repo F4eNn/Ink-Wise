@@ -1,5 +1,6 @@
 'use client'
 import React, { useRef, useEffect } from 'react'
+
 import { Box, chakra } from '@/lib/chakra'
 import { motion, useInView, useAnimation } from '@/lib/motion'
 
@@ -10,6 +11,7 @@ type ReavealProps = {
 const ChakraBox = chakra(motion.div)
 export const Reveal = ({ children, width = 'fit-content' }: ReavealProps) => {
 	const containerRef = useRef<HTMLDivElement>(null)
+
 	const isInView = useInView(containerRef, { once: true })
 	const mainControls = useAnimation()
 	const slideControls = useAnimation()
@@ -31,23 +33,19 @@ export const Reveal = ({ children, width = 'fit-content' }: ReavealProps) => {
 			<ChakraBox
 				variants={{
 					hidden: { opacity: 0, y: 75 },
-					visible: { opacity: 1, y: 0 },
+					visible: { opacity: 1, y: 0, transition: { duration: 0.75, delay: 0.25 } },
 				}}
 				initial='hidden'
-				animate={mainControls}
-				// @ts-ignore
-				transition={{ duration: 1, delay: 0.25 }}>
+				animate={mainControls}>
 				{children}
 			</ChakraBox>
 			<ChakraBox
 				variants={{
 					hidden: { left: 0 },
-					visible: { left: '100%' },
+					visible: { left: '100%', transition: { duration: 0.5, ease: 'easeIn' } },
 				}}
 				initial='hidden'
 				animate={slideControls}
-				// @ts-ignore
-				transition={{ duration: 0.5, ease: 'easeIn' }}
 				pos='absolute'
 				top='4'
 				bottom='4'

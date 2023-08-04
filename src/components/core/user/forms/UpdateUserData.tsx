@@ -1,15 +1,15 @@
-import { Box, Button, CardHeader, Flex, FormControl, FormLabel, Input, Textarea } from '@/lib/chakra'
 import React, { useEffect } from 'react'
+import { Box, CardHeader, Flex, FormControl, FormLabel, Input, Textarea } from '@/lib/chakra'
 import { Avatar } from '../ui/Avatar'
 import { useForm } from 'react-hook-form'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { setProfileUpdate } from '../../../../helpers/editProfile'
-import { updateUserProfile } from '../../../../helpers/editProfile'
+import { setProfileUpdate, updateUserProfile } from '@/helpers/editProfile'
 
 import { UsernameInput } from '@/components/ui/inputs/UsernameInput'
-import { FormData } from '../../../../helpers/editProfile'
+import { FormData } from '@//helpers/editProfile'
+import { SubmitButton } from '@/components/ui/SubmitButton'
 
 interface FormProps {
 	onToggle: () => void
@@ -27,7 +27,7 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 			photo: '',
 		},
 	})
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 	const { authUser } = useAuth()
 
 	const onSubmit = async (data: FormData) => {
@@ -91,13 +91,12 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 					{...register('bio')}
 				/>
 			</FormControl>
-			<Button
-				variant='primary'
-				w='full'
-				type='submit'
-				mt='10'>
+			<SubmitButton
+				isLoading={isSubmitting}
+				mt='10'
+				loadingText='Saving'>
 				Save
-			</Button>
+			</SubmitButton>
 		</Box>
 	)
 }

@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
-import { Box, Button, Text } from '@/lib/chakra'
+import { Box, Text } from '@/lib/chakra'
 import { UpdateButton } from '../ui/UpdateButton'
 import { useAuth } from '@/hooks/useAuth'
 
-import { handleChangeEmail, handleChangePassword } from '../../../../helpers/editProfile'
+import { handleChangeEmail, handleChangePassword } from '@/helpers/editProfile'
 import { useForm } from 'react-hook-form'
 import { EmailInput } from '@/components/ui/inputs/EmailInput'
 import { PasswordInput } from '@/components/ui/inputs/PasswordInput'
 import { CredentialForm } from '../EditCredential'
+import { SubmitButton } from '@/components/ui/SubmitButton'
 
 interface UpdateEmailProps {
 	setCategoryVisible: React.Dispatch<React.SetStateAction<boolean>>
@@ -27,7 +28,7 @@ export const UpdateAllCredentials = ({ setCategoryVisible, setUpdateBoth, update
 		},
 	})
 
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 
 	const onSubmitBoth = async (data: CredentialForm) => {
 		if (!authUser) return
@@ -65,12 +66,12 @@ export const UpdateAllCredentials = ({ setCategoryVisible, setUpdateBoth, update
 							errors={errors.password?.message}
 							register={register}
 						/>
-						<Button
-							w='full'
-							type='submit'
+						<SubmitButton
+							isLoading={isSubmitting}
+							loadingText='Updating'
 							my='3'>
 							Update Both
-						</Button>
+						</SubmitButton>
 						{isEmailExist ? (
 							<Text
 								position='absolute'

@@ -30,23 +30,25 @@ export const Community = () => {
 		getCommunity()
 	}, [])
 	return (
-		<Card mb='unset'>
-			<Heading title='Our Community' />
-			<Flex
-				h={{ md: 'calc(100vh - 250px)' }}
-				overflow='hidden'
-				flexDir='column'>
-				<CardList>
-					{users?.map(user => (
-						<ListItem
-							key={user.id}
-							urlName={user.name}
-							{...user}>
-							<ListItemContent {...user} />
-						</ListItem>
-					))}
-				</CardList>
-			</Flex>
-		</Card>
+		<>
+			<Card mb='unset'>
+				<Heading title='Our Community' />
+				<Flex
+					h={{ md: 'calc(100vh - 250px)' }}
+					overflow='hidden'
+					flexDir='column'>
+					<CardList>
+						{users?.map(user => (
+							<ListItem
+								key={user.id}
+								urlName={user.name}
+								{...user}>
+								<ListItemContent {...user} />
+							</ListItem>
+						))}
+					</CardList>
+				</Flex>
+			</Card>
+		</>
 	)
 }

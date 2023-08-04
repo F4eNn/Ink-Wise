@@ -1,13 +1,14 @@
 import React from 'react'
 
 import { PasswordInput } from '@/components/ui/inputs/PasswordInput'
-import { Box, Button } from '@/lib/chakra'
+import { Box} from '@/lib/chakra'
 import { UpdateButton } from '../ui/UpdateButton'
 import { useAuth } from '@/hooks/useAuth'
 
-import { handleChangePassword } from '../../../../helpers/editProfile'
+import { handleChangePassword } from '@/helpers/editProfile'
 import { useForm } from 'react-hook-form'
 import { CredentialForm } from '../EditCredential'
+import { SubmitButton } from '@/components/ui/SubmitButton'
 
 interface UpdatePasswordProps {
 	setCategoryVisible: React.Dispatch<React.SetStateAction<boolean>>
@@ -23,7 +24,7 @@ export const UpdatePassword = ({ setCategoryVisible, setUpdatePassword, updatePa
 			password: '',
 		},
 	})
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 
 	const onSubmitPassword = async (data: Pick<CredentialForm, 'password'>) => {
 		if (!authUser) return
@@ -46,12 +47,12 @@ export const UpdatePassword = ({ setCategoryVisible, setUpdatePassword, updatePa
 							errors={errors.password?.message}
 							register={register}
 						/>
-						<Button
-							w='full'
-							type='submit'
+						<SubmitButton
+							isLoading={isSubmitting}
+							loadingText='Updating'
 							my='3'>
 							Update Password
-						</Button>
+						</SubmitButton>
 					</Box>
 				</>
 			)}
