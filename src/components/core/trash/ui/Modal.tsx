@@ -8,10 +8,16 @@ interface ModalProps {
 	isOpen: boolean
 	onClose: () => void
 	id: string
+	// eslint-disable-next-line no-unused-vars
 	deleteNote: (id: string) => Promise<void>
 }
 
 export const Modal = ({ id, isOpen, onClose, deleteNote }: ModalProps) => {
+	const moveNoteToBin = () => {
+		deleteNote(id)
+		onClose()
+	}
+
 	return (
 		<ModalOverlay
 			size='xl'
@@ -30,9 +36,7 @@ export const Modal = ({ id, isOpen, onClose, deleteNote }: ModalProps) => {
 				<ModalFooter>
 					<Button
 						variant='primary'
-						onClick={() => {
-							deleteNote(id), onClose()
-						}}
+						onClick={moveNoteToBin}
 						mx='auto'
 						w='70%'>
 						Confirm

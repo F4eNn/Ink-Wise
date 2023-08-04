@@ -4,7 +4,7 @@ import { FaUserCircle } from 'react-icons/fa'
 
 export const MenuButton = () => {
 	return (
-		<Tooltip  hasArrow placement='bottom' label='Profile'>
+		<Tooltip hasArrow placement='bottom' label='Profile'>
 			<ChakraMenuButton
 				as={IconButton}
 				aria-label='user profile'

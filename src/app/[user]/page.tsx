@@ -1,5 +1,5 @@
 import { Dashboard } from '@/components/core/dashboard/Dashboard'
-import { Box, Flex } from '@/lib/chakra'
+import { Flex } from '@/lib/chakra'
 
 const UserPage = () => {
 	return (

@@ -44,7 +44,7 @@ export const CreateNote = () => {
 		if (!authUser || !userId) return
 		await addNote({
 			...data,
-			userId: userId,
+			userId,
 			created: createTime,
 		})
 		reset()

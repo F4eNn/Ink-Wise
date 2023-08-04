@@ -1,12 +1,11 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { AuthCtx } from './Auth'
-import { auth } from '../../../config/firebase'
+import { auth } from '../config/firebase'
 
 import { Box, useToast, Heading, Text } from '@/lib/chakra'
 import { User, onAuthStateChanged, signOut } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 export interface ToastProps {
 	isHeading: boolean | false
 	desc: string
@@ -69,6 +68,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			await signOut(auth)
 			setAuthUser(null)
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.error(err)
 		}
 	}

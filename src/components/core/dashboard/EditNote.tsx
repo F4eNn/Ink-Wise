@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { ModalOverlay } from '../../ui/modal/ModalOverlay'
 import { ModalContent } from '../../ui/modal/ModalContent'
 import { ModalCloseButton, ModalFooter, Button } from '@/lib/chakra'
@@ -64,7 +64,7 @@ export const EditNote = ({
 	}
 	const updateNote = async ({ category, content, noteId, tag, title }: UpdateNote) => {
 		const noteDoc = doc(db, 'notes', noteId)
-		await updateDoc(noteDoc, { title: title, content: content, category: category, tag: tag })
+		await updateDoc(noteDoc, { title, content, category, tag })
 		await getAllNotes(userId, setNewNotes)
 	}
 	const onUpdate = async (data: NoteFormValue) => {

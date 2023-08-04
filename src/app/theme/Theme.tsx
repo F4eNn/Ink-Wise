@@ -76,7 +76,7 @@ export const Theme = extendTheme(
 					'--chakra-colors-navbar': mode('#ffffffea', '#0f0b04')(props),
 				},
 				'#__next': {
-					minHeight: `100vh`,
+					minHeight: '100vh',
 				},
 				li: {
 					listStyle: 'none',

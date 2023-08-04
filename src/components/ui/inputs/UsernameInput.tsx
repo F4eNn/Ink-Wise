@@ -8,6 +8,7 @@ interface UsernameInput {
 	register: Omit<UseFormRegister<{ username: string }>, 'password' | 'email'>
 }
 
+// eslint-disable-next-line no-unused-vars
 export const UsernameInput = ({ errors, register }: UsernameInput) => {
 	return (
 		<InputControl

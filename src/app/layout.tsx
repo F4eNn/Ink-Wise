@@ -1,13 +1,11 @@
+'use client'
+import React, { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 import { ChakraUiProvider } from './theme/ChakraUiProvider'
-import { Nav } from '@/components/core/home/nav/Nav'
-import { Suspense } from 'react'
-import Loading from './loading'
-import { AuthProvider } from '@/components/register/context/AuthProvider'
-
+import { AuthProvider } from '@/context/AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en'>
 			<head>
@@ -24,12 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 			<body className={inter.className}>
 				<ChakraUiProvider>
-					<AuthProvider>
-						<Suspense fallback={<Loading />}>
-							<Nav />
-							{children}
-						</Suspense>
-					</AuthProvider>
+					<AuthProvider>{children}</AuthProvider>
 				</ChakraUiProvider>
 			</body>
 		</html>

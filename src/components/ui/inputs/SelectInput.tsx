@@ -32,7 +32,6 @@ export const SelectInput = ({
 			<Select
 				textTransform='capitalize'
 				fontSize='inherit'
-				
 				focusBorderColor='primary.900'
 				defaultValue={defaultValue}
 				placeholder={placeholder}

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+
 import { Logo } from '../ui/Logo'
 import { Form } from './ui/Form'
 import { Card } from './ui/Card'
@@ -7,14 +8,15 @@ import { Submit } from './ui/Submit'
 import { GoogleBtn } from './ui/GoogleBtn'
 import { GitHubBtn } from './ui/GitHubBtn'
 import { RegisterLink } from './ui/RegisterLink'
-import { auth } from '../../config/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
-import { useProtectedRoute } from '@/hooks/useProtectedRoute'
-import { Center, useColorMode } from '@/lib/chakra'
 import { EmailInput } from '../ui/inputs/EmailInput'
 import { PasswordInput } from '../ui/inputs/PasswordInput'
+
+import { auth } from '../../config/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { Center, useColorMode } from '@/lib/chakra'
 
 export const Login = () => {
 	const { colorMode } = useColorMode()
@@ -28,7 +30,6 @@ export const Login = () => {
 	})
 	const { errors } = formState
 	const router = useRouter()
-	useProtectedRoute()
 	const signIn = async (email: string, password: string) => {
 		setIsSubmitting(true)
 		setInvalidCredentials(false)

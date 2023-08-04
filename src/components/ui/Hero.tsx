@@ -14,7 +14,7 @@ export const Hero = ({ src }: HeroProps) => {
 			w='full'>
 			<Image
 				src={src}
-				alt=''
+				alt='Decorative photo showcasing the current page'
 				fill
 			/>
 		</AspectRatio>

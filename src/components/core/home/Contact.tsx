@@ -1,9 +1,8 @@
 import React from 'react'
-import { VStack, Box, Flex, Text, Link } from '@/lib/chakra'
-import { MdEmail } from 'react-icons/md'
-import NextLink from 'next/link'
+import { VStack, Box, Flex, Text} from '@/lib/chakra'
 import { BlobContact } from './ui/BlobContact'
 import { Reveal } from '@/components/ui/Reveal'
+import { ContactLink } from './ui/ContactLink'
 export const Contact = () => {
 	return (
 		<VStack
@@ -40,20 +39,8 @@ export const Contact = () => {
 					Get in touch with us now and discover how InkWise can make your note-taking experience even more inspiring!
 				</Text>
 			</Reveal>
-			<Reveal>
-				<Link
-					as={NextLink}
-					display='flex'
-					color='white'
-					gap='3'
-					href='mailto:mateusz4k@outlook.com'
-					target='_blank'
-					rel='noopener noreferrer'
-					variant='linkButton'>
-					Share Thoughts <MdEmail size='1.6em' />
-				</Link>
-			</Reveal>
-			<BlobContact />
+			<ContactLink/>
+			<BlobContact/>
 		</VStack>
 	)
 }

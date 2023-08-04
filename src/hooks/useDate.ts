@@ -6,9 +6,8 @@ export const useDate = (date?: string) => {
 		const day = newDate.getDate().toString().padStart(2, '0')
 		const formatDate = `${day}.${month}.${year}`
 		return [formatDate]
-	} else {
-		const creationTime = new Date()
-		const formatDate = new Intl.DateTimeFormat('en-US', { timeStyle: 'short', dateStyle: 'short' }).format(creationTime)
-		return [formatDate]
 	}
+	const creationTime = new Date()
+	const formatDate = new Intl.DateTimeFormat('en-US', { timeStyle: 'short', dateStyle: 'short' }).format(creationTime)
+	return [formatDate]
 }

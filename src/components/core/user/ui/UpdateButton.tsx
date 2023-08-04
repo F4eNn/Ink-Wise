@@ -7,12 +7,14 @@ interface UpdateButtonProps {
 }
 
 export const UpdateButton = ({ setUpdateCredential, setCategoryVisible }: UpdateButtonProps) => {
+	const updateData = () => {
+		setUpdateCredential(false)
+		setCategoryVisible(false)
+	}
 	return (
 		<Button
 			variant='primary'
-			onClick={() => {
-				setUpdateCredential(false), setCategoryVisible(false)
-			}}
+			onClick={updateData}
 			mr='auto'
 			mb='8'>
 			go back

@@ -26,7 +26,8 @@ export const EditProfile = () => {
 	useEffect(() => {
 		if (userId) {
 			onSnapshot(doc(db, 'user-profile', userId), doc => {
-				doc.metadata.hasPendingWrites ? 'Local' : 'Server'
+				// eslint-disable-next-line no-unused-expressions
+				// doc.metadata.hasPendingWrites ? 'Local' : 'Server'
 				setBio(doc.data() as FormData)
 			})
 		}
@@ -35,7 +36,7 @@ export const EditProfile = () => {
 
 	if (!authUser) return
 	return (
-		<Card  maxW='850px'>
+		<Card maxW='850px'>
 			<Heading title='Edit profile' />
 			{isEdit ? (
 				<>
