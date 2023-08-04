@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { useAuth } from '@/hooks/useAuth'
 
 import { setProfileUpdate } from '../../../../helpers/editProfile'
-import { updateProfile } from '../../../../helpers/editProfile'
+import { updateUserProfile } from '../../../../helpers/editProfile'
 
 import { UsernameInput } from '@/components/ui/inputs/UsernameInput'
 import { FormData } from '../../../../helpers/editProfile'
@@ -32,7 +32,7 @@ export const UpdateUserData = ({ valueBio, userId, valueName, valuePhoto, onTogg
 
 	const onSubmit = async (data: FormData) => {
 		await setProfileUpdate(data, userId)
-		await updateProfile({ username: data.username, photo: data.photo }, authUser)
+		await updateUserProfile({ username: data.username, photo: data.photo }, authUser)
 		onToggle()
 	}
 	useEffect(() => {

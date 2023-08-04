@@ -1,4 +1,6 @@
-import { User, db, updateUser, updateEmail, fetchUserCredential, auth, updatePassword } from '@/config/firebase'
+
+import { auth, db } from '@/config/firebase'
+import { User, fetchSignInMethodsForEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 
 interface PersonalData {
@@ -18,11 +20,11 @@ export const setUserData = async (userId: string, name: string, joined: string) 
 }
 
 //update general firebase Info
-export const updateProfile = async (
+export const updateUserProfile = async (
 	{ username, photo }: Pick<FormData, 'username' | 'photo'>,
 	authUser: User | null
 ) => {
-	await updateUser(authUser as User, {
+	await updateProfile(authUser as User, {
 		displayName: username,
 		photoURL: photo,
 	})
@@ -51,7 +53,7 @@ const setNewEmaill = async ({ email }: Pick<PersonalData, 'email'>, authUser: Us
 }
 export const handleChangeEmail = async (newEmail: string, authUser: User) => {
 	try {
-		const checkEmail = await fetchUserCredential(auth, newEmail)
+		const checkEmail = await fetchSignInMethodsForEmail(auth, newEmail)
 		if (checkEmail.length > 0) {
 		} else {
 			setNewEmaill({ email: newEmail }, authUser)
