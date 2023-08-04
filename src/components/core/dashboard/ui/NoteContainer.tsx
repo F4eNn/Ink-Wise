@@ -12,6 +12,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			rounded='2xl'
 			mb='5'
             minH='275px'
+			maxW='450px'
 			borderColor={'primary.900'}
 			borderBottomWidth='1px'
 			borderLeftWidth='1px'
@@ -19,7 +20,7 @@ export const NoteContainer = ({ children }: { children: ReactNode }) => {
 			_hover={{
 				boxShadow: `0px 2px 3px 1px  ${colorMode === 'dark' ? '#e49800' : '#c4c4c4f7'}`,
 			}}
-			maxW='450px'>
+			>
 			{children}
 			
 		</Container>

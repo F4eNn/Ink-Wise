@@ -5,13 +5,14 @@ import { ModalCloseButton, ModalFooter, Button } from '@/lib/chakra'
 import { ModalHeader } from '../../ui/modal/ModalHeader'
 import { ModalBody } from '../../ui/modal/ModalBody'
 
-import { arrayUnion, deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
-import { addDoc, collection, db } from '@/config/firebase'
+import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+
 import { getAllNotes } from './helpers/note'
 
 import { NoteForm, NoteFormValue } from '../create/NoteForm'
 import { Notes } from './Dashboard'
 import { useAuth } from '@/hooks/useAuth'
+import { db } from '@/config/firebase'
 
 interface EditNoteProps {
 	isOpen: boolean

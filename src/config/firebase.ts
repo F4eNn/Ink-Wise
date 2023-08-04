@@ -1,15 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import {
-	getAuth,
-	User as UserCrednetial,
-	updateProfile,
-	updateEmail as editEmail,
-	updatePassword as Editpassword,
-	reauthenticateWithCredential,
-	EmailAuthProvider,
-	fetchSignInMethodsForEmail,
-} from 'firebase/auth'
-import { getFirestore, collection as firebaseCollection, addDoc as firebaseDoc } from '@firebase/firestore'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from '@firebase/firestore'
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -23,16 +14,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 export const auth = getAuth(app)
-export type User = UserCrednetial
 
 export const db = getFirestore(app)
-
-export const updateEmail = editEmail
-export const updateUser = updateProfile
-export const collection = firebaseCollection
-export const addDoc = firebaseDoc
-
-export const reauthenticate = reauthenticateWithCredential
-export const EmailProvider = EmailAuthProvider
-export const fetchUserCredential = fetchSignInMethodsForEmail
-export const updatePassword = Editpassword

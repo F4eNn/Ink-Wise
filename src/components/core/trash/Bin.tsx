@@ -1,6 +1,6 @@
-import { addDoc, collection, db } from '@/config/firebase'
+
 import { useAuth } from '@/hooks/useAuth'
-import { deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { Card } from '../user/ui/Card'
 import { NoteContainer } from '../dashboard/ui/NoteContainer'
@@ -14,6 +14,7 @@ import { Heading } from '@/components/ui/Heading'
 import { Modal } from './ui/Modal'
 import { CardList } from '../community/ui/CardList'
 import { EmptyIcon } from '../../ui/EmptyIcon'
+import { db } from '@/config/firebase'
 
 type TrashNoteValues = {
 	category: string
@@ -87,7 +88,11 @@ export const Bin = () => {
 					overflow='hidden'>
 					<CardList>
 						{trashNotes?.map((note: any) => (
-							<ListItem key={note.noteId}>
+							<ListItem
+								key={note.noteId}
+								w='full'
+								minH='275px'
+								maxW='450px'>
 								<NoteContainer>
 									<NoteHeading
 										category={note.category}
