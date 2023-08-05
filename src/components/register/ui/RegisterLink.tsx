@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, Text, Link } from '../../../lib/chakra'
-import NextLink from 'next/link'
+import { Flex, Text } from '@/lib/chakra'
+import { PrimaryLink } from '@/components/ui/PrimaryLink'
 
 export const RegisterLink = ({ content, path, linkDesc }: { content: string; path: string; linkDesc: string }) => {
 	return (
@@ -11,29 +11,10 @@ export const RegisterLink = ({ content, path, linkDesc }: { content: string; pat
 			textAlign={'right'}>
 			<>
 				<Text as='span'>{content}</Text>
-				<Link
-					position={'relative'}
-					_after={{
-						position: 'absolute',
-						bottom: '0',
-						left: '0',
-						content: '""',
-						width: '30%',
-						height: '1px',
-						bg: 'primary.900',
-						transitionProperty: 'width',
-						transitionDuration: '.3s',
-					}}
-					_hover={{
-						_after: {
-							width: '100%',
-						},
-					}}
-					color={'primary.900'}
-					as={NextLink}
-					href={path}>
-					{linkDesc}
-				</Link>
+				<PrimaryLink
+					linkDesc={linkDesc}
+					path={path}
+				/>
 			</>
 		</Flex>
 	)

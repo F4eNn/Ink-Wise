@@ -14,7 +14,6 @@ import { Submit } from './ui/Submit'
 import { GoogleBtn } from './ui/GoogleBtn'
 import { GitHubBtn } from './ui/GitHubBtn'
 import { Logo } from '../ui/Logo'
-import { RegisterLink } from './ui/RegisterLink'
 import { PasswordInput } from '../ui/inputs/PasswordInput'
 import { UsernameInput } from '../ui/inputs/UsernameInput'
 import { EmailInput } from '../ui/inputs/EmailInput'
@@ -24,6 +23,7 @@ import { useAuth } from '../../hooks/useAuth'
 
 import { setUserData } from '@/helpers/editProfile'
 import { useDate } from '@/hooks/useDate'
+import { RegisterLink } from './ui/RegisterLink'
 
 export const Signup = () => {
 	const { colorMode } = useColorMode()

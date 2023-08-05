@@ -1,7 +1,7 @@
 import { Box, ListItem, UnorderedList } from '@/lib/chakra'
-import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import { UserDropdown } from '../../user/UserDropdown'
+import { PrimaryLink } from '@/components/ui/PrimaryLink'
 export const Desktop = () => {
 	const { authUser } = useAuth()
 	return (
@@ -16,10 +16,19 @@ export const Desktop = () => {
 					alignItems='center'
 					gap={10}>
 					<ListItem>
-						<Link href='/login'>Login</Link>
+						<PrimaryLink
+							linkDesc='Login'
+							path='/login'
+							color='primary.600'
+						/>
+						{/* <Link href='/login'>Login</Link> */}
 					</ListItem>
 					<ListItem>
-						<Link href='/signup'>Sign up</Link>
+						<PrimaryLink
+							color='primary.600'
+							linkDesc='Signup'
+							path='/signup'
+						/>
 					</ListItem>
 				</UnorderedList>
 			)}

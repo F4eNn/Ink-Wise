@@ -7,7 +7,6 @@ import { Card } from './ui/Card'
 import { Submit } from './ui/Submit'
 import { GoogleBtn } from './ui/GoogleBtn'
 import { GitHubBtn } from './ui/GitHubBtn'
-import { RegisterLink } from './ui/RegisterLink'
 import { EmailInput } from '../ui/inputs/EmailInput'
 import { PasswordInput } from '../ui/inputs/PasswordInput'
 
@@ -20,6 +19,7 @@ import { Button, Center, useColorMode } from '@/lib/chakra'
 
 import { motion } from '@/lib/motion'
 import { pulseAnimation } from '@/animations/GeneralAnimations'
+import { RegisterLink } from './ui/RegisterLink'
 
 export const Login = () => {
 	const { colorMode } = useColorMode()
