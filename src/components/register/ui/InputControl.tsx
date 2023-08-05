@@ -43,7 +43,6 @@ export const InputControl = (props: InputProps) => {
 				py={5}
 				defaultValue={usernameValue}
 				variant={'flushed'}
-				fontSize={'.8em'}
 				focusBorderColor='primary.900'
 				type={type}
 				borderColor='borderColor'
