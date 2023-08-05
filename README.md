@@ -36,6 +36,9 @@ Firebase | Backend platform |
 
 # Preview
 
+### Community
+![Community page](./public/CommunityScreenShot.png)
+
 ### Signup page **( light mode )**
 ![signup page](./public/signup-lightmode-preview.png)
 
@@ -44,6 +47,7 @@ Firebase | Backend platform |
 
 ### Create Note
 ![Create note page](./public/CreateSS.png)
+
 
 
 
