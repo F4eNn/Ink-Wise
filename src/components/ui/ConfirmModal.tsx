@@ -1,9 +1,11 @@
+import React from 'react'
+import { User } from 'firebase/auth'
+
 import { ModalBody } from '@/components/ui/modal/ModalBody'
 import { ModalContent } from '@/components/ui/modal/ModalContent'
 import { ModalOverlay } from '@/components/ui/modal/ModalOverlay'
 import { Button, Heading, ModalFooter } from '@/lib/chakra'
-import { User } from 'firebase/auth'
-import React from 'react'
+
 
 interface ModalProps {
 	isOpen: boolean

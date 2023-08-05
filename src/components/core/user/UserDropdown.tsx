@@ -8,8 +8,12 @@ import { Avatar } from './ui/Avatar'
 import { Link } from './ui/Link'
 
 export const UserDropdown = () => {
-	const { authUser, logout } = useAuth()
+	const { authUser, logout,Toast } = useAuth()
 
+	const handleLogout = async () => {
+		await logout()
+		Toast({desc:'Successfully logout', isHeading: false})
+	}
 	return (
 		<Menu>
 			<MenuButton />
@@ -49,7 +53,7 @@ export const UserDropdown = () => {
 						_hover={{
 							bg: 'error',
 						}}
-						onClick={logout}>
+						onClick={handleLogout}>
 						Logout
 					</MenuItem>
 				</Flex>

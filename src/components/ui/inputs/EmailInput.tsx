@@ -1,6 +1,8 @@
 import React from 'react'
-import { InputControl } from '../../register/ui/InputControl'
 import { UseFormRegister } from 'react-hook-form'
+
+import { InputControl } from '../../register/ui/InputControl'
+
 import { emailVal } from '@/helpers/validations'
 
 interface EmailProps {

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Logo } from '../ui/Logo'
 import { Form } from './ui/Form'
@@ -16,13 +16,17 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { Center, useColorMode } from '@/lib/chakra'
+import { Button, Center, useColorMode } from '@/lib/chakra'
+
+import { motion } from '@/lib/motion'
+import { pulseAnimation } from '@/animations/GeneralAnimations'
 
 export const Login = () => {
 	const { colorMode } = useColorMode()
+	const [isTestAccount, setIsTestAccount] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [InvalidCredentials, setInvalidCredentials] = useState(false)
-	const { register, formState, handleSubmit } = useForm({
+	const { register, formState, handleSubmit, setValue } = useForm({
 		defaultValues: {
 			email: '',
 			password: '',
@@ -47,6 +51,16 @@ export const Login = () => {
 	const onSubmit: SubmitHandler<FieldValues> = user => {
 		signIn(user.email, user.password)
 	}
+	const handleTestAccount = () => {
+		setIsTestAccount(true)
+	}
+	useEffect(() => {
+		if (isTestAccount) {
+			setValue('email', 'nadia@doe.com')
+			setValue('password', 'Minutes1!')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isTestAccount])
 
 	return (
 		<>
@@ -55,6 +69,15 @@ export const Login = () => {
 				<Card>
 					<GoogleBtn mode={colorMode} />
 					<GitHubBtn mode={colorMode} />
+					<Button
+						as={motion.button}
+						variants={pulseAnimation}
+						variant='primary'
+						fontSize='md'
+						my='3'
+						onClick={handleTestAccount}>
+						Test Account
+					</Button>
 					<Center
 						color='error'
 						fontSize={'.85em'}
