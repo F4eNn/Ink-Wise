@@ -1,4 +1,4 @@
-
+[<img src='./public/home-page-preview.png' alt='Ink Wise home page banner' width='100%' />](https://ink-wise.vercel.app/)
 <h1 align='center'>Live 💻</h1> 
 
 <p align='center'><a target='_blank' href='https://ink-wise.vercel.app/?vercelToolbarCode=3SLUBvVUdx5T5Tj' align='center' >✨ Ink Wise ✨</a></p>
@@ -34,18 +34,17 @@ Firebase | Backend platform |
 
 
 
-## Preview
+# Preview
 
-### Home page
-![Home Page](./public/home-page-preview.png)
 ### Signup page **( light mode )**
 ![signup page](./public/signup-lightmode-preview.png)
+
 ### Login page
 ![Login page](./public/login-preview.png)
-### User pannel **( After loggin )**
-![home page](./public/user-pannel-preview.png)
-### Mobile Friendly **( Home page )**
-![home page](./public/mobile-friendly.png)
+
+### Create Note
+![Create note page](./public/CreateSS.png)
+
 
 
 ## Run Locally
