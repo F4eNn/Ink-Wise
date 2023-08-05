@@ -1,39 +1,38 @@
-# Hello 😄 👋
-## Currently in progress...🚧🛠️
-## Live [here](https://ink-wise.vercel.app/?vercelToolbarCode=3SLUBvVUdx5T5Tj)
 
-## Implemented behaviour
+<h1 align='center'>Live 💻</h1> 
 
-- Creating users via email and password.
-- Secure login and user registration.
-- Access to hidden content is available for logged-in users.
-- Full validation of the login and registration.
-- Changing the theme from dark to light.
-- Fancy animation on home-page.
-- View the optimal page layout depending on their device's screen size
+<p align='center'><a target='_blank' href='https://ink-wise.vercel.app/?vercelToolbarCode=3SLUBvVUdx5T5Tj' align='center' >✨ Ink Wise ✨</a></p>
 
-## What I will implement next
+</br>
 
-- [x] Contact section
-- [ ] Footer section **( currently )**
-- [ ] BlurHash for images
-- [ ] Create users via google/github
+## User is Able to: ✅
 
-###  User profile site
-- [ ] Description field
-- [ ] Possibility to add and remove profile picture
-- [ ] Allow to change password and username
+- Create an account and log in successfully.
+- Change email, password or both
+- Delete account
+- Edit general info e.g. bio, profile image etc.
+- Select a prefferred theme
+- See main content only if logged in
+- Create and menage notes. e.g. delete, update
+- Restore deleted notes
+- See entire community
 
-## Tech-Stack 🔨
-- Semantic HTML5 markup
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled-components](https://styled-components.com/) - Library For styles
-- [Chakra UI](https://chakra-ui.com/) - Library for UI
-- [React-hook-fomr](https://react-hook-form.com/) - Library for form validation
-- [Framer-motion](https://www.framer.com/motion/) - Library for animations
-- [Firebase](https://firebase.google.com/) - Backend platform
+</br>
+
+## Built with 🛠
+
+Tools | type |
+---| --- |
+React | JS library |
+Next.js | React framework |
+React-hook-form | Library for form validation |
+ChakraUI | Library for UI |
+Styled-components | Library for styles |
+Framer-motion | Library for animation |
+Firebase | Backend platform |
+
+
+
 
 ## Preview
 
