@@ -36,14 +36,15 @@ Firebase | Backend platform |
 
 # Preview
 
-### Community
-![Community page](./public/CommunityScreenShot.png)
 
 ### Signup page **( light mode )**
 ![signup page](./public/signup-lightmode-preview.png)
 
 ### Login page
 ![Login page](./public/login-preview.png)
+
+### Community
+![Community page](./public/CommunityScreenShot.png)
 
 ### Create Note
 ![Create note page](./public/CreateSS.png)
