@@ -44,7 +44,7 @@ Firebase | Backend platform |
 ![Login page](./public/login-preview.png)
 
 ### Community
-![Community page](./public/CommunityScreenShot.png)
+![Community page](./public/CommunitySS.png)
 
 ### Create Note
 ![Create note page](./public/CreateSS.png)
