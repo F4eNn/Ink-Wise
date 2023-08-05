@@ -5,8 +5,11 @@ import { Flex, Heading, AspectRatio, Text, Box } from '@/lib/chakra'
 import { Reveal } from '@/components/ui/Reveal'
 import { LinkButton } from './ui/LinkButton'
 import { motion, useScroll } from 'framer-motion'
+import { useAuth } from '@/hooks/useAuth'
 export const Hero = () => {
 	const { scrollYProgress } = useScroll()
+	const { authUser } = useAuth()
+	const isAuth = authUser ? `/${authUser.displayName}` : '/signup'
 
 	return (
 		<Flex
@@ -56,7 +59,7 @@ export const Hero = () => {
 					mt='8'
 					mx={['auto', null, '0']}
 					color='white'>
-					<LinkButton url='/signup'>Get started</LinkButton>
+					<LinkButton url={isAuth}>Get started</LinkButton>
 				</Box>
 			</Box>
 			<Box

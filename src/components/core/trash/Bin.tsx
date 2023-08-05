@@ -10,10 +10,10 @@ import { Tag } from '../dashboard/ui/Tag'
 
 import { Heading } from '@/components/ui/Heading'
 
-import { Modal } from './ui/Modal'
 import { CardList } from '../community/ui/CardList'
 import { EmptyIcon } from '../../ui/EmptyIcon'
 import { db } from '@/config/firebase'
+import { ConfirmModal } from '@/components/ui/ConfirmModal'
 
 type TrashNoteValues = {
 	category: string
@@ -137,11 +137,12 @@ export const Bin = () => {
 						</Box>
 					)}
 				</Flex>
-				<Modal
-					deleteNote={deleteNote}
+				<ConfirmModal
+					moveToBin={deleteNote}
 					id={noteId}
 					isOpen={isOpen}
 					onClose={onClose}
+					desc='This will permanently delete the note, are you sure to execute?'
 				/>
 			</Card>
 		</>

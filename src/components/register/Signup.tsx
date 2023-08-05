@@ -58,8 +58,8 @@ export const Signup = () => {
 			if ((err as { code: string }).code == 'auth/email-already-in-use') return setEmailExist(true)
 		}
 	}
-	const onSubmit: SubmitHandler<FieldValues> = data => {
-		signUp(data.email, data.password, data.username)
+	const onSubmit: SubmitHandler<FieldValues> = async data => {
+		await signUp(data.email, data.password, data.username)
 	}
 	return (
 		<Form handleSubmit={handleSubmit(onSubmit)}>

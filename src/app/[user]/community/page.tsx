@@ -12,7 +12,7 @@ const CommunityPage = async () => {
 			<Flex
 				justifyContent='center'
 				gap='14'>
-				<Box w={{ base: 'full', md: '100vw' }}>
+				<Box w={{ base: 'full', md: '100%' }}>
 					<Community />
 				</Box>
 				<Box

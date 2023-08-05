@@ -2,10 +2,15 @@
 	"extends": "next/core-web-vitals",
 	"rules": {
 		"no-duplicate-imports": "error",
-		"no-console": "warn",
+		"no-console": [
+			"warn",
+			{
+				"allow": ["error"]
+			}
+		],
 		"no-empty": "error",
 		"no-undef": "error",
-		"no-unused-vars":"error",
+		"no-unused-vars": "error",
 		"no-unused-expressions": "error",
 		"object-shorthand": "error",
 		"prefer-arrow-callback": "error",

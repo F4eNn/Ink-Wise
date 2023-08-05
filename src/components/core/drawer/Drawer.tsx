@@ -20,7 +20,7 @@ export const Drawer = () => {
 			px={isOpen ? '20px' : ''}
 			transition='width .2s'
 			w={isOpen ? ['250px', '300px', '350px'] : ['60px', '70px', '70px']}
-			minH='calc(100vh - 100px)'
+			minH={['calc(100vh - 65px)','calc(100vh - 80px)']}
 			bg='primary.200'
 			zIndex='500'
 			mt='auto'>

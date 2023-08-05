@@ -21,8 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [authUser, setAuthUser] = useState<User | null>(null)
 
 	const noAuthPath = ['/', '/signup', '/login']
-
-	// console.log(noAuthPath.includes(pathname))
+	const isAuth = ['/signup', '/login']
 
 	const Toast = ({ isHeading = false, desc, username, fontWeight = 'bold' }: ToastProps) => {
 		toast({
@@ -51,10 +50,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const listen = onAuthStateChanged(auth, user => {
 			if (user) {
 				setAuthUser(user)
+				if (isAuth.includes(pathname)) {
+					router.replace(`/${authUser?.displayName}`)
+				}
 			} else {
 				setAuthUser(null)
 				if (noAuthPath.includes(pathname)) return
-				router.push('/login')
+				router.replace('/login')
 			}
 		})
 		return () => {

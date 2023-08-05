@@ -55,8 +55,8 @@ export const NoteForm = ({
 		setValue('category', category!)
 	}, [setValue, title, content, category, tag])
 
-	const onSubmit = (data: NoteFormValue) => {
-		onSendForm(data)
+	const onSubmit = async (data: NoteFormValue) => {
+		await onSendForm(data)
 		if (applyReset) {
 			reset()
 			Toast({ isHeading: false, desc: 'Note created!', username: null })

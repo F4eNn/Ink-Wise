@@ -4,6 +4,7 @@ import { Box, Button, VStack, Text } from '@/lib/chakra'
 import { UpdatePassword } from './forms/UpdatePassword'
 import { UpdateEmail } from './forms/UpdateEmail'
 import { UpdateAllCredentials } from './forms/UpdateAllCredentials'
+import { DeleteAcc } from './ui/DeleteAcc'
 
 export type CredentialForm = {
 	password: string
@@ -28,7 +29,6 @@ export const EditCredential = () => {
 		setUpdateBoth(true)
 		setIsHideButtons(true)
 	}
-
 	return (
 		<VStack
 			borderWidth='1px'
@@ -67,6 +67,7 @@ export const EditCredential = () => {
 						w='full'>
 						Update Both
 					</Button>
+					<DeleteAcc />
 				</VStack>
 			)}
 			<UpdateAllCredentials

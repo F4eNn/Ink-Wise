@@ -29,7 +29,7 @@ export const Nav = () => {
 
 	return (
 		<>
-			{isScroll && <Box h='100px' />}
+			{isScroll && <Box h={['65px', '80px']} />}
 			{!isAuthPath && (
 				<Box
 					as='nav'

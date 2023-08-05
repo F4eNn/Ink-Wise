@@ -2,19 +2,29 @@ import { ModalBody } from '@/components/ui/modal/ModalBody'
 import { ModalContent } from '@/components/ui/modal/ModalContent'
 import { ModalOverlay } from '@/components/ui/modal/ModalOverlay'
 import { Button, Heading, ModalFooter } from '@/lib/chakra'
+import { User } from 'firebase/auth'
 import React from 'react'
 
 interface ModalProps {
 	isOpen: boolean
 	onClose: () => void
-	id: string
+	id?: string
 	// eslint-disable-next-line no-unused-vars
-	deleteNote: (id: string) => Promise<void>
+	moveToBin?: (id: string) => Promise<void>
+	// eslint-disable-next-line no-unused-vars
+	removeAcc?: (user: User) => Promise<void>
+	user?: User
+	desc:
+		| 'This will permanently delete the note, are you sure to execute?'
+		| 'This action will permanently delete your account. Are you sure you want to continue?'
 }
-
-export const Modal = ({ id, isOpen, onClose, deleteNote }: ModalProps) => {
-	const moveNoteToBin = () => {
-		deleteNote(id)
+export const ConfirmModal = ({ id, isOpen, onClose, moveToBin, removeAcc, user, desc }: ModalProps) => {
+	const executeTask = () => {
+		if (id && moveToBin) {
+			moveToBin(id)
+		} else if (user && removeAcc) {
+			removeAcc(user)
+		}
 		onClose()
 	}
 
@@ -30,13 +40,13 @@ export const Modal = ({ id, isOpen, onClose, deleteNote }: ModalProps) => {
 						fontSize='2xl'
 						mt='5'
 						mb='14'>
-						This will permanently delete the note, are you sure to execute?
+						{desc}
 					</Heading>
 				</ModalBody>
 				<ModalFooter>
 					<Button
 						variant='primary'
-						onClick={moveNoteToBin}
+						onClick={executeTask}
 						mx='auto'
 						w='70%'>
 						Confirm
