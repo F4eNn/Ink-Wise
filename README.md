@@ -1,7 +1,7 @@
 [<img src='./public/home-page-preview.png' alt='Ink Wise home page banner' width='100%' />](https://ink-wise.vercel.app/)
 <h1 align='center'>Live 💻</h1> 
 
-<p align='center'><a target='_blank' href='https://ink-wise.vercel.app/?vercelToolbarCode=3SLUBvVUdx5T5Tj' align='center' >✨ Ink Wise ✨</a></p>
+<p align='center'><a target='_blank' href='https://ink-wise-7qkxlkf1w-f4enn.vercel.app' align='center' >✨ Ink Wise ✨</a></p>
 
 </br>
 
