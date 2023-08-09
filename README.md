@@ -30,7 +30,7 @@ ChakraUI | Library for UI |
 Styled-components | Library for styles |
 Framer-motion | Library for animation |
 Firebase | Backend platform |
-Validator.js | Library of strings validators
+Validator.js | String validation library
 
 
 
